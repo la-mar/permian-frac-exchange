@@ -1,0 +1,6 @@
+
+basepath: FTP_DIRECTORY_PATH
+destination: ./data
+url: FTP_URL
+username: YOUR_USERNAME
+password: YOUR_PASSWORD

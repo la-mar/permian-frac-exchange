@@ -1,0 +1,34 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+rope = "*"
+codecov = "*"
+pytest = "*"
+ipython = "*"
+matplotlib = "*"
+pylint = "*"
+coverage = "*"
+pytest-cov = "*"
+autopep8 = "*"
+
+[packages]
+sqlalchemy = "==1.2.18"
+pandas = "*"
+pyyaml = "*"
+pymssql = "*"
+numpy = "*"
+six = "*"
+cython = "*"
+arrow = "*"
+xlrd = "*"
+python-dotenv = "*"
+python-levenshtein = "*"
+geopandas = "*"
+shapely = "*"
+fuzzywuzzy = "*"
+
+[requires]
+python_version = "3.7"
