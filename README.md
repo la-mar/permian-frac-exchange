@@ -110,5 +110,6 @@ request.
 # TODOs:
 
 - Add CLI options
+- Only remove known files during cleanup
 - Document standardization specifics
 - More documentation
