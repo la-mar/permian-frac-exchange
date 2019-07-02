@@ -14,6 +14,8 @@ can be investigated.
 
 # Configuration
 
+Requires Python 3.7+
+
 You can choose one of two basic options for configuration:
 
 1) Add a file named ".env" to the project's root directory.  The app will import
