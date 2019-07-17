@@ -3,10 +3,12 @@
 import os
 import logging
 from dotenv import load_dotenv
+from datetime import datetime
 
 import yaml
 from src.ftp import Ftp
 from src.parser import *
+
 
 from src.settings import (ALIASPATH,
                           COLUMN_DTYPES,
@@ -39,8 +41,6 @@ def remove_previous_downloads(path: str):
 
     logger.info("Deleted {0} old files.".format(del_ct))
 
-
-
 def parse():
 
     if os.path.isfile(ALIASPATH):
@@ -58,7 +58,6 @@ def parse():
         if os.path.isfile(f):
             p = factory.Parser(f)
             parsers[p.operator.name] = p
-
 
     ps = ParserCollection(parsers, name='frac_schedules')
     ps = ps.adjust_headers()
@@ -82,7 +81,7 @@ def save(df, destination: str = None):
     if destination is None:
         if not os.path.exists('./output'):
             os.mkdir('./output')
-        destination = './output/results.csv'
+        destination = f'./output/results-{int(datetime.now().timestamp())}.csv'
 
     if destination == 'database':
         from src.tables import frame_to_db
