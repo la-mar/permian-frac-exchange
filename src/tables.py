@@ -326,7 +326,7 @@ class frac_schedule(GenericTable, Base):
 
 
     def __repr__(self):
-        return f'frac_schedule: {self.api14}: {self.operator_alias}'
+        return f'frac_schedule: {self.api14}: {self.operator_alias} | {self.operator}'
 
 
 def nullloads(geom):
