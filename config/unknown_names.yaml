@@ -3,3 +3,11 @@
 - geometry
 - operator_alias
 - wellname
+- fracstart
+- fracend
+- surfacelat
+- surfacelong
+- bottomholelat
+- bottomholelong
+- targetformation
+- comments
