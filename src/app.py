@@ -1,21 +1,15 @@
 
 
-import os
 import logging
-from dotenv import load_dotenv
+import os
 from datetime import datetime
 
 import yaml
+from dotenv import load_dotenv
+
 from src.ftp import Ftp
 from src.parser import *
-
-
-from src.settings import (ALIASPATH,
-                          COLUMN_DTYPES,
-                          COLUMN_NAMES,
-                          DATAPATH,
-                          CONFIGPATH,
-                          LOGLEVEL)
+from src.settings import *
 
 load_dotenv()
 
@@ -68,7 +62,7 @@ def parse():
     ps.to_yaml(aliases = alias_map)
     return ps
 
-def save(df, destination: str = None):
+def save(df, void: str = None):
     """Save the passed dataframe
 
     Arguments:
@@ -78,20 +72,21 @@ def save(df, destination: str = None):
         destination {str} -- [description] (default: {None})
     """
 
-    if destination is None:
-        if not os.path.exists('./output'):
-            os.mkdir('./output')
-        destination = f'./output/results-{int(datetime.now().timestamp())}.csv'
 
-    if destination == 'database':
-        from src.tables import frame_to_db
-        frame_to_db(df)
-    elif destination.endswith('xlsx'):
-        df.to_excel(destination)
-    elif destination.endswith('csv'):
+
+    if not os.path.exists('./output'):
+        os.mkdir('./output')
+
+    if TO_CSV:
+        destination = CSV_OUTPUT_PATH_TEMPLATE.format(dt = int(datetime.now().timestamp()))
         df.to_csv(destination)
-    else:
-        df.to_csv(destination or '.')
+        logger.info(f'Saved output to: {destination}')
+
+
+    if TO_DATABASE:
+        from src.tables import frame_to_db, frac_schedule
+        frame_to_db(df)
+        logger.info(f'Saved output to: {frac_schedule.__table__.schema}.{frac_schedule.__table__.name}')
 
 
 def run(destination:str = None, skip_cleanup: bool = False, skip_download: bool = False):
@@ -100,9 +95,14 @@ def run(destination:str = None, skip_cleanup: bool = False, skip_download: bool 
         remove_previous_downloads(DATAPATH)
 
     if not skip_download:
-        Ftp.load(CONFIGPATH).download_all()
+        Ftp.load(None).download_all()
 
     parsers = parse()
 
     save(parsers.df, destination)
 
+
+
+
+if __name__ == "__main__":
+    run('./data')

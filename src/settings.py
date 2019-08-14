@@ -22,7 +22,13 @@ LOGLEVEL = logging.DEBUG
 
 ENV_NAME = os.getenv('ENV_NAME', 'UNKNOWN')
 
-OPERATOR_INDEX_SOURCE = os.getenv('OPERATOR_INDEX_SOURCE', 'file')
+""" Inputs """
+OPERATOR_INDEX_SOURCE = os.getenv('FSEC_OI_SRC', 'file')
+
+""" Outputs """
+TO_CSV = os.getenv('FSEC_TO_CSV', True)
+TO_DATABASE = os.getenv('FSEC_TO_DATABASE', False)
+CSV_OUTPUT_PATH_TEMPLATE = './output/results-{dt}.csv'
 
 """ API keys """
 SENTRY_KEY = os.getenv('FSEC_SENTRY_KEY', None)
