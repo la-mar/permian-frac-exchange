@@ -115,3 +115,4 @@ request.
 - Only remove known files during cleanup
 - Document standardization specifics
 - More documentation
+- API14 and API10 checks
