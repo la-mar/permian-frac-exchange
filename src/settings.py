@@ -22,7 +22,7 @@ LOGLEVEL = logging.DEBUG
 
 ENV_NAME = os.getenv('ENV_NAME', 'UNKNOWN')
 
-OPERATOR_INDEX_SOURCE = 'file' #'sql'# or 'file'
+OPERATOR_INDEX_SOURCE = os.getenv('OPERATOR_INDEX_SOURCE', 'file')
 
 """ API keys """
 SENTRY_KEY = os.getenv('FSEC_SENTRY_KEY', None)
