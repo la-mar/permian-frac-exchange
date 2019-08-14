@@ -1,7 +1,7 @@
 """Classes to parse attributes from frac schedules with uncertain shape and formatting."""
 
 from __future__ import annotations  # self return type annotations
-
+from typing import Callable
 import inspect
 import logging
 import os
@@ -30,6 +30,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(LOGLEVEL)
 
 
+__MSG_PARSER_CHECK__ = 'Parser({op_name}) -- skipped column {col_name}'
 __MSG_PARSER_CORRUPT__ = 'Parser({op_name}) is corrupt - bypassing method call.'
 __MSG_PARSER_ERROR__ = 'Error in Parser({op_name}) -- {e}'
 __MSG_PARSER_PARSING__ = 'Error parsing value ({v}) in Parser({op_name}) -- {e}'
@@ -179,6 +180,8 @@ class Parser(object):
                 self.df = df.iloc[skiprows:]
                 self.original_column_names = df.columns.tolist()
 
+                self.api_handler()
+
             except Exception as e:
                 logger.error(__MSG_PARSER_ERROR__.format(
                     op_name=self.operator.name, e=e))
@@ -212,17 +215,20 @@ class Parser(object):
         if self._is_valid_state():
 
             df = self.df
+            cols = df.columns.tolist()
 
             try:
-                df['api14'] = df.api14.apply(self.api_n)
-                df['api10'] = df.api14.apply(self.api_n, n=10)
+                self.safe_apply('api14', self.api_n)
+                self.safe_apply('api14', partial(self.api_n, n = 10), apply_to = 'api10')
                 df['crs'] = self.identify_crs(self.original_column_names)
-                df['fracstartdate'] = df.fracstartdate.apply(self.date_handler)
-                df['fracenddate'] = df.fracenddate.apply(self.date_handler)
-                df['shllat'] = df.shllat.apply(self.validate_latlon)
-                df['shllon'] = df.shllon.apply(self.validate_latlon)
-                df['bhllat'] = df.bhllat.apply(self.validate_latlon)
-                df['bhllon'] = df.bhllon.apply(self.validate_latlon)
+                self.safe_apply('fracstartdate', self.date_handler)
+                self.safe_apply('fracenddate', self.date_handler)
+
+                [
+                    self.safe_apply(col, self.validate_latlon) for col in cols \
+                        if col in ['shllat', 'shllon', 'bhllat', 'bhllon']
+                ]
+
                 df['operator'] = self.operator.name
                 df['operator_alias'] = str(self.operator.alias).upper()
 
@@ -238,6 +244,18 @@ class Parser(object):
 
                 self.valid = False
 
+        return self
+
+    def safe_apply(self, apply_on: str, func: Callable, apply_to: str = None) -> pd.Series:
+        try:
+                apply_to = apply_to or apply_on
+                self.df[apply_on] = self.df[apply_on].apply(func)
+        except KeyError as ke:
+                logger.debug(__MSG_PARSER_CHECK__.format(op_name=self.operator.name,
+                                                         col_name=apply_on))
+        except Exception as e:
+                logger.debug(__MSG_PARSER_ERROR__.format(
+                    op_name=self.operator.name, e=e), exc_info=e)
         return self
 
     def validate_latlon(self, value):
@@ -496,9 +514,11 @@ class Parser(object):
                 cols.append(col)
 
             first = cols.pop()
+            first = first
             for col in cols:
-                first = first.combine(
-                    col, lambda x1, x2: x1 if x1 < x2 else x2)
+                first = first.astype(self.dtypes[first.name]) \
+                             .combine(col.astype(self.dtypes[first.name]),
+                                      lambda x1, x2: x1 if x1 < x2 else x2)
 
             if deduped_columns is None:
                 deduped_columns = first.to_frame()
@@ -584,6 +604,17 @@ class Parser(object):
 
         return ''
 
+    def api_handler(self) -> Parser:
+        df = self.df
+        has_api14 = 'api14' in df.columns
+        has_api10 = 'api10' in df.columns
+
+        if has_api14 & has_api10:
+            df = df.drop(columns = ['api10'])
+
+        self.df = df
+        return self
+
     def api_n(self, api: str, n: int = 14) -> str:
         """Standardize an api number to n number of digitsself.
 
@@ -613,7 +644,7 @@ class Parser(object):
                 return api
         except Exception as e:
             logger.warning(__MSG_PARSER_PARSING__.format(
-                op_name=self.operator.name, e=e, v=api))
+                op_name = self.operator.name, e = e, v = api))
 
     def to_latlon(self, dms: str) -> NotImplemented:
         """Convert DMS to Lat Lon
@@ -784,3 +815,38 @@ class ParserCollection(pd.Series):
     def log_parsers(self):
         self.get_status()
         logger.debug([parser for parser in self])
+
+
+
+# Error in Parser(cq) -- 'DataFrame' object has no attribute 'fracstartdate'
+# Traceback (most recent call last):
+#   File "/repositories/permian-frac-exchange/src/parser.py", line 220, in standardize_data
+#     df['fracstartdate'] = df.fracstartdate.apply(self.date_handler)
+#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/generic.py", line 5067, in __getattr__
+#     return object.__getattribute__(self, name)
+# AttributeError: 'DataFrame' object has no attribute 'fracstartdate'
+# Error in Parser(sm) -- ('The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().', 'occurred at index api14')
+# Traceback (most recent call last):
+#   File "/repositories/permian-frac-exchange/src/parser.py", line 217, in standardize_data
+#     df['api14'] = df.api14.apply(self.api_n)
+#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/frame.py", line 6487, in apply
+#     return op.get_result()
+#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/apply.py", line 151, in get_result
+#     return self.apply_standard()
+#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/apply.py", line 257, in apply_standard
+#     self.apply_series_generator()
+#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/apply.py", line 286, in apply_series_generator
+#     results[i] = self.f(v)
+#   File "/repositories/permian-frac-exchange/src/parser.py", line 600, in api_n
+#     if pd.isna(api):
+#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/generic.py", line 1478, in __nonzero__
+#     .format(self.__class__.__name__))
+# ValueError: ('The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().', 'occurred at index api14')
+# ./data/SabaloOperating_3MonthFracSchedule_2019Aug5.xlsx - Unable to convert value to datetime: 7/23/201
+# Error in Parser(xto) -- 'DataFrame' object has no attribute 'shllat'
+# Traceback (most recent call last):
+#   File "/repositories/permian-frac-exchange/src/parser.py", line 222, in standardize_data
+#     df['shllat'] = df.shllat.apply(self.validate_latlon)
+#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/generic.py", line 5067, in __getattr__
+#     return object.__getattribute__(self, name)
+# AttributeError: 'DataFrame' object has no attribute 'shllat'
