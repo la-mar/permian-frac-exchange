@@ -330,17 +330,12 @@ class Ftp(ImplicitFTP_TLS):
             Ftp
         """
 
-        if filename:
-            if os.path.isfile(filename):
-                with open(filename) as f:
-                    config = yaml.safe_load(f) or {}
-        # params =
         return Ftp(
-            url = os.environ.get('FSEC_URL', config['url']),
-            username = os.environ.get('FSEC_USERNAME', config['username']),
-            password = os.environ.get('FSEC_PASSWORD', config['password']),
-            basepath = os.environ.get('FSEC_BASEPATH', config['basepath']),
-            destination = os.environ.get('FSEC_DESTINATION', config['destination'])
+            url = os.environ.get('FSEC_URL'),
+            username = os.environ.get('FSEC_USERNAME'),
+            password = os.environ.get('FSEC_PASSWORD'),
+            basepath = os.environ.get('FSEC_BASEPATH'),
+            destination = os.environ.get('FSEC_DESTINATION')
         )
 
     def download_all(self, destination: str = None) -> str:
