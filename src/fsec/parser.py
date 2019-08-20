@@ -1,40 +1,27 @@
 """Classes to parse attributes from frac schedules with uncertain shape and formatting."""
 
 from __future__ import annotations  # self return type annotations
-from typing import Callable
+
 import inspect
 import logging
 import os
 import re
 from datetime import datetime
 from functools import partial
+from typing import Callable
 
-import yaml
 import numpy as np
 import pandas as pd
 import pyproj
+import yaml
 from shapely.geometry import Point
 from shapely.ops import transform
 
-from src.operator_index import Operator
-from src.settings import (ALIASPATH,
-                          UNKNOWNPATH,
-                          COLUMN_DTYPES,
-                          COLUMN_NAMES,
-                          DATAPATH,
-                          EXCLUDE_TOKENS,
-                          LOGLEVEL
-                          )
+from operator_index import Operator
+from settings import *
 
 logger = logging.getLogger(__name__)
 logger.setLevel(LOGLEVEL)
-
-
-__MSG_PARSER_CHECK__ = 'Parser({op_name}) -- skipped column {col_name}'
-__MSG_PARSER_CORRUPT__ = 'Parser({op_name}) is corrupt - bypassing method call.'
-__MSG_PARSER_ERROR__ = 'Error in Parser({op_name}) -- {e}'
-__MSG_PARSER_PARSING__ = 'Error parsing value ({v}) in Parser({op_name}) -- {e}'
-__MSG_PARSER_COLLECTION_STATUS__ = 'Executing {func_name} on ParserCollection({pc_name})'
 
 
 class Parser(object):
@@ -42,8 +29,16 @@ class Parser(object):
     act as a base class for the creation of parsers applied to more specific problems.
     """
 
-    def __init__(self, filename: str, alias_map: dict = None, dtypes: dict = None,
-                 target_colnames: list = None, exclude: list = None, ingest: dict = True, crefs=None):
+    def __init__(
+        self,
+        filename: str,
+        alias_map: dict = None,
+        dtypes: dict = None,
+        target_colnames: list = None,
+        exclude: list = None,
+        ingest: dict = True,
+        crefs=None,
+    ):
         self.ingest = ingest
         self.alias_map = alias_map or {}
         self.unknown_names = []
@@ -65,10 +60,10 @@ class Parser(object):
         except Exception as e:
             # TODO: Better error handling
             self.df = pd.DataFrame()
-            logger.warning(f'Could not read file {filename} -- {e}')
+            logger.warning(f"Could not read file {filename} -- {e}")
 
     def __repr__(self):
-        return f'<Parser: {self.operator.alias}, {os.path.basename(self.filename)} - len:{len(self.df)}>'
+        return f"<Parser: {self.operator.alias}, {os.path.basename(self.filename)} - len:{len(self.df)}>"
 
     def summarize(self) -> pd.DataFrame:
         """Produces a summary of the input DataFrame
@@ -81,9 +76,9 @@ class Parser(object):
         """
         df = self.df
         summary = df.describe().T
-        summary['missing'] = len(df.index) - summary['count']
-        summary['median'] = df.median()
-        summary['missing %'] = summary.missing / len(df.index) * 100
+        summary["missing"] = len(df.index) - summary["count"]
+        summary["median"] = df.median()
+        summary["missing %"] = summary.missing / len(df.index) * 100
         return summary.T
 
     def drop_features(self, columns: list) -> pd.DataFrame:
@@ -150,23 +145,24 @@ class Parser(object):
                 if isinstance(c, str):
                     c = c.lower()
                     # remove any character that is not alpha-numberic
-                    c = ''.join(e for e in c if e.isalnum())
+                    c = "".join(e for e in c if e.isalnum())
                 cols.append(c)
             for i in range(0, sensitivity):
-                    # Find the number of matches between the elements of the current row and the
-                    # target column names, then capture in series
+                # Find the number of matches between the elements of the current row and the
+                # target column names, then capture in series
                 specificity_index = specificity_index.append(
-                    pd.Series(len([col for col in cols if col in self.target_colnames])))
+                    pd.Series(len([col for col in cols if col in self.target_colnames]))
+                )
             if specificity_index.mean() >= specificity:
                 # Return header row index plus 1 and cleaned header names
-                return idx+1, cols
+                return idx + 1, cols
         return 0, df.columns
 
     def adjust_headers(self) -> Parser:
         """Look for a row that is likely to be column names and apply them to the
            columns of the DataFrame in the parser.
 
-        Returns:
+        Returns:selec
             Parser
         """
 
@@ -183,8 +179,8 @@ class Parser(object):
                 self.api_handler()
 
             except Exception as e:
-                logger.error(__MSG_PARSER_ERROR__.format(
-                    op_name=self.operator.name, e=e))
+                logger.error(MSG_PARSER_ERROR.format(e.args))
+                logger.debug(e)
                 self.valid = False
 
         return self
@@ -218,44 +214,50 @@ class Parser(object):
             cols = df.columns.tolist()
 
             try:
-                self.safe_apply('api14', self.api_n)
-                self.safe_apply('api14', partial(self.api_n, n = 10), apply_to = 'api10')
-                df['crs'] = self.identify_crs(self.original_column_names)
-                self.safe_apply('fracstartdate', self.date_handler)
-                self.safe_apply('fracenddate', self.date_handler)
+                self.safe_apply("api14", self.api_n)
+                self.safe_apply("api14", partial(self.api_n, n=10), apply_to="api10")
+                df["crs"] = self.identify_crs(self.original_column_names)
+                self.safe_apply("fracstartdate", self.date_handler)
+                self.safe_apply("fracenddate", self.date_handler)
 
                 [
-                    self.safe_apply(col, self.validate_latlon) for col in cols \
-                        if col in ['shllat', 'shllon', 'bhllat', 'bhllon']
+                    self.safe_apply(col, self.validate_latlon)
+                    for col in cols
+                    if col in ["shllat", "shllon", "bhllat", "bhllon"]
                 ]
 
-                df['operator'] = self.operator.name
-                df['operator_alias'] = str(self.operator.alias).upper()
+                df["operator"] = self.operator.name
+                df["operator_alias"] = str(self.operator.alias).upper()
 
                 if with_geom:
-                    df['geometry'] = df.apply(
-                        lambda x: self.to_geometry(x.shllon, x.shllat), axis=1)
+                    df["geometry"] = df.apply(
+                        lambda x: self.to_geometry(x.shllon, x.shllat), axis=1
+                    )
 
                 self.df = df
 
             except Exception as e:
-                logger.exception(__MSG_PARSER_ERROR__.format(
-                    op_name=self.operator.name, e=e) ,exc_info=e)
+                logger.exception(MSG_PARSER_ERROR.format(self), exc_info=e)
+                logger.debug(e)
 
                 self.valid = False
 
         return self
 
-    def safe_apply(self, apply_on: str, func: Callable, apply_to: str = None) -> pd.Series:
+    def safe_apply(
+        self, apply_on: str, func: Callable, apply_to: str = None
+    ) -> pd.Series:
         try:
-                apply_to = apply_to or apply_on
-                self.df[apply_on] = self.df[apply_on].apply(func)
+            apply_to = apply_to or apply_on
+            self.df[apply_on] = self.df[apply_on].apply(func)
         except KeyError as ke:
-                logger.debug(__MSG_PARSER_CHECK__.format(op_name=self.operator.name,
-                                                         col_name=apply_on))
+            logger.debug(
+                MSG_PARSER_CHECK.format(op_name=self.operator.name, col_name=apply_on)
+            )
         except Exception as e:
-                logger.debug(__MSG_PARSER_ERROR__.format(
-                    op_name=self.operator.name, e=e), exc_info=e)
+            logger.debug(
+                MSG_PARSER_ERROR.format(op_name=self.operator.name, e=e), exc_info=e
+            )
         return self
 
     def validate_latlon(self, value):
@@ -266,7 +268,7 @@ class Parser(object):
         ensures the output lat/long has the correct sign (+/-).  This only works for North America."""
 
         if isinstance(value, str):
-            tokens = value.split(' ')
+            tokens = value.split(" ")
             floats = []
             strings = []
             multi = 1
@@ -277,11 +279,11 @@ class Parser(object):
                 except:
                     strings.append(t.lower())
             if len(strings) > 0:
-                if 'w' in strings or 's' in strings:
+                if "w" in strings or "s" in strings:
                     multi = -1
 
             if len(floats) > 0:
-                f = floats[0]*multi
+                f = floats[0] * multi
 
         else:
             f = value
@@ -301,7 +303,8 @@ class Parser(object):
             return pd.to_datetime(value, infer_datetime_format=True)
         except:
             logger.warning(
-                f'{self.filename} - Unable to convert value to datetime: {value}')
+                f"{self.filename} - Unable to convert value to datetime: {value}"
+            )
             return pd.NaT
 
     def identify_crs(self, colnames: list = None) -> str:
@@ -320,10 +323,10 @@ class Parser(object):
         if colnames is None:
             colnames = self.original_column_names
 
-        if any([str(x).endswith('nad27') for x in list(colnames)]):
-            return 'nad27'
+        if any([str(x).endswith("nad27") for x in list(colnames)]):
+            return "nad27"
         else:
-            return 'wgs84'
+            return "wgs84"
 
     def normalize_geometry(self) -> Parser:
         """Standardize the coordinate system of the geometries in the DataFrame.
@@ -338,27 +341,28 @@ class Parser(object):
 
             try:
 
-                if 'nad27' in df.crs.unique():
+                if "nad27" in df.crs.unique():
 
                     # Fix shls
                     df.geometry = df.apply(
-                        lambda x: self.nad27_to_wgs84(x.geometry, x.crs), axis=1)
+                        lambda x: self.nad27_to_wgs84(x.geometry, x.crs), axis=1
+                    )
                     df.shllon = df.geometry.apply(lambda _: _.x)
                     df.shllat = df.geometry.apply(lambda _: _.y)
 
                     # Fix bhls
-                    bhls = df.apply(lambda x: self.to_geometry(
-                        x.bhllon, x.bhllat), axis=1)
+                    bhls = df.apply(
+                        lambda x: self.to_geometry(x.bhllon, x.bhllat), axis=1
+                    )
                     # 'nad27'))
                     bhls = bhls.apply(lambda x: self.nad27_to_wgs84(x, x.crs))
                     df.bhllon = bhls.apply(lambda _: _.x)
                     df.bhllat = bhls.apply(lambda _: _.y)
-                    df.crs = 'wgs84'
+                    df.crs = "wgs84"
                 self.df = df
 
             except Exception as e:
-                logger.error(__MSG_PARSER_ERROR__.format(
-                    op_name=self.operator.name, e=e))
+                logger.error(MSG_PARSER_ERROR.format(op_name=self.operator.name, e=e))
                 self.valid = False
 
         return self
@@ -408,8 +412,7 @@ class Parser(object):
                 self.alias_map = alias_map
 
             except Exception as e:
-                logger.error(__MSG_PARSER_ERROR__.format(
-                    op_name=self.operator.name, e=e))
+                logger.error(MSG_PARSER_ERROR.format(op_name=self.operator.name, e=e))
                 self.valid = False
 
         return alias_map
@@ -441,15 +444,14 @@ class Parser(object):
                 # If column already exists, use column with the most entries. Will need seperate function.
 
             except Exception as e:
-                logger.error(__MSG_PARSER_ERROR__.format(
-                    op_name=self.operator.name, e=e))
+                logger.error(MSG_PARSER_ERROR.format(op_name=self.operator.name, e=e))
                 self.valid = False
                 # raise
 
         return self
 
     def infer_dates(self, dstr: str) -> NotImplemented:
-       # TODO: Implement better date parser
+        # TODO: Implement better date parser
         raise NotImplementedError()
 
     def reshape(self, target_colnames: list = None) -> Parser:
@@ -484,16 +486,17 @@ class Parser(object):
 
                 # Drop extra columns
                 df = df.drop(
-                    columns=[x for x in df.columns if x not in target_colnames])
+                    columns=[x for x in df.columns if x not in target_colnames]
+                )
 
                 df = self.set_dtypes(df)
 
                 self.df = df.reindex(
-                    sorted([str(x) for x in df.columns.tolist()]), axis=1)
+                    sorted([str(x) for x in df.columns.tolist()]), axis=1
+                )
 
             except Exception as e:
-                logger.error(__MSG_PARSER_ERROR__.format(
-                    op_name=self.operator.name, e=e))
+                logger.error(MSG_PARSER_ERROR.format(op_name=self.operator.name, e=e))
                 self.valid = False
                 raise
 
@@ -503,8 +506,9 @@ class Parser(object):
         """Merge columns with identical names."""
 
         dup_columns = df[self.df.columns[self.df.columns.duplicated()]]
-        non_dup_columns = df[[
-            x for x in self.df.columns if x not in dup_columns.columns.unique()]]
+        non_dup_columns = df[
+            [x for x in self.df.columns if x not in dup_columns.columns.unique()]
+        ]
 
         deduped_columns = None
 
@@ -516,9 +520,10 @@ class Parser(object):
             first = cols.pop()
             first = first
             for col in cols:
-                first = first.astype(self.dtypes[first.name]) \
-                             .combine(col.astype(self.dtypes[first.name]),
-                                      lambda x1, x2: x1 if x1 < x2 else x2)
+                first = first.astype(self.dtypes[first.name]).combine(
+                    col.astype(self.dtypes[first.name]),
+                    lambda x1, x2: x1 if x1 < x2 else x2,
+                )
 
             if deduped_columns is None:
                 deduped_columns = first.to_frame()
@@ -527,7 +532,7 @@ class Parser(object):
 
         return non_dup_columns.join(deduped_columns)
 
-    def set_dtypes(self, df, dtypes: dict = None, errors='ignore') -> pd.DataFrame:
+    def set_dtypes(self, df, dtypes: dict = None, errors="ignore") -> pd.DataFrame:
         """Return the input DataFrame with columns coerced to fit the types
         specified in dtypes.
 
@@ -556,14 +561,19 @@ class Parser(object):
                 # df = df.astype(dtypes, errors=errors)
 
             except Exception as e:
-                logger.error(__MSG_PARSER_ERROR__.format(
-                    op_name=self.operator.name, e=e))
+                logger.error(MSG_PARSER_ERROR.format(op_name=self.operator.name, e=e))
                 self.valid = False
 
         return df
 
-    def tokenize_n(self, s: str, element: int = 0, exclude: list = None,
-                   sep: str = '_', basename=False) -> str:
+    def tokenize_n(
+        self,
+        s: str,
+        element: int = 0,
+        exclude: list = None,
+        sep: str = "_",
+        basename=False,
+    ) -> str:
         """Split filename into components based on the provided seperator,
         returning the nth element.
 
@@ -587,30 +597,28 @@ class Parser(object):
                 s = os.path.basename(s)
 
             # Split words in s
-            words = re.findall(r'[\w]+', ' '
-                               .join(os.path.basename(s)
-                                     .lower()
-                                     .split(sep)
-                                     )
-                               )
+            words = re.findall(
+                r"[\w]+", " ".join(os.path.basename(s).lower().split(sep))
+            )
             words = [word for word in words if word not in exclude]
-            logger.debug(f'{self.filename} tokens: {words}')
+            logger.debug(f"{self.filename} tokens: {words}")
             if isinstance(words, list):
                 return words[element]
 
         except Exception as e:
-            logger.warning(__MSG_PARSER_PARSING__.format(
-                op_name=self.operator.name, e=e, v=s))
+            logger.warning(
+                MSG_PARSER_PARSING.format(op_name=self.operator.name, e=e, v=s)
+            )
 
-        return ''
+        return ""
 
     def api_handler(self) -> Parser:
         df = self.df
-        has_api14 = 'api14' in df.columns
-        has_api10 = 'api10' in df.columns
+        has_api14 = "api14" in df.columns
+        has_api10 = "api10" in df.columns
 
         if has_api14 & has_api10:
-            df = df.drop(columns = ['api10'])
+            df = df.drop(columns=["api10"])
 
         self.df = df
         return self
@@ -633,18 +641,19 @@ class Parser(object):
 
         try:
             # Remove all non-digits
-            api = ''.join(re.findall(r'[\w]+', str(api)))
+            api = "".join(re.findall(r"[\w]+", str(api)))
             ndigits = len(api)
 
             if ndigits > n:
                 return api[:n]
             elif ndigits < n:
-                return api+'0'*(n-ndigits)
+                return api + "0" * (n - ndigits)
             else:
                 return api
         except Exception as e:
-            logger.warning(__MSG_PARSER_PARSING__.format(
-                op_name = self.operator.name, e = e, v = api))
+            logger.warning(
+                MSG_PARSER_PARSING.format(op_name=self.operator.name, e=e, v=api)
+            )
 
     def to_latlon(self, dms: str) -> NotImplemented:
         """Convert DMS to Lat Lon
@@ -659,20 +668,22 @@ class Parser(object):
     def nad27_to_wgs84(self, geom, crs):
 
         try:
-            if crs == 'nad27':
+            if crs == "nad27":
 
                 project = partial(
                     pyproj.transform,
-                    pyproj.Proj(init='epsg:4267'),  # source coordinate system
-                    pyproj.Proj(init='epsg:4326'))  # destination coordinate system
+                    pyproj.Proj(init="epsg:4267"),  # source coordinate system
+                    pyproj.Proj(init="epsg:4326"),
+                )  # destination coordinate system
 
                 return transform(project, geom)
             else:
                 return geom
 
         except Exception as e:
-            logger.warning(__MSG_PARSER_PARSING__.format(
-                op_name=self.operator.name, e=e, v=geom))
+            logger.warning(
+                MSG_PARSER_PARSING.format(op_name=self.operator.name, e=e, v=geom)
+            )
             return None
 
     def to_geometry(self, lon: str, lat: str) -> Point:
@@ -684,12 +695,12 @@ class Parser(object):
             else:
                 return None
         except Exception as e:
-            logger.warning(__MSG_PARSER_PARSING__.format(
-                op_name=self.operator.name, e=e, v=(lon, lat)))
+            logger.warning(
+                MSG_PARSER_PARSING.format(op_name=self.operator.name, e=e, v=(lon, lat))
+            )
 
 
 class Parser_Factory:
-
     def __init__(self, **kwargs):
         self.kwargs = kwargs
 
@@ -709,14 +720,18 @@ class ParserCollection(pd.Series):
         return pd.concat(self.apply(lambda x: x.df).tolist(), sort=False)
 
     def get_status(self):
-        logger.info(__MSG_PARSER_COLLECTION_STATUS__.format(
-            func_name=inspect.stack()[1][3], pc_name=self.name))
+        logger.debug(
+            MSG_PARSER_COLLECTION_STATUS.format(
+                func_name=inspect.stack()[1][3], pc_name=self.name
+            )
+        )
 
     def to_csv(self, filepath: str, **kwargs):
         self.df.to_csv(filepath, **kwargs)
 
     def standardize_data(self):
         self.get_status()
+        logger.info("standardizing data...")
         return ParserCollection(self.apply(lambda x: x.standardize_data()))
 
     def _flatten_list(self, l: list):
@@ -724,22 +739,27 @@ class ParserCollection(pd.Series):
 
     def normalize_geometry(self):
         self.get_status()
+        logger.info("normalizing geometries...")
         return ParserCollection(self.apply(lambda x: x.normalize_geometry()))
 
     def adjust_headers(self):
         self.get_status()
+        logger.info("adjusting headers...")
         return ParserCollection(self.apply(lambda x: x.adjust_headers()))
 
     def alias_columns(self):
         self.get_status()
+        logger.info("aliasing column names...")
         return ParserCollection(self.apply(lambda x: x.alias_columns()))
 
     def reshape(self):
         self.get_status()
+        logger.info("reshaping dataset...")
         return ParserCollection(self.apply(lambda x: x.reshape()))
 
     def collect_maps(self):
         self.get_status()
+        logger.info("collecting parse maps...")
         return ParserCollection(self.apply(lambda x: x.alias_map).tolist())
 
     def columns(self):
@@ -784,19 +804,17 @@ class ParserCollection(pd.Series):
 
         try:
 
-
             for i in unique_columns:
                 if i not in no_alias + list(aliases.keys()) + list(aliases.values()):
                     no_alias.append(i)
-            no_alias = [x for x in no_alias if x not in ['nan', '.nan', np.nan]]
+            no_alias = [x for x in no_alias if x not in ["nan", ".nan", np.nan]]
 
             if os.path.isfile(UNKNOWNPATH):
                 with open(UNKNOWNPATH, "w") as f:
                     yaml.safe_dump(no_alias, f)
 
         except Exception as e:
-            logger.error(
-                f'Unable to write unknown column names to alias file. -- {e}')
+            logger.error(f"Unable to write unknown column names to alias file. -- {e}")
 
     def _aliases_to_yaml(self, aliases: dict):
 
@@ -809,44 +827,8 @@ class ParserCollection(pd.Series):
                     yaml.safe_dump(aliases, f)
 
         except Exception as e:
-            logger.error(
-                f'Unable to write new column aliases to alias file. -- {e}')
+            logger.error(f"Unable to write new column aliases to alias file. -- {e}")
 
     def log_parsers(self):
         self.get_status()
         logger.debug([parser for parser in self])
-
-
-
-# Error in Parser(cq) -- 'DataFrame' object has no attribute 'fracstartdate'
-# Traceback (most recent call last):
-#   File "/repositories/permian-frac-exchange/src/parser.py", line 220, in standardize_data
-#     df['fracstartdate'] = df.fracstartdate.apply(self.date_handler)
-#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/generic.py", line 5067, in __getattr__
-#     return object.__getattribute__(self, name)
-# AttributeError: 'DataFrame' object has no attribute 'fracstartdate'
-# Error in Parser(sm) -- ('The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().', 'occurred at index api14')
-# Traceback (most recent call last):
-#   File "/repositories/permian-frac-exchange/src/parser.py", line 217, in standardize_data
-#     df['api14'] = df.api14.apply(self.api_n)
-#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/frame.py", line 6487, in apply
-#     return op.get_result()
-#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/apply.py", line 151, in get_result
-#     return self.apply_standard()
-#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/apply.py", line 257, in apply_standard
-#     self.apply_series_generator()
-#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/apply.py", line 286, in apply_series_generator
-#     results[i] = self.f(v)
-#   File "/repositories/permian-frac-exchange/src/parser.py", line 600, in api_n
-#     if pd.isna(api):
-#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/generic.py", line 1478, in __nonzero__
-#     .format(self.__class__.__name__))
-# ValueError: ('The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().', 'occurred at index api14')
-# ./data/SabaloOperating_3MonthFracSchedule_2019Aug5.xlsx - Unable to convert value to datetime: 7/23/201
-# Error in Parser(xto) -- 'DataFrame' object has no attribute 'shllat'
-# Traceback (most recent call last):
-#   File "/repositories/permian-frac-exchange/src/parser.py", line 222, in standardize_data
-#     df['shllat'] = df.shllat.apply(self.validate_latlon)
-#   File "/repositories/Collector-Frac_Exchange/.venv/lib/python3.7/site-packages/pandas/core/generic.py", line 5067, in __getattr__
-#     return object.__getattribute__(self, name)
-# AttributeError: 'DataFrame' object has no attribute 'shllat'

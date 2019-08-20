@@ -1,13 +1,14 @@
 import os
 import sys
 
+
 class DotDictMixin(dict):
     """Extension of the base dict class, adding dot.notation access
        to dictionary attributes and additional utility functions"""
+
     __getattr__ = dict.get
     __setattr__ = dict.__setitem__
     __delattr__ = dict.__delitem__
-
 
     def flatten(self):
         """Flattens the contents of the dictionary to a single dimension
@@ -20,7 +21,6 @@ class DotDictMixin(dict):
         """
 
         return self._flatten(self)
-
 
     def _flatten(self, d: dict):
         """Flattens the contents of the dictionary to a single dimension
@@ -47,9 +47,4 @@ DotDict = DotDictMixin
 
 if __name__ == "__main__":
 
-    d = DotDictMixin({
-            'a':1,
-            'b':2,
-            'c':3,
-            'd':4,
-            'e':5,})
+    d = DotDictMixin({"a": 1, "b": 2, "c": 3, "d": 4, "e": 5})

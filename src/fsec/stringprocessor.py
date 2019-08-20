@@ -1,21 +1,20 @@
-
-
 import re
 
+
 class StringProcessor(str):
-    re_wsws = re.compile(r'\s\s+')
+    re_wsws = re.compile(r"\s\s+")
     re_non_alphanum = re.compile(r"(?ui)\W")
 
     @classmethod
-    def alphanum_only(cls, s: str, rep:str = ' ') -> str:
+    def alphanum_only(cls, s: str, rep: str = " ") -> str:
         return cls.re_non_alphanum.sub(rep, s)
 
     @classmethod
-    def dedupe_whitespace(cls, s: str, rep: str = ' ') -> str:
+    def dedupe_whitespace(cls, s: str, rep: str = " ") -> str:
         return cls.re_wsws.sub(rep, s)
 
     @classmethod
-    def normalize(cls, s: str, replacement: str = ' ', lower = False) -> str:
+    def normalize(cls, s: str, replacement: str = " ", lower=False) -> str:
         """Normalizes the given string. Operations performed on the string are:
                 - remove all non-alphanumeric characters
                 - squish sequential whitespace to a single space
@@ -48,4 +47,4 @@ if __name__ == "__main__":
 
     sp = StringProcessor
 
-    sp.normalize('test               TEST   Test')
+    sp.normalize("test               TEST   Test")

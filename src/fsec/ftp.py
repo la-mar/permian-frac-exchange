@@ -8,12 +8,11 @@ from collections import defaultdict
 from ftplib import FTP, error_perm
 
 import arrow
-
 import yaml
-from src.mixins import DotDict, DotDictMixin
+
+from mixins import DotDict, DotDictMixin
 
 logger = logging.getLogger(__name__)
-
 
 
 class ImplicitFTP_TLS(ftplib.FTP_TLS):
@@ -36,11 +35,19 @@ class ImplicitFTP_TLS(ftplib.FTP_TLS):
             value = self.context.wrap_socket(value)
         self._sock = value
 
+
 class FtpObjectBase(DotDictMixin):
     """Base class for defining objects representing components of an FTP library.
     """
 
-    def __init__(self, name: str, ctype: str = None, size: str = None, modified: str = None, **kwargs):
+    def __init__(
+        self,
+        name: str,
+        ctype: str = None,
+        size: str = None,
+        modified: str = None,
+        **kwargs,
+    ):
         self.name: str = name
         self.ctype: str = ctype
 
@@ -51,12 +58,13 @@ class FtpObjectBase(DotDictMixin):
 
         if modified:
             self.modified = arrow.Arrow.strptime(
-                modified, '%Y%m%d%H%M%S', tzinfo='US/Central')
+                modified, "%Y%m%d%H%M%S", tzinfo="US/Central"
+            )
         else:
             self.modified = modified
 
     def __repr__(self):
-        return f'<FtpObjectBase: {self.ctype} - {self.name}>'
+        return f"<FtpObjectBase: {self.ctype} - {self.name}>"
 
     def __iter__(self):
         for k, v in self.__dict__.items():
@@ -71,11 +79,19 @@ class FtpObjectBase(DotDictMixin):
 
         return DotDict(self.__iter__())
 
+
 class FtpFile(FtpObjectBase):
     """Represents a file in the FTP library. Captures standard attributes associated to the file.
     """
 
-    def __init__(self, name: str, ctype: str = None, size: str = None, modified: str = None, node: FtpNode = None):
+    def __init__(
+        self,
+        name: str,
+        ctype: str = None,
+        size: str = None,
+        modified: str = None,
+        node: FtpNode = None,
+    ):
         super().__init__(name, ctype, size, modified)
         self.name, self.ext = os.path.splitext(name)
         self.filename = name
@@ -83,7 +99,7 @@ class FtpFile(FtpObjectBase):
         self.path = self._node.path + self.filename
 
     def __repr__(self):
-        return f'<FtpFile: {self.ctype} - {self.name}>'
+        return f"<FtpFile: {self.ctype} - {self.name}>"
 
     def download(self, destination: str = None) -> str:
         """Implementation of the core downloading function.  Each call to this
@@ -103,7 +119,7 @@ class FtpFile(FtpObjectBase):
         destination = destination or self._node._ftp.destination
 
         if destination is None:
-            raise AttributeError('Download destination has not been set.')
+            raise AttributeError("Download destination has not been set.")
 
         try:
             with open(os.path.join(destination, self.filename), "wb") as f:
@@ -111,19 +127,28 @@ class FtpFile(FtpObjectBase):
                 logger.info("Downloaded: " + self.filename)
                 return os.path.join(destination, self.filename)
         except error_perm as e:
-            logger.warning(f'{e} -- {self.filename}')
+            logger.warning(f"{e} -- {self.filename}")
+
 
 class FtpDirectory(FtpObjectBase):
     """Represents a directory in the FTP library. Captures standard attributes associated to the directory.
     """
 
-    def __init__(self, name: str, ctype: str = None, size: str = None, modified: str = None, node: FtpNode = None):
+    def __init__(
+        self,
+        name: str,
+        ctype: str = None,
+        size: str = None,
+        modified: str = None,
+        node: FtpNode = None,
+    ):
         super().__init__(name, ctype, size, modified)
         self._node = node
         self.path = self._node.path
 
     def __repr__(self):
-        return f'<FtpDirectory: {self.ctype} - {self.name}>'
+        return f"<FtpDirectory: {self.ctype} - {self.name}>"
+
 
 def factory(name: str, properties: dict, node: FtpNode = None) -> FtpObjectBase:
     """Factory function for generating Ftp objects. All objects produced are subclasses of FtpObjectBase.
@@ -136,10 +161,23 @@ def factory(name: str, properties: dict, node: FtpNode = None) -> FtpObjectBase:
         Subclass of FtpObjectBase (file or directory)
     """
     properties = defaultdict(int, properties)
-    if properties['type'].lower() == "file":
-        return FtpFile(name, properties['type'], properties['size'], properties['modify'], node = node)
-    if properties['type'].lower() == "dir":
-        return FtpDirectory(name, properties['type'], properties['size'], properties['modify'], node = node)
+    if properties["type"].lower() == "file":
+        return FtpFile(
+            name,
+            properties["type"],
+            properties["size"],
+            properties["modify"],
+            node=node,
+        )
+    if properties["type"].lower() == "dir":
+        return FtpDirectory(
+            name,
+            properties["type"],
+            properties["size"],
+            properties["modify"],
+            node=node,
+        )
+
 
 class FtpNode(FtpObjectBase):
     """Captures attributes relating to a fork in the Ftp's file structure,
@@ -148,25 +186,23 @@ class FtpNode(FtpObjectBase):
     retrieve capabilities of the Ftp class.
     """
 
-    def __init__(self, path: str, level: int = 0, recurse: bool = True, ftp = None):
+    def __init__(self, path: str, level: int = 0, recurse: bool = True, ftp=None):
         self._ftp = ftp
-        self.path: str = path + '/' if path != '/' else path
+        self.path: str = path + "/" if path != "/" else path
         properties = self._ftp.listing_from_path(self.path)
-        super().__init__(name = os.path.basename(path), **properties)
+        super().__init__(name=os.path.basename(path), **properties)
         self.level: int = level
-        self.objs: list = [factory(f, v, node = self) for f, v in properties.items()]
+        self.objs: list = [factory(f, v, node=self) for f, v in properties.items()]
         self.dirs: list = [x for x in self.objs if isinstance(x, FtpDirectory)]
         self.files: list = [x for x in self.objs if isinstance(x, FtpFile)]
         self.nodes = {}
         self._add_children()
 
-
     def __repr__(self):
-        return f'<FtpNode: path: [{self.path}], ndirs: [{self.ndirs}], nfiles: [{self.nfiles}]>'
+        return f"<FtpNode: path: [{self.path}], ndirs: [{self.ndirs}], nfiles: [{self.nfiles}]>"
 
     def __iter__(self):
-        d = DotDict({file.filename: DotDict(file)
-                          for file in self.files})
+        d = DotDict({file.filename: DotDict(file) for file in self.files})
 
         if self.has_nodes:
             for name, node in self.nodes.items():
@@ -202,16 +238,13 @@ class FtpNode(FtpObjectBase):
     def nfiles(self) -> int:
         return len(self.files)
 
-
     def download(self, destination: str = None) -> list:
         """Download all files in this Node.
 
             Returns:
                     list of paths to downloaded files.
         """
-        return [f.download(destination = destination) for f in self.files]
-
-
+        return [f.download(destination=destination) for f in self.files]
 
     def contents(self) -> dict:
         """Return a listing of the contents in the ftp directory specified by the
@@ -228,7 +261,7 @@ class FtpNode(FtpObjectBase):
         return DotDict(self._ftp.mlsd(self.path))
 
     def paths(self):
-        return [self.path + '/' + x.path for x in self.files]
+        return [self.path + "/" + x.path for x in self.files]
 
     @property
     def modified(self):
@@ -239,29 +272,40 @@ class FtpNode(FtpObjectBase):
 
     def to_dict(self) -> dict:
         # if self.has_nodes:
-            return next(self.__iter__())
+        return next(self.__iter__())
 
     def add_child(self, node_path: str, level: int, ftp):
-        node = FtpNode(node_path, level = self.level + 1, ftp = self._ftp)
+        node = FtpNode(node_path, level=self.level + 1, ftp=self._ftp)
         self.nodes.update({node_path: node})
         return node
 
     def _add_children(self):
         for d in self.dirs:
-            self.add_child(self.path +'/' + d.name, level = self.level + 1, ftp = self._ftp)
-
+            self.add_child(
+                self.path + "/" + d.name, level=self.level + 1, ftp=self._ftp
+            )
 
     @property
     def children(self):
         return [node for node in self.nodes]
 
+
 class Ftp(ImplicitFTP_TLS):
     """Extends ftplib.FTP, adding components to integrate with an FtpModel
     object to facilitate directory navigation, file listing, and downloading.
     """
-    _basepath = '/'
 
-    def __init__(self, url: str, username: str, password: str, destination: str = None, basepath: str = None, **kwargs):
+    _basepath = "/"
+
+    def __init__(
+        self,
+        url: str,
+        username: str,
+        password: str,
+        destination: str = None,
+        basepath: str = None,
+        **kwargs,
+    ):
         super().__init__()
         self.url = url
         self.username = username
@@ -271,9 +315,8 @@ class Ftp(ImplicitFTP_TLS):
         self.connect(host=url, port=990)
         self.login(username, password)
         self.m = None  # model hook
-        self.basepath = basepath or '.'
+        self.basepath = basepath or "."
         print(self.cwd(self.basepath))
-
 
     @property
     def basepath(self):
@@ -282,19 +325,22 @@ class Ftp(ImplicitFTP_TLS):
     @basepath.setter
     def basepath(self, path: str) -> None:
         if path == self._basepath:
-            logger.info('''Attempt to alter basepath resulted in no change. The current
+            logger.info(
+                """Attempt to alter basepath resulted in no change. The current
                         value of basepath is equal to the provided value:\n
-                        {self._basepath}'''.format(self._basepath))
+                        {self._basepath}""".format(
+                    self._basepath
+                )
+            )
         else:
             try:
                 self._basepath = path
                 self.cwd(self.basepath)
-                logger.info(f'Basepath changed to {self._basepath}')
+                logger.info(f"Basepath changed to {self._basepath}")
             except:
-                logger.warning(f'Could not change basepath to {self._basepath}')
+                logger.warning(f"Could not change basepath to {self._basepath}")
 
-
-    def list_files(self, path: str = None, contains: str = '.') -> list:
+    def list_files(self, path: str = None, contains: str = ".") -> list:
         """Return a listing of the contents in the ftp directory specified by the
         input path. If no path is specified, returns the listing of the ftp's root
         directory.
@@ -310,7 +356,7 @@ class Ftp(ImplicitFTP_TLS):
             list -- a list of file names
         """
 
-        return [ file for file in self.nlst(path or self.basepath) if contains in file ]
+        return [file for file in self.nlst(path or self.basepath) if contains in file]
 
     @staticmethod
     def load(filename: str = None) -> Ftp:
@@ -331,11 +377,11 @@ class Ftp(ImplicitFTP_TLS):
         """
 
         return Ftp(
-            url = os.environ.get('FSEC_URL'),
-            username = os.environ.get('FSEC_USERNAME'),
-            password = os.environ.get('FSEC_PASSWORD'),
-            basepath = os.environ.get('FSEC_BASEPATH'),
-            destination = os.environ.get('FSEC_DESTINATION')
+            url=os.environ.get("FSEC_URL"),
+            username=os.environ.get("FSEC_USERNAME"),
+            password=os.environ.get("FSEC_PASSWORD"),
+            basepath=os.environ.get("FSEC_BASEPATH"),
+            destination=os.environ.get("FSEC_DESTINATION"),
         )
 
     def download_all(self, destination: str = None) -> str:
@@ -354,7 +400,7 @@ class Ftp(ImplicitFTP_TLS):
         results = [self.download(filename) for filename in self.list_files()]
 
         for r in results:
-            print(f'{r[0]:<10}  {r[1]:<60}  {r[2]:<20}')
+            print(f"{r[0]:<10}  {r[1]:<60}  {r[2]:<20}")
 
         return results
 
@@ -373,21 +419,22 @@ class Ftp(ImplicitFTP_TLS):
         """
 
         destination = destination or self.destination
-        status = 'ERROR'
+        status = "ERROR"
 
         if destination is None:
-            raise AttributeError('Download destination has not been set.')
+            raise AttributeError("Download destination has not been set.")
 
         try:
             with open(os.path.join(destination, filename), "wb") as f:
                 self.retrbinary("RETR " + filename, f.write)
                 logger.info("Downloaded: " + filename)
-            status = 'success'
+            status = "success"
 
         except error_perm as e:
-            logger.warning(f'{e} -- {filename}')
+            logger.warning(f"{e} -- {filename}")
 
         return (destination, filename, status)
+
 
 if __name__ == "__main__":
 
@@ -397,4 +444,3 @@ if __name__ == "__main__":
 
     ftp = Ftp.from_env()
     # ftp = Ftp.from_yaml('config/config.yaml')
-

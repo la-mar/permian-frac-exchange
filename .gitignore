@@ -31,3 +31,7 @@ output/
 .vscode/launch.json
 .vscode/.ropeproject/config.py
 .vscode/.ropeproject/objectdb
+
+notes.md
+src/fsec.egg*
+fsec.egg*
