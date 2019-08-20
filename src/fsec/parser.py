@@ -249,7 +249,7 @@ class Parser(object):
     ) -> pd.Series:
         try:
             apply_to = apply_to or apply_on
-            self.df[apply_on] = self.df[apply_on].apply(func)
+            self.df[apply_to] = self.df[apply_on].apply(func)
         except KeyError as ke:
             logger.debug(
                 MSG_PARSER_CHECK.format(op_name=self.operator.name, col_name=apply_on)
