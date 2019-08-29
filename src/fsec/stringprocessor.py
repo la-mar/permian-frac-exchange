@@ -14,7 +14,7 @@ class StringProcessor(str):
         return cls.re_wsws.sub(rep, s)
 
     @classmethod
-    def normalize(cls, s: str, replacement: str = " ", lower=False) -> str:
+    def normalize(cls, s: str, replacement: str = " ", lower=True) -> str:
         """Normalizes the given string. Operations performed on the string are:
                 - remove all non-alphanumeric characters
                 - squish sequential whitespace to a single space

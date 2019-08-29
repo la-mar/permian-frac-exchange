@@ -1,7 +1,7 @@
 """Classes to parse attributes from frac schedules with uncertain shape and formatting."""
 
 from __future__ import annotations  # self return type annotations
-
+from typing import Any
 import inspect
 import logging
 import os
@@ -9,6 +9,7 @@ import re
 from datetime import datetime
 from functools import partial
 from typing import Callable
+from contextlib import contextmanager
 
 import numpy as np
 import pandas as pd
@@ -17,11 +18,76 @@ import yaml
 from shapely.geometry import Point
 from shapely.ops import transform
 
+import util
+from collections import Counter
 from operator_index import Operator
 from settings import *
 
 logger = logging.getLogger(__name__)
 logger.setLevel(LOGLEVEL)
+
+
+class FrozenKeyException(Exception):
+    def __init__(self, keyname: str):
+        self.keyname = keyname
+
+    def __str__(self):
+        return f'"{self.keyname}" is frozen and cannot be overwritten'
+
+
+class MessageCollection(dict):
+    _default_counter = util.DefaultCounter
+
+    def __init__(self, categories: list, name: str = None, frozen: bool = False):
+        self._cats = categories
+        self.name = name or self.__class__.__name__
+        super().update({c: self._default_counter(lambda: 0) for c in categories})
+
+    def __repr__(self):
+        return f"{self.name} - " + " ".join(
+            [f"{k}: {sum(v.values())}" for k, v in self.items()]
+        )
+
+    def __setitem__(self, key, value):
+        if key in self.keys() and self.frozen:
+            raise FrozenKeyException(key)
+        super().__setitem__(key, value)
+
+    def __missing__(self, key):
+        value = self._default_counter(lambda: 0)
+        self[key] = value
+        return value
+
+    def __iter__(self):
+        for i in self.items():
+            yield i
+
+    def get(self, category: str = None):
+        if not category:
+            c = self
+        else:
+            c = self[category]
+        return {
+            k: dict(v) for k, v in c.items()
+        }
+
+    def add_message(self, category: str, msg: str):
+        with self.category(category) as c:
+            c[msg] += 1
+
+    def add_category(self, category: str):
+        self[category] = self._default_counter(lambda: 0)
+
+    def register_indicators(self, parent: Any) -> None:
+        for c in self.keys():
+            parent.__setattr__(c, lambda: len(self[c]) > 0)
+
+    @contextmanager
+    def category(self, category: str):
+        try:
+            yield self[category]
+        finally:
+            pass
 
 
 class Parser(object):
@@ -45,10 +111,11 @@ class Parser(object):
         self.dtypes = dtypes or {}
         self.crefs = crefs  # column references
         self.filename = filename
-        self.exclude = exclude or []
-        self.operator = Operator(self.tokenize_n(filename, exclude=exclude))
+        self.exclude = exclude or EXCLUDE_TOKENS
         self.original_column_names = []
         self.valid = True
+        self.operator = None
+        self._status_messages = MessageCollection(["ok", "warning", "error"])
 
         if dtypes is not None and target_colnames is None:
             self.target_colnames = dtypes.keys()
@@ -62,8 +129,66 @@ class Parser(object):
             self.df = pd.DataFrame()
             logger.warning(f"Could not read file {filename} -- {e}")
 
+        self.preprocess()
+
     def __repr__(self):
-        return f"<Parser: {self.operator.alias}, {os.path.basename(self.filename)} - len:{len(self.df)}>"
+        return (
+            f"({self.operator.name}) /parser/{self.operator.alias}/len={len(self.df)}"
+        )
+
+    @property
+    def has_warnings(self):
+        return self._status_messages['warning'] > 0
+
+    @property
+    def has_errors(self):
+        return self._status_messages['error'] > 0
+
+    @property
+    def status(self):
+        if self.has_errors:
+            return 'error'
+        elif self.has_warnings:
+            return 'warning'
+        else:
+            return 'ok'
+
+    @property
+    def status_messages(self):
+        return self._status_messages
+
+    def add_status_message(self, category: str, msg: str):
+        self._status_messages[category][msg] += 1
+
+    def preprocess(self):
+        """ should be executed before any other processing commands """
+        self.adjust_headers()
+        self.alias_columns()
+        self._get_operator_name()
+
+        return self
+
+    def parse(self):
+        self.standardize()
+        self.normalize_geometry()
+        self.reshape()
+
+        return self
+
+    def postprocess(self):
+        # TODO: Generate sumamry
+        pass
+
+    def _get_operator_name(self):
+
+        if "operator" in self.df.columns:
+            opname = self.df.operator.astype(str).mode().iloc[0]
+        else:
+            opname = util.tokenize(
+                self.filename, exclude=self.exclude, take_basename=True
+            )[0]
+        self.operator = Operator(opname)
+        return self
 
     def summarize(self) -> pd.DataFrame:
         """Produces a summary of the input DataFrame
@@ -176,16 +301,16 @@ class Parser(object):
                 self.df = df.iloc[skiprows:]
                 self.original_column_names = df.columns.tolist()
 
-                self.api_handler()
+                # self.api_handler()
 
             except Exception as e:
-                logger.error(MSG_PARSER_ERROR.format(e.args))
+                logger.error(MSG_PARSER_ERROR.format(p=self, e=e.args))
                 logger.debug(e)
                 self.valid = False
 
         return self
 
-    def standardize_data(self, with_geom=True) -> Parser:
+    def standardize(self, with_geom=True) -> Parser:
         """Apply standardization functions to the features in the dataset.
 
             Standardization methods applied (in order):
@@ -214,8 +339,8 @@ class Parser(object):
             cols = df.columns.tolist()
 
             try:
-                self.safe_apply("api14", self.api_n)
-                self.safe_apply("api14", partial(self.api_n, n=10), apply_to="api10")
+                # self.safe_apply("api14", self.api_n)
+                # self.safe_apply("api14", partial(self.api_n, n=10), apply_to="api10")
                 df["crs"] = self.identify_crs(self.original_column_names)
                 self.safe_apply("fracstartdate", self.date_handler)
                 self.safe_apply("fracenddate", self.date_handler)
@@ -237,7 +362,7 @@ class Parser(object):
                 self.df = df
 
             except Exception as e:
-                logger.exception(MSG_PARSER_ERROR.format(self), exc_info=e)
+                logger.exception(MSG_PARSER_ERROR.format(p=self, e=e.args), exc_info=e)
                 logger.debug(e)
 
                 self.valid = False
@@ -245,19 +370,20 @@ class Parser(object):
         return self
 
     def safe_apply(
-        self, apply_on: str, func: Callable, apply_to: str = None
-    ) -> pd.Series:
+        self, apply_to: str, func: Callable, apply_from: str = None
+    ) -> Parser:
         try:
-            apply_to = apply_to or apply_on
-            self.df[apply_to] = self.df[apply_on].apply(func)
+            logger.debug(
+                f"applying {func.__name__}{f' from {apply_from}' if apply_from is not None else ''} to {apply_to}"
+            )
+            apply_from = apply_from or apply_to
+            self.df[apply_to] = self.df[apply_from].apply(func)
         except KeyError as ke:
             logger.debug(
-                MSG_PARSER_CHECK.format(op_name=self.operator.name, col_name=apply_on)
+                MSG_PARSER_CHECK.format(p=self.operator.name, col_name=apply_from)
             )
         except Exception as e:
-            logger.debug(
-                MSG_PARSER_ERROR.format(op_name=self.operator.name, e=e), exc_info=e
-            )
+            logger.debug(MSG_PARSER_ERROR.format(p=self, e=e.args), exc_info=e)
         return self
 
     def validate_latlon(self, value):
@@ -302,9 +428,9 @@ class Parser(object):
         try:
             return pd.to_datetime(value, infer_datetime_format=True)
         except:
-            logger.warning(
-                f"{self.filename} - Unable to convert value to datetime: {value}"
-            )
+            msg = f"Unable to convert value to datetime: {value}"
+            logger.debug(msg)
+            self.add_status_message('warning',msg)
             return pd.NaT
 
     def identify_crs(self, colnames: list = None) -> str:
@@ -362,7 +488,7 @@ class Parser(object):
                 self.df = df
 
             except Exception as e:
-                logger.error(MSG_PARSER_ERROR.format(op_name=self.operator.name, e=e))
+                logger.error(MSG_PARSER_ERROR.format(p=self, e=e.args))
                 self.valid = False
 
         return self
@@ -412,7 +538,7 @@ class Parser(object):
                 self.alias_map = alias_map
 
             except Exception as e:
-                logger.error(MSG_PARSER_ERROR.format(op_name=self.operator.name, e=e))
+                logger.error(MSG_PARSER_ERROR.format(p=self, e=e.args))
                 self.valid = False
 
         return alias_map
@@ -444,7 +570,7 @@ class Parser(object):
                 # If column already exists, use column with the most entries. Will need seperate function.
 
             except Exception as e:
-                logger.error(MSG_PARSER_ERROR.format(op_name=self.operator.name, e=e))
+                logger.error(MSG_PARSER_ERROR.format(p=self, e=e.args))
                 self.valid = False
                 # raise
 
@@ -496,7 +622,7 @@ class Parser(object):
                 )
 
             except Exception as e:
-                logger.error(MSG_PARSER_ERROR.format(op_name=self.operator.name, e=e))
+                logger.error(MSG_PARSER_ERROR.format(p=self, e=e.args))
                 self.valid = False
                 raise
 
@@ -561,7 +687,7 @@ class Parser(object):
                 # df = df.astype(dtypes, errors=errors)
 
             except Exception as e:
-                logger.error(MSG_PARSER_ERROR.format(op_name=self.operator.name, e=e))
+                logger.error(MSG_PARSER_ERROR.format(p=self, e=e.args))
                 self.valid = False
 
         return df
@@ -617,8 +743,13 @@ class Parser(object):
         has_api14 = "api14" in df.columns
         has_api10 = "api10" in df.columns
 
-        if has_api14 & has_api10:
-            df = df.drop(columns=["api10"])
+        if has_api14:
+            self.safe_apply("api14", self.api_n)
+            self.safe_apply("api10", partial(self.api_n, n=10), apply_from="api14")
+        elif has_api10:
+            self.safe_apply("api14", self.api_n, apply_from="api10")
+        else:
+            logger.error(f"{self.operator.alias}: no api number found in frac schedule")
 
         self.df = df
         return self
@@ -729,11 +860,6 @@ class ParserCollection(pd.Series):
     def to_csv(self, filepath: str, **kwargs):
         self.df.to_csv(filepath, **kwargs)
 
-    def standardize_data(self):
-        self.get_status()
-        logger.info("standardizing data...")
-        return ParserCollection(self.apply(lambda x: x.standardize_data()))
-
     def _flatten_list(self, l: list):
         return [item for row in l for item in row]
 
@@ -832,3 +958,41 @@ class ParserCollection(pd.Series):
     def log_parsers(self):
         self.get_status()
         logger.debug([parser for parser in self])
+
+
+if __name__ == "__main__":
+
+    if os.path.isfile(ALIASPATH):
+        with open(ALIASPATH, "r") as f:
+            alias_map = yaml.safe_load(f)
+
+    factory = Parser_Factory(
+        alias_map=alias_map, dtypes=COLUMN_DTYPES, target_colnames=COLUMN_NAMES
+    )
+
+    parsers = {}
+    path = None
+    if path is None:
+        path = os.path.abspath(FSEC_DOWNLOAD_DIR)
+
+    if os.path.isdir(path):
+        paths = os.listdir(path)
+
+    else:  # is file
+        paths = [path]
+        path = os.path.basename(path)
+    for f in paths:
+        f = f"{path}/{f}"
+        if os.path.isfile(f):
+            p = factory.Parser(f)
+            parsers[p.operator.alias] = p
+
+    p = parsers["crownquest"]
+    self = p
+
+    ps = ParserCollection(parsers, name="frac_schedules")
+    ps = ps.adjust_headers()
+    ps = ps.alias_columns()
+    ps = ps.standardize()
+    ps = ps.normalize_geometry()
+    ps = ps.reshape()

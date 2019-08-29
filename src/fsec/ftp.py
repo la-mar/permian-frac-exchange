@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Generator
 
 import ftplib
 import logging
@@ -11,6 +12,13 @@ import arrow
 import yaml
 
 from mixins import DotDict, DotDictMixin
+from settings import (
+    FSEC_FTP_URL,
+    FSEC_FTP_USERNAME,
+    FSEC_FTP_PASSWORD,
+    FSEC_FTP_PATH,
+    FSEC_DOWNLOAD_DIR,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -316,7 +324,7 @@ class Ftp(ImplicitFTP_TLS):
         self.login(username, password)
         self.m = None  # model hook
         self.basepath = basepath or "."
-        print(self.cwd(self.basepath))
+        self.cwd(self.basepath)
 
     @property
     def basepath(self):
@@ -336,7 +344,7 @@ class Ftp(ImplicitFTP_TLS):
             try:
                 self._basepath = path
                 self.cwd(self.basepath)
-                logger.info(f"Basepath changed to {self._basepath}")
+                logger.debug(f"Basepath changed to {self._basepath}")
             except:
                 logger.warning(f"Could not change basepath to {self._basepath}")
 
@@ -359,17 +367,17 @@ class Ftp(ImplicitFTP_TLS):
         return [file for file in self.nlst(path or self.basepath) if contains in file]
 
     @staticmethod
-    def load(filename: str = None) -> Ftp:
+    def load() -> Ftp:
         """Create an Ftp object from environment variables. Looks for environment
            variables prefixed with "FSEC_" that correspond to the required parameter
            name.
 
-           FSEC_URL = Url to ftp site (e.g. provier.domain.com)
-           FSEC_USERNAME = Username credential
-           FSEC_PASSWORD = Password credential
-           FSEC_BASEPATH = Path to the ftp directory containing the frac schedules
+           FSEC_FTP_URL = Url to ftp site (e.g. provier.domain.com)
+           FSEC_FTP_USERNAME = Username credential
+           FSEC_FTP_PASSWORD = Password credential
+           FSEC_FTP_PATH = Path to the ftp directory containing the frac schedules
                            (e.g. /example/path/to/frac_schedules/)
-           FSEC_DESTINATION = Path to location to save downloaded files
+           FSEC_DOWNLOAD_DIR = Path to location to save downloaded files
 
 
         Returns:
@@ -377,48 +385,71 @@ class Ftp(ImplicitFTP_TLS):
         """
 
         return Ftp(
-            url=os.environ.get("FSEC_URL"),
-            username=os.environ.get("FSEC_USERNAME"),
-            password=os.environ.get("FSEC_PASSWORD"),
-            basepath=os.environ.get("FSEC_BASEPATH"),
-            destination=os.environ.get("FSEC_DESTINATION"),
+            url=FSEC_FTP_URL,
+            username=FSEC_FTP_USERNAME,
+            password=FSEC_FTP_PASSWORD,
+            basepath=FSEC_FTP_PATH,
+            destination=FSEC_DOWNLOAD_DIR,
         )
 
-    def download_all(self, destination: str = None) -> str:
+    def upload(self, filename: str, to: str = None):
+        """Downloads all files located in the ftp directory located at the basepaths.
+
+        Arguments:
+            filename {str} -- path to local file to upload
+
+        Keyword Arguments:
+            to {str} -- repository path to which the file should be uploaded. If not specified, the current
+            directory of the ftp instance will be used. (default: {None})
+
+        """
+
+        to = to or ""
+        to = os.path.join(to, os.path.basename(filename))
+        status = "ERROR"
+        try:
+            with open(os.path.join(filename), "rb") as f:
+                print(self.storbinary("STOR " + to, f))
+                logger.info("Uploaded: " + filename)
+            status = "success"
+
+        except error_perm as e:
+            logger.warning(f"{e} -- {filename}")
+
+        return (to, filename, status)
+
+    def download_all(self, to: str = None) -> Generator:
         """Downloads all files located in the ftp directory located at the basepaths.
 
         Keyword Arguments:
-            destination {str} -- local download path. If not specified, the destination path used to instatiate the Ftp object is used. If it is also None, the download will fail. (default: {None})
+            to {str} -- local download path. If not specified, the destination path used to instatiate the Ftp object is used. If it is also None, the download will fail. (default: {None})
 
         Returns:
-            list -- returns the list of tuples containing the downloaded file's
-                    destination and name.
+            Generator -- returns a generator yielding tuples containing the downloaded file's
+                    path, name, and status
 
                     (e.g. filepath, filename, download_status)
 
         """
-        results = [self.download(filename) for filename in self.list_files()]
 
-        for r in results:
-            print(f"{r[0]:<10}  {r[1]:<60}  {r[2]:<20}")
+        for filename in self.list_files():
+            yield (self.download(filename, to))
 
-        return results
-
-    def download(self, filename: str, destination: str = None) -> str:
+    def download(self, filename: str, to: str = None) -> str:
         """Implementation of the core downloading function.  Each call to this
         method operates on a single file, downloading it to the designated location.
 
         Arguments:
-            file {str} -- repsitory file path of file to download
+            filename {str} -- repository path from which the file should be downloaded
 
         Keyword Arguments:
-            destination {str} -- local download path. If not specified, the destination path used to instatiate the Ftp object is used. If it is also None, the download will fail. (default: {None})
+            to {str} -- local download path. If not specified, the destination path used to instatiate the Ftp object is used. If it is also None, the download will fail. (default: {None})
 
         Returns:
             tuple -- (filepath, filename, download_status)
         """
 
-        destination = destination or self.destination
+        destination = to or self.destination
         status = "ERROR"
 
         if destination is None:
@@ -435,12 +466,3 @@ class Ftp(ImplicitFTP_TLS):
 
         return (destination, filename, status)
 
-
-if __name__ == "__main__":
-
-    # Example
-    logging.basicConfig()
-    logger.setLevel(logging.DEBUG)
-
-    ftp = Ftp.from_env()
-    # ftp = Ftp.from_yaml('config/config.yaml')

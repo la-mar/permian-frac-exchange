@@ -27,9 +27,10 @@ ENV_NAME = os.getenv("ENV_NAME", "UNKNOWN")
 OPERATOR_INDEX_SOURCE = os.getenv("FSEC_OI_SRC", "file")
 
 """ Outputs """
-TO_CSV = os.getenv("FSEC_TO_CSV", True)
-TO_DATABASE = os.getenv("FSEC_TO_DATABASE", False)
-CSV_OUTPUT_PATH_TEMPLATE = "./output/results-{dt}.csv"
+FSEC_TO_CSV = os.getenv("FSEC_TO_CSV", True)
+FSEC_TO_DATABASE = os.getenv("FSEC_TO_DATABASE", False)
+FSEC_AUTO_MERGE = os.getenv("FSEC_AUTO_MERGE", True)
+
 
 """ API keys """
 SENTRY_KEY = os.getenv("FSEC_SENTRY_KEY", None)
@@ -37,13 +38,20 @@ SENTRY_LEVEL = logging.WARNING
 SENTRY_EVENT_LEVEL = logging.WARNING
 
 
+""" FTP Parameters """
+FSEC_FTP_URL = os.getenv("FSEC_FTP_URL")
+FSEC_FTP_USERNAME = os.getenv("FSEC_FTP_USERNAME")
+FSEC_FTP_PASSWORD = os.getenv("FSEC_FTP_PASSWORD")
+FSEC_FTP_PATH = os.getenv("FSEC_FTP_PATH")
+
 """ File Paths """
-DATAPATH = os.getenv("FSEC_DESTINATION", "../data")
+FSEC_DOWNLOAD_DIR = os.getenv("FSEC_DOWNLOAD_DIR", "./data")
+FSEC_OUTPUT_DIR = os.getenv("FSEC_OUTPUT_DIR", "./output")
 ALIASPATH = "./config/column_aliases.yaml"
 UNKNOWNPATH = "./config/unknown_names.yaml"
 CONFIGPATH = "./config/config.yaml"
 OPERATORPATH = "./config/operators.json"
-
+DOWNLOADLOGPATH = "./config/download_log.yaml"
 
 """ --------------- Sqlalchemy --------------- """
 
@@ -54,11 +62,10 @@ OPERATORPATH = "./config/operators.json"
 
 
  """
-DATABASE_URI = os.path.join(
-    os.getenv("FSEC_DATABASE_URI", ""), os.getenv("FSEC_DATABASE_NAME", "")
-)
-OPERATOR_TABLE = "operator"
-FRAC_SCHEDULE_TABLE = "frac_schedule"
+FSEC_DATABASE_NAME = os.getenv("FSEC_DATABASE_NAME", "")
+DATABASE_URI = os.path.join(os.getenv("FSEC_DATABASE_URI", "@"), FSEC_DATABASE_NAME)
+FSEC_OPERATOR_TABLE = "operator"
+FSEC_FRAC_SCHEDULE_TABLE = "frac_schedule"
 LOAD_GEOMETRY = False
 
 """ Exclude these fields from ORM operations since they are managed by the database. """
