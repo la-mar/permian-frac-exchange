@@ -14,6 +14,7 @@ coverage = "*"
 pytest-cov = "*"
 autopep8 = "*"
 black = "*"
+mypy = "*"
 
 [packages]
 sqlalchemy = "==1.2.18"
@@ -33,6 +34,10 @@ fuzzywuzzy = "*"
 click = "*"
 fsec = {editable = true,path = "."}
 colorama = "*"
+attrdict = "*"
+pipx = "*"
+hypothesis = "*"
+spacy = "*"
 
 [requires]
 python_version = "3.7"

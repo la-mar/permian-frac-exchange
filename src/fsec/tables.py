@@ -21,32 +21,16 @@ from sqlalchemy.types import UserDefinedType
 from settings import (
     DATABASE_URI,
     EXCLUSIONS,
-    FRAC_SCHEDULE_TABLE,
+    FSEC_FRAC_SCHEDULE_TABLE,
     LOAD_GEOMETRY,
-    OPERATOR_TABLE,
+    FSEC_OPERATOR_TABLE,
     WGS84,
+    FSEC_DATABASE_NAME,
 )
 from util import classproperty
 
 warnings.simplefilter("ignore", category=exc.SAWarning)
 logger = logging.getLogger(__name__)
-
-
-engine = create_engine(DATABASE_URI)
-metadata = MetaData(bind=engine)
-session_factory = sessionmaker(bind=engine)
-Session = scoped_session(session_factory)
-
-
-Base = declarative_base()
-
-
-@listens_for(session_factory, "pending_to_persistent")
-@listens_for(session_factory, "deleted_to_persistent")
-@listens_for(session_factory, "detached_to_persistent")
-@listens_for(session_factory, "loaded_as_persistent")
-def detect_all_persistent(session, instance):
-    print("object is now persistent: %s" % instance)
 
 
 class GenericTable(object):
@@ -290,92 +274,114 @@ class STAsText(GenericFunction):
     identifier = "STAsText"
 
 
-class Operator(GenericTable, Base):
-    """ competitor.dbo.operator"""
+try:
 
-    __table_args__ = {"autoload": True, "autoload_with": engine, "schema": "dbo"}
-    __tablename__ = OPERATOR_TABLE
-    session = Session()
+    engine = create_engine(DATABASE_URI)
+    metadata = MetaData(bind=engine)
+    session_factory = sessionmaker(bind=engine)
+    Session = scoped_session(session_factory)
 
+    Base = declarative_base()
 
-class frac_schedule(GenericTable, Base):
-    __table_args__ = {"autoload": True, "autoload_with": engine, "schema": "dbo"}
-    __tablename__ = FRAC_SCHEDULE_TABLE
-    __mapper_args__ = {
-        # 'exclude_properties': EXCLUSIONS,
-        "include_properties": [
-            "api10",
-            "api14",
-            "bhllat",
-            "bhllon",
-            "fracenddate",
-            "fracstartdate",
-            "operator",
-            "operator_alias",
-            "shllat",
-            "shllon",
-            "tvd",
-            "wellname",
-        ]
-    }
-    session = Session()
+    # @listens_for(session_factory, "pending_to_persistent")
+    # @listens_for(session_factory, "deleted_to_persistent")
+    # @listens_for(session_factory, "detached_to_persistent")
+    # @listens_for(session_factory, "loaded_as_persistent")
+    # def detect_all_persistent(session, instance):
+    #     print("object is now persistent: %s" % instance)
 
-    def __repr__(self):
-        return f"frac_schedule: {self.api14}: {self.operator_alias} | {self.operator}"
+    class Operator(GenericTable, Base):
+        """ competitor.dbo.operator"""
 
+        __table_args__ = {"autoload": True, "autoload_with": engine, "schema": "dbo"}
+        __tablename__ = FSEC_OPERATOR_TABLE
+        session = Session()
 
-def nullloads(geom):
-    if not pd.isna(geom):
-        if isinstance(geom, BaseGeometry):
-            return geom
-        return shapely.wkt.loads(geom)
+    class frac_schedule(GenericTable, Base):
+        __table_args__ = {"autoload": True, "autoload_with": engine, "schema": "dbo"}
+        __tablename__ = FSEC_FRAC_SCHEDULE_TABLE
+        __mapper_args__ = {
+            # 'exclude_properties': EXCLUSIONS,
+            "include_properties": [
+                "api10",
+                "api14",
+                "bhllat",
+                "bhllon",
+                "fracenddate",
+                "fracstartdate",
+                "operator",
+                "operator_alias",
+                "shllat",
+                "shllon",
+                "tvd",
+                "wellname",
+            ]
+        }
+        session = Session()
 
-
-def to_wkt(geom):
-    if not pd.isna(geom):
-        return geom.wkt
-
-
-def frame_to_db(df: str, table: Table = frac_schedule):
-
-    if df is None:
-        logger.info("No data to load in DataFrame.")
-        return None
-
-    drop = ["crs", "nan", pd.np.nan]
-
-    if LOAD_GEOMETRY:
-
-        if "geometry" in df.columns:
-            g = GeoDataFrame(
-                df,
-                geometry=df.geometry.apply(nullloads),
-                crs={"init": "epsg:" + str(WGS84)},
+        def __repr__(self):
+            return (
+                f"frac_schedule: {self.api14}: {self.operator_alias} | {self.operator}"
             )
 
-            g["wkt"] = g.geometry.apply(to_wkt)
+    def nullloads(geom):
+        if not pd.isna(geom):
+            if isinstance(geom, BaseGeometry):
+                return geom
+            return shapely.wkt.loads(geom)
 
-            g = g.rename(columns={"wkt": "geometry"})
+    def to_wkt(geom):
+        if not pd.isna(geom):
+            return geom.wkt
+
+    def frame_to_db(df: str, table: Table = frac_schedule):
+
+        if df is None:
+            logger.info("No data to load in DataFrame.")
+            return None
+
+        drop = ["crs", "nan", pd.np.nan]
+
+        if LOAD_GEOMETRY:
+
+            if "geometry" in df.columns:
+                g = GeoDataFrame(
+                    df,
+                    geometry=df.geometry.apply(nullloads),
+                    crs={"init": "epsg:" + str(WGS84)},
+                )
+
+                g["wkt"] = g.geometry.apply(to_wkt)
+
+                g = g.rename(columns={"wkt": "geometry"})
+            else:
+                g = df
         else:
+            drop += ["geometry"]
             g = df
-    else:
-        drop += ["geometry"]
-        g = df
 
-    for colname in drop:
-        try:
-            g = g.drop(columns=[colname])
-        except Exception as e:
-            logger.debug(f"{e}")
+        for colname in drop:
+            try:
+                g = g.drop(columns=[colname])
+            except Exception as e:
+                logger.debug(f"{e}")
 
-    t0 = time.time()
-    # return g
-    table.merge_records(g, print_rec=False)
-    table.persist()
-    logger.info(
-        f"ORM merge_records(): Total time for {str(len(g))} records ({time.time() - t0:.2f}) secs"
+        t0 = time.time()
+        # return g
+        table.merge_records(g, print_rec=False)
+        table.persist()
+        logger.info(
+            f"ORM merge_records(): Total time for {str(len(g))} records ({time.time() - t0:.2f}) secs"
+        )
+
+
+except Exception as e:
+    logger.debug(
+        f"Unable to connect to SQL: "
+        + f"{DATABASE_URI.split('@')[-1]} "
+        + "\n"
+        + f"error: {e}"
     )
-
 
 if __name__ == "__main__":
 

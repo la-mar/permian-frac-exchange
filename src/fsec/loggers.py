@@ -3,6 +3,8 @@
 import logging
 import logging.config
 import os
+from collections import defaultdict
+
 
 from version import __release__
 
@@ -55,11 +57,17 @@ LOGGING = {
 }
 
 
-def standard_config():
+def standard_config(verbosity: int = -1):
+
+    levels = defaultdict(
+        lambda: LOGLEVEL,
+        {0: logging.ERROR, 1: logging.WARNING, 2: logging.INFO, 3: logging.DEBUG},
+    )
+
     logging.config.dictConfig(LOGGING)
     logger = logging.getLogger()
-    logger.setLevel(LOGLEVEL)
-    logger.info(
+    logger.setLevel(levels[verbosity])
+    logger.debug(
         f"Configured loggers (level: {logger.level}): {[x.name for x in logger.handlers]}"
     )
 

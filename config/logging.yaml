@@ -1,34 +1,38 @@
-version: 1
-disable_existing_loggers: False
+changed: false
+disable_existing_loggers: false
+filename: ./config/logging.yaml
 formatters:
-    simple:
-        format: '%(name)s - %(levelname)s - %(message)s'
-    detail:
-        format: '[%(asctime)s - %(filename)s:%(lineno)s - %(funcName)s()] %(levelname)s - %(message)s'
-        datefmt: '%Y-%m-%d %H:%M:%S'
-
+  detail:
+    datefmt: '%Y-%m-%d %H:%M:%S'
+    format: '[%(asctime)s - %(filename)s:%(lineno)s - %(funcName)s()] %(levelname)s
+      - %(message)s'
+  simple:
+    format: '%(name)s - %(levelname)s - %(message)s'
 handlers:
-    console:
-        class: logging.StreamHandler
-        level: DEBUG
-        formatter: simple
-        stream: ext://sys.stdout
-
-    debug_file_handler:
-        class: logging.handlers.RotatingFileHandler
-        level: INFO
-        formatter: detail
-        filename: log/{project_dir_name}.log
-        maxBytes: 10485760 # 10MB
-        backupCount: 20
-        encoding: utf8
-
-loggers:
-    main:
-        level: INFO
-        handlers: [console, debug_file_handler]
-        propagate: no
-
-root:
+  console:
+    class: logging.StreamHandler
+    formatter: simple
+    level: DEBUG
+    stream: ext://sys.stdout
+  debug_file_handler:
+    backupCount: 20
+    class: logging.handlers.RotatingFileHandler
+    encoding: utf8
+    filename: log/{project_dir_name}.log
+    formatter: detail
     level: INFO
-    handlers: [console, debug_file_handler]
+    maxBytes: 10485760
+loggers:
+  main:
+    handlers:
+    - console
+    - debug_file_handler
+    level: INFO
+    propagate: false
+root:
+  handlers:
+  - console
+  - debug_file_handler
+  level: INFO
+test: TEST3333333333333
+version: 1

@@ -1,5 +1,6 @@
 """ Class to interface with Operator database and facilitate in alias matching."""
 
+import os
 import inspect
 import json
 import logging
@@ -19,9 +20,17 @@ _source_is_sql = False
 logger = logging.getLogger(__name__)
 
 if source == "sql":
-    from tables import Operator as Operator_Table
+    try:
+        from tables import Operator as Operator_Table
 
-    _source_is_sql = True
+        _source_is_sql = True
+    except:
+        logger.warning(
+            f"Failed to load Operator table. Using {os.path.basename(OPERATORPATH)} for operator aliasing instead."
+        )
+        Operator_Table = None
+        _source_is_file = True
+
 else:
     Operator_Table = None
     _source_is_file = True
@@ -202,6 +211,9 @@ class OperatorIndex(pd.DataFrame):
 
         """
         pass
+
+    def add(op_name: str, op_alias: str):
+
 
 
 class FileIndex(OperatorIndex):
@@ -576,7 +588,7 @@ class Operator(object):
             self.fscore = 0
             self.fuzzies = pd.DataFrame()
         else:
-            logger.debug(f"{value} is not an instance of str.")
+            logger.debug(f"{value} is not an instance of str")
 
     @property
     def orig(self):
@@ -816,8 +828,11 @@ class Operator(object):
         alias = None
         try:
             if self.classifier is not None:
-                alias = self._find().alias
-            else:
+                alias = self._find()  # .alias
+                if "alias" in alias.index:
+                    alias = alias.alias
+
+            if alias is None:
                 alias = self._from_tokens()
 
             if alias is None:
@@ -831,6 +846,7 @@ class Operator(object):
             )
             alias = self.name
 
+        logger.debug(f"Setting alias: {self.name} -> {alias}")
         return alias
 
     @chained
@@ -854,3 +870,18 @@ class Operator(object):
             result["method"] = "operator.classifier.alookup"
 
         return result
+
+
+if __name__ == "__main__":
+
+    logging.basicConfig(level=logging.DEBUG)
+
+    # sqlindex = SQLIndex.load()
+    fileindex = FileIndex.load(OPERATORPATH)
+
+    # x = Operator("DRIFTWOOD ENERGY", classifier=sqlindex)
+    x = Operator("lario3mofracsched8", classifier=fileindex)
+    print(x)
+
+    o = Operator("lario3mofracsched8", classifier=fileindex)
+
