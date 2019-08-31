@@ -22,7 +22,7 @@ from settings import (
     LOGLEVEL,
     COLUMN_NAMES,
     EXCLUDE_TOKENS,
-    FSEC_FRAC_SCHEDULE_TABLE,
+    FRAC_SCHEDULE_TABLENAME,
     DOWNLOADLOGPATH,
     LOGLEVEL,
 )
@@ -80,7 +80,7 @@ def remove_previous_downloads(path: str, simulate: bool = False):
 #             p = factory.Parser(f)
 #             parsers[p.operator.name] = p
 
-#     ps = parser.ParserCollection(parsers, name="frac_schedules")
+#     ps = parser.ParserCollection(parsers, name="FracSchedules")
 #     ps = ps.adjust_headers()
 #     ps = ps.alias_columns()
 #     ps = ps.standardize()
@@ -202,10 +202,10 @@ def to_csv(df, dirname: str = None, fileprefix: str = None):
 def to_db(df):
 
     # imported in function to avoid trying to import if not configured
-    from tables import frame_to_db, frac_schedule  # noqa
+    from models import frame_to_db, FracSchedule  # noqa
 
     frame_to_db(df)
-    return f"{frac_schedule.__table__.schema}.{frac_schedule.__table__.name}"
+    return f"{FracSchedule.__table__.schema}.{FracSchedule.__table__.name}"
 
 
 def download(path) -> Generator:

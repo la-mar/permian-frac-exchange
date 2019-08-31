@@ -1,47 +1,64 @@
 from typing import Union
 from datetime import datetime
 import os
+import tempfile
 from contextlib import contextmanager
 import logging
 from collections import Counter
 
 import yaml
-from attrdict import AttrDict
 
 logger = logging.getLogger(__name__)
 
 
 class Yammler(dict):
     _no_dump = ["changed"]
-    _metavars = ["filename", "updated_at"]
+    _metavars = ["fspath", "updated_at"]
 
-    def __init__(self, filename: str, auto_dump: bool = False):
-        self.filename = filename
+    def __init__(self, fspath: str, auto_dump: bool = False, data: dict = None):
+        self.fspath = fspath
         self.auto_dump = auto_dump
         self.changed = False
-        self.updated_at = datetime.now()
-        if os.path.isfile(filename):
-            with open(filename) as f:
-                # use super here to avoid unnecessary write
-                # super().update(yaml.safe_load(f) or {})
-                super().update(yaml.safe_load(f) or {})
+        self.updated_at = self.stamp()
+        _yml = None
+        with open(fspath) as f:
+            _yml = yaml.safe_load(f) or {}
+        if isinstance(_yml, dict):
+            _yml_data = _yml.pop("data", {})
+        _yml_data.update(data or {})
+        self._set_data(_yml_data)
+        self.meta = _yml
 
-    def _meta(self):
-        return {x: getattr(self, x) for x in self._metavars}
+    @property
+    def meta(self) -> dict:
+        meta = {}
+        for mv in self._metavars:
+            try:
+                meta[mv] = getattr(self, mv)
+            except Exception as e:
+                logger.debug(e)
+                meta[mv] = None
+        return meta
+
+    @meta.setter
+    def meta(self, data: dict) -> None:
+        data = data.pop("meta", data)  # reduce if possible
+        [setattr(self, key, value) for key, value in data.items()]
+
+    def _set_data(self, data: dict) -> None:
+        super().update(data or {})
 
     def dump(self, force=False):
         if self.changed or force:
-            with open(self.filename, "w") as f:
-                d = dict(self)
-                d.update(self._meta())
-                [d.pop(k, None) for k in self._no_dump]
+            with self.durable(self.fspath, "w") as f:
+                d = {}
+                d.update({"data": dict(self), "meta": self.meta})
+                [d["data"].pop(k, None) for k in self._no_dump]
                 yaml.safe_dump(d, f, default_flow_style=False)
             self.changed = False
 
     def updated(self):
-
-        self.updated_at = datetime.now()
-
+        self.updated_at = datetime.utcnow()
         if self.auto_dump:
             self.dump(force=True)
         else:
@@ -59,21 +76,45 @@ class Yammler(dict):
         super().update(kwargs)
         self.updated()
 
+    def overwrite(self, data: dict):
+        return Yammler(self.fspath, self.auto_dump, data)
+
+    @staticmethod
+    def stamp():
+        return datetime.utcnow()
+
     @classmethod
     @contextmanager
-    def context(cls, filename):
-        obj = cls(filename)
+    def context(cls, fspath):
+        obj = cls(fspath)
         try:
             yield obj
         finally:
             obj.dump(force=True)
 
+    @classmethod
+    @contextmanager
+    def durable(cls, fspath: str, mode: str = "w+b"):
+        """ Safely write to file """
+        _fspath = fspath
+        _mode = mode
+        _file = tempfile.NamedTemporaryFile(_mode, delete=False)
+
+        try:
+            yield _file
+        except Exception as e:  # noqa
+            os.unlink(_file.name)
+            raise e
+        else:
+            _file.close()
+            os.rename(_file.name, _fspath)
+
 
 class DownloadLog(Yammler):
     _special = "_known_files"
 
-    def __init__(self, filename: str):
-        super().__init__(filename)
+    def __init__(self, fspath: str):
+        super().__init__(fspath)
 
     def __repr__(self):
         return f"DownloadLog: {len(self.known_files)} tracked files"
@@ -139,22 +180,44 @@ class DownloadLog(Yammler):
 
 if __name__ == "__main__":
 
-    filename = "./config/download_log.yaml"
+    fspath = "./config/download_log.yaml"
     import loggers
+    from yammler import Yammler
 
     loggers.standard_config()
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
-    with DownloadLog.context(filename) as f:
+    with DownloadLog.context(fspath) as f:
         # print(f)
         # f.known_files = "test"
         # print(f.known_files)
         f.add("test1")
         print(f)
 
-    y = Yammler(filename)
+    y = Yammler("./config/operators.yaml")
 
-    f = DownloadLog(filename)
+    s2 = [{x.pop("operator"): x} for x in s]
+
+    from stringprocessor import StringProcessor as sp
+
+    for s in s2:
+        for k, v in s.items():
+            x = s.pop(k)
+            x["alias"] = sp.normalize(x.pop("alias"), lower=True)
+            x["method"] = sp.normalize(x.pop("method"), lower=True)
+            s[sp.normalize(k, lower=True)] = x
+
+    for x in s2:
+        for key, value in x.items():
+            try:
+                value["created"] = value["created"].isoformat()
+                value["updated"] = value["updated"].isoformat()
+            except:
+                pass
+            finally:
+                y[key] = value
+
+    f = DownloadLog(fspath)
     # f.known_files
     # f.add("test1")
     # f.dump()

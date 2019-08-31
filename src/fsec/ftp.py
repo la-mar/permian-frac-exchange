@@ -1,23 +1,23 @@
 from __future__ import annotations
-from typing import Generator
 
 import ftplib
 import logging
 import os
 import ssl
 from collections import defaultdict
+from datetime import datetime
 from ftplib import FTP, error_perm
+from typing import Generator
 
-import arrow
 import yaml
 
 from mixins import DotDict, DotDictMixin
 from settings import (
-    FSEC_FTP_URL,
-    FSEC_FTP_USERNAME,
+    FSEC_DOWNLOAD_DIR,
     FSEC_FTP_PASSWORD,
     FSEC_FTP_PATH,
-    FSEC_DOWNLOAD_DIR,
+    FSEC_FTP_URL,
+    FSEC_FTP_USERNAME,
 )
 
 logger = logging.getLogger(__name__)
@@ -65,7 +65,7 @@ class FtpObjectBase(DotDictMixin):
             self.size = size
 
         if modified:
-            self.modified = arrow.Arrow.strptime(
+            self.modified = datetime.now().strptime(
                 modified, "%Y%m%d%H%M%S", tzinfo="US/Central"
             )
         else:
@@ -376,7 +376,7 @@ class Ftp(ImplicitFTP_TLS):
            FSEC_FTP_USERNAME = Username credential
            FSEC_FTP_PASSWORD = Password credential
            FSEC_FTP_PATH = Path to the ftp directory containing the frac schedules
-                           (e.g. /example/path/to/frac_schedules/)
+                           (e.g. /example/path/to/FracSchedules/)
            FSEC_DOWNLOAD_DIR = Path to location to save downloaded files
 
 
@@ -465,4 +465,3 @@ class Ftp(ImplicitFTP_TLS):
             logger.warning(f"{e} -- {filename}")
 
         return (destination, filename, status)
-

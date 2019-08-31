@@ -14,7 +14,7 @@ from settings import (
     FSEC_TO_CSV,
     FSEC_TO_DATABASE,
     DATABASE_URI,
-    FSEC_FRAC_SCHEDULE_TABLE,
+    FRAC_SCHEDULE_TABLENAME,
     DOWNLOADLOGPATH,
 )
 from util import tokenize

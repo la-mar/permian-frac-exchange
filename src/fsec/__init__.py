@@ -1,3 +1,3 @@
-# from .operator_classifier import operator_index
+# from .operator_classifier import registry
 # from .settings import *
 from .version import *

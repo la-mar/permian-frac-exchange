@@ -990,7 +990,7 @@ if __name__ == "__main__":
     p = parsers["crownquest"]
     self = p
 
-    ps = ParserCollection(parsers, name="frac_schedules")
+    ps = ParserCollection(parsers, name="FracSchedules")
     ps = ps.adjust_headers()
     ps = ps.alias_columns()
     ps = ps.standardize()

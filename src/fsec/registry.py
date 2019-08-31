@@ -1,42 +1,25 @@
-""" Class to interface with Operator database and facilitate in alias matching."""
+""" Class to interface with Operator registry backend and facilitate in alias matching."""
 
-import os
+from __future__ import annotations
+from typing import List, Set, Dict, Tuple, Optional, Callable, Any, Union
 import inspect
 import json
 import logging
+import os
+from abc import ABC, abstractmethod
+from datetime import datetime
 
 import pandas as pd
 from fuzzywuzzy import fuzz, process
 
+import models
 import version
-from settings import DATABASE_URI, OPERATOR_INDEX_SOURCE, OPERATORPATH
 from stringprocessor import StringProcessor as sp
-from deco import chained, classproperty
-
-source = OPERATOR_INDEX_SOURCE
-_source_is_file = False
-_source_is_sql = False
+from deco import chained, classproperty, indicate
+from util.types import Scalar
+from yammler import Yammler
 
 logger = logging.getLogger(__name__)
-
-if source == "sql":
-    try:
-        from tables import Operator as Operator_Table
-
-        _source_is_sql = True
-    except:
-        logger.warning(
-            f"Failed to load Operator table. Using {os.path.basename(OPERATORPATH)} for operator aliasing instead."
-        )
-        Operator_Table = None
-        _source_is_file = True
-
-else:
-    Operator_Table = None
-    _source_is_file = True
-
-logger.info(f"Operator index backend is {source}")
-
 
 __release__ = version.__release__
 
@@ -45,67 +28,374 @@ DSN = f"{__release__}".lower()
 METHOD_TEMPLATE = __release__ + "/{function}"
 
 
-class OperatorIndex(pd.DataFrame):
-    # temporary properties
-    _internal_names = pd.DataFrame._internal_names
-    _internal_names_set = set(_internal_names)
-    table = Operator_Table
+def get_release():
+    v: str = "unknown"
 
-    # normal properties (persistent)
-    _metadata = [
-        "_capture_method",
-        "default_scorer",
-        "normalize",
-        "_exact_match",
-        "_fuzzy_match",
-        "_is_long_enough",
-        "_inspect_fuzzy_result",
-        "waterfall",
-        "table",
-        "update_database",
-        "refresh",
-    ]
+    if "version" in globals():
+        try:
+            v = version.__release__
+        except AttributeError as ae:
+            logger.debug(f"version.py has no attribute '__release__' -- {ae}")
 
-    @property
-    def _constructor(self):
-        return OperatorIndex
+    return v
+
+
+class RegistryBase(ABC):
+    def __init__(self, *args, **kwargs):
+        super().__init__()
+
+    @abstractmethod
+    def load(cls) -> None:
+        pass
+
+    @abstractmethod
+    def save(self) -> None:
+        """Persist result to the backend"""
+        pass
+
+    @abstractmethod
+    def refresh(self) -> None:
+        """Reload data from the backend"""
+        pass
+
+    @abstractmethod
+    def lookup(self, key) -> str:
+        pass
+
+    @abstractmethod
+    def add(self, key, value) -> None:
+        pass
+
+    @abstractmethod
+    def remove(self, key) -> None:
+        pass
+
+    @abstractmethod
+    def closest(self, key) -> str:
+        pass
+
+    @abstractmethod
+    def handle_date(self, value):
+        pass
+
+
+class RegistryBackend(RegistryBase):
+    _value_key = "value"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self._cls = kwargs.pop("cls", dict)  # optional class for return type
+        self._value_key = kwargs.pop("value_key", self._value_key)
+
+    @property
+    def value_key(self):
+        return self._value_key
+
+    # TODO: @indicate
+    def load(cls) -> None:
+        pass
+
+    def save(self) -> None:
+        """Persist result to the backend"""
+        pass
+
+    def refresh(self) -> None:
+        """Reload data from the backend"""
+        pass
+
+    def lookup(self, key) -> str:
+        pass
+
+    def add(self, key, value) -> None:
+        pass
+
+    def remove(self, key) -> None:
+        pass
+
+    def closest(self, key) -> str:
+        pass
+
+    def handle_date(self, value):
+        pass
+
+    @staticmethod
+    def stamp():
+        return datetime.utcnow()
+
+
+class DataFrameBackend(RegistryBackend, pd.DataFrame):
+
+    # temporary properties
+    _internal_names = pd.DataFrame._internal_names
+    _internal_names_set = set(_internal_names)
+
+    # normal properties (persistent)
+    _metadata = ["load", "save", "refresh"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    @property
+    def _constructor(self):
+        return self.__class__
 
     @classmethod
     def load(cls):
         pass
 
-    @classmethod
-    def save(cls, result: pd.Series) -> None:
-        """Merge result into the database"""
+    def save(self) -> None:
+        """Persist result to the backend"""
+        pass
 
-        result = result.rename(
-            {"name": "operator", "alias": "operator_alias", "fscore": "confidence"}
-        )
+    def refresh(self) -> None:
+        """Persist result to the backend"""
+        pass
 
-        result = result.to_frame().T[
-            ["operator", "operator_alias", "confidence", "method"]
-        ]
 
+class FileBackend(RegistryBackend):
+    def __init__(self, fspath: str, interface=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._fspath: str = fspath
+        self._interface = interface  # Yammler
+
+    @property
+    def fspath(self):
+        return self._fspath
+
+    def load(
+        self, index_col: str = "operator", date_cols: list = ["updated", "created"]
+    ) -> pd.DataFrame:
+        """ Populate the index from a json file."""
+        df = pd.read_json(self.fspath, convert_dates=date_cols)
         try:
-            cls.table.merge_records(result)
-            cls.table.persist()
-            logger.debug(f"Updated {result.operator_alias} in database")
+            df = df.set_index(index_col)
+        except KeyError:
+            raise KeyError(
+                f"Backend has no column named '{index_col}'. Try passing 'index_col = column_name' to the backend constructor. Available columns are: {df.columns.tolist()}"
+            )
+        self.source = df
+        return self
+
+    def save(self) -> None:
+        """Persist the index"""
+        try:
+            js = json.loads(
+                self.reset_index().to_json(orient="records", date_format="iso")
+            )
+
+            with open(self._fspath, "w") as f:
+                f.writelines(json.dumps(js, indent=4))
+            logger.debug(f"Persisted registry to {self._fspath}")
         except Exception as e:
-            logger.error(f"Could not update database -- {e}")
+            logger.error(f"Failed to save {self.__class__} -- {e}")
+
+    def refresh(self) -> None:
+        pass
+
+    def lookup(self) -> None:
+        pass
+
+    def add(self, key) -> str:
+        pass
+
+    def remove(self, key) -> str:
+        pass
+
+    def closest(self, key) -> str:
+        pass
+
+    def _link(self):
+        """ Retrieve link to persistance mechanism """
+        return self._interface(self.fspath)
+
+
+class YamlBackend(RegistryBackend):
+    """Interface for a YAML backed registry. Data is manipulated in an in-memory
+    Pandas' DataFrame. Changes are persisted on command. The interface for this backend differs from others in that the step to persist changes is explicit. A customized interface to the YAML file on disk can be substituted using the 'interface' keyword.  """
+
+    _df = None
+    _yaml = None
+
+    def __init__(
+        self,
+        fspath: str,
+        date_cols: list = None,
+        interface: Any = Yammler,
+        *args,
+        **kwargs,
+    ):
+        super().__init__(*args, **kwargs)
+        self.date_cols = date_cols or []
+        self._fspath = fspath
+
+    @property
+    def fspath(self):
+        return self._fspath
+
+    @property
+    def df(self):
+        return self._df
+
+    @property
+    def yaml(self):
+        if self._yaml is None:
+            self._yaml = self._link()
+        return self._yaml
+
+    # TODO: Generalize and move to parent
+    @indicate
+    def load(self) -> YamlBackend:
+        """ Populate the index """
+        self._df = pd.DataFrame(self.yaml).T
+
+        return self
+
+    @property
+    def defaults(self):
+        return self._defaults
+
+    @defaults.setter
+    def defaults(self, key, value) -> None:
+        self._defaults[key] = value
+
+    def save(self) -> None:
+        """Persist the index"""
+        try:
+            self.yaml.overwrite(self.df.to_dict(orient="index")).dump(force=True)
+            logger.debug(f"Persisted registry to {self.fspath}")
+        except Exception as e:
+            logger.error(f"Failed to save {self.__class__} -- {e}")
+
+    def refresh(self) -> None:
+        # TODO: save records updated since load time and update self.data with new records available in the backend
+        return self.load()
+
+    def lookup(self, key) -> self._cls:
+        try:
+            return self._cls(**self.df.loc[key].to_dict())
+        except KeyError:
+            logger.debug(f"No entry found for '{key}'")
+            return self._cls()
+
+    def add(self, key, value: Union[Scalar, dict]) -> str:
+        existing = dict(self.lookup(key))
+        new = dict.fromkeys(self.df.columns.tolist())
+        new.update({"created_at": self.stamp(), "updated_at": self.stamp()})
+        new.update(existing)
+        if isinstance(value, dict):
+            new[self.value_key].update(value)
+        else:
+            new[self.value_key] = value
+
+        self._df.loc[key] = new
+
+    def remove(self, key) -> str:
+        return 0
+
+    def closest(self, key) -> str:
+        return 0
+
+    def _encode_dates(self) -> pd.DataFrame:
+        df = self._df.copy(deep=True)
+        if df is not None:
+            for col in self.date_cols:
+                try:
+                    df[col] = df[col].apply(self.handle_date)
+                    df[col] = df[col].astype(str)
+                except Exception as e:
+                    logger.debug(f"Error encoding dates in column '{col}' -- {e}")
+
+        return df
+
+    def handle_date(self, dt, default: Callable = None) -> datetime:
+        try:
+            dt = pd.to_datetime(
+                dt, infer_datetime_format=True, errors="raise", utc=True
+            )  # assume unknown timezones are UTC
+            if not dt.tzname():
+                dt = dt.localize("UTC")
+            elif dt.tzname() != "UTC":
+                dt = dt.convert("UTC")
+            return dt
+        except:
+            logger.debug(f"Failed converting value to datetime -> {dt}")
+            if default:
+                return default()
+            else:
+                return pd.Timestamp.now()
+
+
+class SQLBackend(RegistryBackend):
+    import models
+
+    models.connect_db()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    @classmethod
+    def load(cls, table_name: str, index_col: str = "operator"):
+        """ Populate the index from a sql table"""
+        # df = Operator_Table.df
+        # df.operator = df.operator.apply(sp.normalize)
+        # df.operator_alias = df.operator_alias.apply(sp.normalize)
+        # df = df.rename(columns={"operator_alias": "alias"})
+        try:
+            import models
+
+            cnxn = models.connect_db()
+            cnxn["Base"].prepare(Base.metadata.bind)
+            op = Operator
+            op.cnames()
+            # TODO: Connect this up
+
+        except KeyError:
+            raise KeyError(
+                f"Backend has no column named '{index_col}'. Try passing 'index_col = column_name' to the backend constructor. Available columns are: {df.columns.tolist()}"
+            )
+        return df
+
+    def save(self) -> None:
+        """Persist the index"""
+        try:
+            js = json.loads(
+                self.reset_index().to_json(orient="records", date_format="iso")
+            )
+
+            with open(self._fspath, "w") as f:
+                f.writelines(json.dumps(js, indent=4))
+            logger.debug(f"Persisted registry to {self._fspath}")
+        except Exception as e:
+            logger.error(f"Failed to save {self.__class__} -- {e}")
+
+
+class Registry:
+    def __init__(self, backend: RegistryBackend):
+        self._backend = backend
+
+    @property
+    def backend(self):
+        return self._backend
+
+    def load(self, *args, **kwargs) -> self:
+        self.backend.load(*args, **kwargs)
+        return self
+
+    def save(self, *args, **kwargs) -> self:
+        self.backend.save(*args, **kwargs)
+        return self
 
     @classmethod
     def from_cache(cls):
-        raise NotImplementedError()
+        pass
 
     @classmethod
     def to_cache(cls):
-        raise NotImplementedError()
+        pass
 
     def _capture_method(self):
-        return METHOD_TEMPLATE.format(function=inspect.stack()[1][3])
+        caller = inspect.stack()[1][3]
+        return METHOD_TEMPLATE.format(function=caller)
 
     @classmethod
     def default_scorer(cls):
@@ -127,7 +417,7 @@ class OperatorIndex(pd.DataFrame):
             return result
 
         except KeyError as e:
-            logger.debug(f"OperatorIndex: Name {target} not found.")
+            logger.debug(f"Registry: Name {target} not found.")
         except Exception as e:
             logger.error(
                 f"Error looking up operator name ({e}) -- \n    Operator Name: {target}"
@@ -215,8 +505,15 @@ class OperatorIndex(pd.DataFrame):
     def add(op_name: str, op_alias: str):
         pass
 
+    def remove(op_name: str, op_alias: str):
+        pass
 
-class FileIndex(OperatorIndex):
+
+class OperatorRegistry(Registry):
+    pass
+
+
+class FileIndex(Registry):
     # temporary properties
     _internal_names = pd.DataFrame._internal_names
     _internal_names_set = set(_internal_names)
@@ -279,7 +576,7 @@ class FileIndex(OperatorIndex):
             return result
 
         except KeyError as e:
-            logger.debug(f"OperatorIndex: Name {target} not found.")
+            logger.debug(f"Registry: Name {target} not found.")
         except Exception as e:
             logger.error(
                 f"Error looking up operator name ({e}) -- \n    Operator Name: {target}"
@@ -368,7 +665,7 @@ class FileIndex(OperatorIndex):
         pass
 
 
-class SQLIndex(OperatorIndex):
+class SQLIndex(Registry):
     # temporary properties
     _internal_names = pd.DataFrame._internal_names
     _internal_names_set = set(_internal_names)
@@ -392,7 +689,7 @@ class SQLIndex(OperatorIndex):
 
     @property
     def _constructor(self):
-        return OperatorIndex
+        return Registry
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -428,7 +725,7 @@ class SQLIndex(OperatorIndex):
     @classmethod
     def from_cache(cls):
         df = pd.read_json(OPERATORPATH, convert_dates=["updated", "created"])
-        df = OperatorIndex(data=df).set_index("operator")
+        df = Registry(data=df).set_index("operator")
         return df
 
     @classmethod
@@ -458,7 +755,7 @@ class SQLIndex(OperatorIndex):
             return result
 
         except KeyError as e:
-            logger.debug(f"OperatorIndex: Name {target} not found.")
+            logger.debug(f"Registry: Name {target} not found.")
         except Exception as e:
             logger.error(
                 f"Error looking up operator name ({e}) -- \n    Operator Name: {target}"
@@ -531,357 +828,31 @@ class SQLIndex(OperatorIndex):
         pass
 
 
-# TODO: Extend stringprocessor directly?
-class Operator(object):
-    """Processor class tuned to identifing alises of a single operator"""
-
-    classifier = None
-    _minlen = 3
-    _maxlen = 35
-    _fuzzlen = 5
-    _min_score = 90
-    _sourced_from = DSN or "Unknown"
-    _orig = None
-    _name = None
-    _norm = None
-    alias = None
-
-    normalize = sp.normalize
-
-    def __init__(self, orig_name: str, classifier=None):
-        try:
-            self.classifier = classifier
-            self.name = orig_name
-            self._chain = []
-            self.pscore = 0  # present score
-            self.fscore = 0  # future score
-            self.fuzzies = pd.DataFrame()
-            self._method = None
-            self.alias = self.find()
-
-        except Exception as e:
-            logger.warning(f"Unable to create Operator({self.norm}) -- {e}")
-            raise
-
-    def __str__(self):
-        return f"{self.alias}"
-
-    def __repr__(self):
-        return f'<Operator: {self.norm[:self._maxlen]+"..." if self.is_long else self.norm} | {self.alias}>'  # [{self.pscore:.0f}|{self.fscore:.0f}]
-
-    def __len__(self):
-        return len(self.norm)
-
-    @property
-    def name(self):
-        return self._name
-
-    @name.setter
-    def name(self, value):
-        if isinstance(value, str):
-            if self._orig is None:
-                self._orig = value
-            self._name = value
-            self._norm = self.normalize(value)
-            self._method = None
-            self.pscore = 0
-            self.fscore = 0
-            self.fuzzies = pd.DataFrame()
-        else:
-            logger.debug(f"{value} is not an instance of str")
-
-    @property
-    def orig(self):
-        return self._orig
-
-    @property
-    def tokens(self):
-        return self.norm.split(" ")
-
-    @property
-    def norm(self):
-        return self._norm
-
-    @property
-    def has_alias(self):
-        return self.alias is not None
-
-    @property
-    def is_short(self):
-        return len(self) < self._minlen
-
-    @property
-    def is_long(self):
-        return len(self) > self._maxlen
-
-    @property
-    def sourced_from(self):
-        return self.sourced_from or DSN
-
-    @property
-    def method(self):
-        return self._method
-
-    @method.setter
-    def method(self, value):
-        if self._method is None:
-            self._method = self._format_method(method_name=value)
-        # else:
-        #     logger.debug('Classification method cannot be overwritten once set.')
-
-    @property
-    def has_classifier(self):
-        return self.classifier is not None
-
-    @property
-    def json(self):
-        return json.dumps(
-            {
-                "original": self.orig,
-                "normalized": self.norm,
-                "method": self.method,
-                "alias": self.alias,
-            }
-        )
-
-    @property
-    def default_scorer(self):
-        if self.classifier is not None:
-            return self.classifier.default_scorer()
-        else:
-            return fuzz.token_set_ratio
-
-    def _from_tokens(self, set_alias=False):
-        name = ""
-        tokens = self.tokens
-        while len(name) < self._minlen and len(tokens) > 0:
-            name += tokens.pop(0)
-
-        # self.name = name
-
-        return name
-
-    def extend_lower_bound(self, pct: float = 0.1):
-        self._min_score = self._min_score * (1 - pct)
-        return self
-
-    def _format_method(self, method_name: str = None):
-        if not method_name:
-            method_name = inspect.stack()[1][3]
-        return METHOD_TEMPLATE.format(function=method_name)
-
-    def _capture_match(self, result: pd.Series):
-
-        try:
-            if hasattr(result, "alias"):
-                self.alias = result.alias
-            if hasattr(result, "pscore"):
-                self.pscore = result.pscore
-            if hasattr(result, "fscore"):
-                self.fscore = result.fscore
-            if hasattr(result, "method"):
-                self.method = result.method
-        except Exception as e:
-            logger.debug(f"operator._capture_match: {e}")
-        return self
-
-    def _exists(self, alias: str) -> bool:
-        if self.classifier is not None:
-            return self.classifier.exists(alias)
-        else:
-            return False
-
-    @chained
-    def lookup(self, name: str = None, record: pd.Series = None) -> str:
-
-        try:
-            if record is not None and not record.empty:
-                result = self.classifier.lookup(record.opname)
-                if not record.empty:
-                    record["alias"] = result.alias
-                    record["confidence"] = result.confidence
-            else:
-                record = self.classifier.lookup(name or self.norm)
-            # else:
-            #     record = self.classifier.lookup(self.norm)
-
-            if not record.empty:
-                if record.method is None:
-                    record["method"] = "operator.classifier.lookup"
-
-            # record = record.rename({'confidence': 'pscore'})
-            return record
-        except Exception as e:
-            logger.debug(f"operator.lookup: {e}")
-
-        return pd.Series()
-
-    def fuzzy(self, scorer=None, score_cutoff=90, limit=1) -> pd.DataFrame:
-        """Attempt to fuzzy match the target string to an operator name using the given scorer function.
-        The alias for the match with the highest score is returned. If a match with a score above the cutoff
-        is not found, None is returned
-
-        Arguments:
-            target {str} -- [description]
-
-        Keyword Arguments:
-            extract {str} -- 'one' or 'many'
-            scorer {func} -- fuzzywuzzy scorer function
-                      -- alternative scorers:
-                            fuzz.token_sort_ratio -> match with tokens in an ordered set
-                            fuzz.token_set_ratio -> match with tokens as a set
-                            fuzz.partial_ratio -> ratio of string partials
-        """
-
-        scorer = scorer or self.default_scorer
-
-        # result = pd.Series(name = target)
-        extracted: list = process.extractBests(
-            self.norm,
-            self.classifier.index,
-            scorer=scorer,
-            limit=limit,
-            score_cutoff=score_cutoff,
-        )
-
-        extracted = pd.DataFrame.from_records(extracted, columns=["opname", "fscore"])
-
-        self.fuzzies = self.fuzzies.append(extracted)
-
-        if limit == 1:
-            return extracted.squeeze()
-        else:
-            return self.fuzzies
-
-    @chained
-    def ratio(self) -> pd.Series:
-        result: pd.Series = self.fuzzy(
-            scorer=fuzz.ratio, score_cutoff=self._min_score, limit=1
-        )
-        # result['method'] = 'operator.classifier.ratio'
-        return result
-
-    @chained
-    def token_set(self) -> pd.Series:
-        result: pd.Series = self.fuzzy(
-            scorer=fuzz.token_set_ratio, score_cutoff=self._min_score, limit=1
-        )
-        # result['method'] = 'operator.classifier.token_set'
-        return result
-
-    @chained
-    def token_sort(self) -> pd.Series:
-        result: pd.Series = self.fuzzy(
-            scorer=fuzz.token_sort_ratio, score_cutoff=self._min_score, limit=1
-        )
-        # result['method'] = 'operator.classifier.token_sort'
-        return result
-
-    def fuzzy_waterfall(self):
-        result: pd.Series = self.ratio()
-
-        if not self.is_long:
-            if result.empty:
-                result = self.token_set()
-
-            if result.empty:
-                result = self.token_sort()
-
-            return self.lookup(record=result)
-        else:
-            return result
-
-    @chained
-    def get_alias(self) -> str:
-        """Wraps internal finder method. Returns a string
-           representation of the alias to the caller.
-
-        Returns:
-            str -- operator's alias
-        """
-        return self.find()
-
-    @chained
-    def _find(self) -> pd.Series:
-
-        result: pd.Series = self.lookup()
-
-        if result.empty:
-            result = self.alookup()
-
-        if result.empty:
-            result = self.fuzzy_waterfall()
-
-        if result.empty:
-            result = self.seek_token()
-
-        if not result.empty:
-            self._capture_match(result)
-            if self.fscore > self.pscore:
-                result["name"] = self.name
-
-        return result
-
-    @chained
-    def find(self) -> str:
-
-        alias = None
-        try:
-            if self.classifier is not None:
-                alias = self._find()  # .alias
-                if "alias" in alias.index:
-                    alias = alias.alias
-
-            if alias is None:
-                alias = self._from_tokens()
-
-            if alias is None:
-                logger.warning(
-                    f"Unable to find alias for {self.name}. Defaulting to operator's original name."
-                )
-                alias = self.name
-        except Exception as e:
-            logger.warning(
-                f"Error searching for alias for {self.name}. Defaulting to operator's original name. -- {e}"
-            )
-            alias = self.name
-
-        logger.debug(f"Setting alias: {self.name} -> {alias}")
-        return alias
-
-    @chained
-    def seek_token(self):
-        result = pd.Series()
-        self.name = self._from_tokens()
-        result = self.lookup()
-        result = self.alookup()
-
-        return result
-
-    @chained
-    def alookup(self):
-        """Look for a match in the aliases list.
-        """
-        result = pd.Series()
-        if self._exists(self.name):
-            result["alias"] = self.name
-            result["fscore"] = 75
-            result["pscore"] = 0
-            result["method"] = "operator.classifier.alookup"
-
-        return result
-
-
 if __name__ == "__main__":
+
+    from settings import OPERATORPATH
 
     logging.basicConfig(level=logging.DEBUG)
 
-    # sqlindex = SQLIndex.load()
-    fileindex = FileIndex.load(OPERATORPATH)
+    OPERATOR_YAML = "./config/operators.yaml"
+    y = Yammler(OPERATOR_YAML)
+    yb = YamlBackend(OPERATOR_YAML, value_key="alias").load()
+
+    r = Registry(backend=yb)
+    opr = OperatorRegistry()
 
     # x = Operator("DRIFTWOOD ENERGY", classifier=sqlindex)
     x = Operator("lario3mofracsched8", classifier=fileindex)
     print(x)
 
     o = Operator("lario3mofracsched8", classifier=fileindex)
+
+    fi.df = fi.df.rename(
+        columns={
+            "sourced_from": "source",
+            "created": "created_at",
+            "updated": "updated_at",
+            "method": "methodology",
+        }
+    )
 

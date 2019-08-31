@@ -1,0 +1,5725 @@
+data:
+  ajax:
+    alias: ajax
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 21981
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  ajax drilling:
+    alias: ajax
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 21982
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  ajax energy:
+    alias: ajax
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 21983
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  ajax oil development:
+    alias: ajax
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 21984
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  ajax resources:
+    alias: ajax
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 21985
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  ajax resources llc:
+    alias: ajax
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 21986
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  ajax resources llc et al:
+    alias: ajax
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 21987
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache:
+    alias: apache
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22924
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache 3m energy corp mewbourne oil company undisclosed seller:
+    alias: apache
+    confidence: 80.0
+    created_at: '2018-07-02 00:00:00+00:00'
+    id: 22926
+    methodology: string match
+    source: null
+    updated_at: '2018-07-02 00:00:00+00:00'
+  apache ccorporation:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22927
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache corp:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22928
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache corp calmon:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22929
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache corp et al:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22930
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache corporation:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22931
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache corporation et al:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22932
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache corporation inc:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22933
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache deepwater llc:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22934
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache deewater llc:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22935
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache energy resources corp:
+    alias: apache
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22936
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache energy resources corporation:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22937
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache exploration:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22938
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache exploration corporation:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22939
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache exploration inc:
+    alias: apache
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22940
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache healey leblond:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22941
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache mw petroleum corporation:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22947
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache odessa national gas:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22925
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache oil company:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22942
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache pedernales energy llc:
+    alias: apache
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22943
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache resources l l c:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22944
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache undisclosed seller:
+    alias: apache
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22945
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apache xcxp operating lp jwb rightway inc mbar energy llc:
+    alias: apache
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22946
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  apachemw petroleum corporation:
+    alias: apache
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 22948
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  apahe corporation:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22949
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  appache corporation:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 22989
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  arrington cjm:
+    alias: arrington
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 23297
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  arrington david h oil gas:
+    alias: arrington
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 23299
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  arrington david h oil gas inc:
+    alias: arrington
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 23305
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  arrington david h oil gas incorporated:
+    alias: arrington
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 23298
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  arrington david h oilgas:
+    alias: arrington
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 23300
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  arrington oil gas:
+    alias: arrington
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 23301
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  arrington oil gas operating:
+    alias: arrington
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 23303
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  arrington oil gas operating llc:
+    alias: arrington
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 23302
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  arrington oilgas operating:
+    alias: arrington
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 23304
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  arringtondavid h oil gasinc:
+    alias: arrington
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 23306
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  bold:
+    alias: bold
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 25817
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  bold energy:
+    alias: bold
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 25818
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  bold energy ii:
+    alias: bold
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 25819
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  bold energy ii llc:
+    alias: bold
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 25820
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  bold energy ii llc sinclair:
+    alias: bold
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 25821
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  bold energy iii llc:
+    alias: bold
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 25822
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  bold energy iiii llc:
+    alias: bold
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 25823
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  bold energy iiillc:
+    alias: bold
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 25824
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  bold energy limited liability corp:
+    alias: bold
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 25825
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  bold energy limited partnership:
+    alias: bold
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 25826
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  bold energy lp:
+    alias: bold
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 25827
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  bold operating:
+    alias: bold
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 25828
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  bold operating llc:
+    alias: bold
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 25829
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  calion petr:
+    alias: callon
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27462
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  calion petroleum operatin company:
+    alias: callon
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27463
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  calloin petroleum operating company:
+    alias: callon
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 27498
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  callon:
+    alias: callon
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27499
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  callon pet oper co:
+    alias: callon
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27500
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  callon pet operating:
+    alias: callon
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27501
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  callon petr:
+    alias: callon
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27502
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  callon petroleum:
+    alias: callon
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27503
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  callon petroleum co:
+    alias: callon
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27504
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  callon petroleum company:
+    alias: callon
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27505
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  callon petroleum operatin company:
+    alias: callon
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27506
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  callon petroleum operating:
+    alias: callon
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27507
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  callon petroleum operating co:
+    alias: callon
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27508
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  callon petroleum operating co et al:
+    alias: callon
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27509
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  callon petroleum operating company:
+    alias: callon
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27510
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  callon trp energy llc:
+    alias: callon
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 27511
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron:
+    alias: chevron
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28722
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron company:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28723
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron corp:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28724
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron corp et al:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28725
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  ? chevron devon energy enervest management partners clayton williams energy king
+    oil gas of texas encore energy partners lp individual seller
+  : alias: chevron
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28726
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron et al:
+    alias: chevron
+    confidence: 80.0
+    created_at: '2018-07-02 00:00:00+00:00'
+    id: 28727
+    methodology: string match
+    source: null
+    updated_at: '2018-07-02 00:00:00+00:00'
+  chevron keystone gas storage llc:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28728
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron keystone gas storagellc:
+    alias: chevron
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28729
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron midcontinent:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28730
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron midcontinent l p et al:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28734
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron midcontinent limited partnership:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28731
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron midcontinent lp:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28732
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron midcontinent operation:
+    alias: chevron
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28733
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron oil company:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28735
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron pipe line company:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28736
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron pure partners lp:
+    alias: chevron
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28737
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron texaco exploration prod co:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28738
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron u s a inc:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28739
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron u s a incorporated:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28740
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron undisclosed seller:
+    alias: chevron
+    confidence: 80.0
+    created_at: '2018-04-23 00:00:00+00:00'
+    id: 28741
+    methodology: string match
+    source: null
+    updated_at: '2018-04-23 00:00:00+00:00'
+  chevron usa:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28742
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron usa inc:
+    alias: chevron
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28743
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  chevron usa incorporated:
+    alias: chevron
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 28744
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  conch o g:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29776
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  conch og:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29777
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  conch oil gas holdings lp:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29778
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-04-17 00:00:00+00:00'
+    id: 29779
+    methodology: string match
+    source: null
+    updated_at: '2018-04-17 00:00:00+00:00'
+  concho energy:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29780
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho exploration:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29781
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho exploration inc:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29782
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho exploration incorporated:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29783
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho gathering company:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-04-23 00:00:00+00:00'
+    id: 29784
+    methodology: string match
+    source: null
+    updated_at: '2018-04-23 00:00:00+00:00'
+  concho land:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29785
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho o g:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29786
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho og:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29787
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho oil gas corporation:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29788
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho oil gas holdings:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29789
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho oil gas holdings lp:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29790
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho oil gas limited:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29791
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho oilfield serv oper:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29793
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho oilfield serv oper co:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29792
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho oilfield service:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29794
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho oilfield service operating comp:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29795
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho oilfield servoper:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29796
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho operating co:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29797
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho operating company:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29798
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho petroleum:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29799
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho petroleum karcher jp:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29800
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho production inc:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29801
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho resources inc:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29802
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho resources inc apache:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29803
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho resources inc cazador oil gas llc:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29804
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho resources incorporated:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29805
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  concho services:
+    alias: concho
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 29806
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  crownquest operating:
+    alias: crownquest
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 30688
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  crownquest operating llc:
+    alias: crownquest
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 30689
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  crownquest operg:
+    alias: crownquest
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 30690
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  delaware apache corporation:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 31656
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamonback o g llc:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 31961
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamond a energy:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 31965
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamond energy:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 31973
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamond energy inc:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 31974
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamond k oil:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 31962
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamond k oil co:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 31963
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamond mineral investments:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 31982
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamond mineral investments inc:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 31983
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamond production l l c:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 31986
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamond production llc:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 31987
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback:
+    alias: diamondback
+    confidence: .nan
+    created_at: '2018-12-20 00:00:00+00:00'
+    id: 31998
+    methodology: null
+    source: Collector.Frac_Exchange
+    updated_at: '2019-01-15 00:00:00+00:00'
+  diamondback e and p llc:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32000
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback e and p llc et al:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32001
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback e and p llc et al burlington res et al:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32002
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback e p:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32003
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback e p llc:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 31999
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback e p llc and diamondback o g llc:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32004
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback energy:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32005
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback energy inc:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32006
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback energy llc:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32007
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback energy llc et al:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32008
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback ep:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32009
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback ep llc:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 32010
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  diamondback exploration prod llc:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32011
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback g llc:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32012
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback o and g llc:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32013
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback o and g llc et al:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32015
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback o g:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32016
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback o g llc:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32014
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback og:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32017
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback operating:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32018
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback operating lp:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32019
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback petroleum incorporated:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32020
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondback resources llc:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32021
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondbank energy:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 32022
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  diamondblack o g llc:
+    alias: diamondback
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32023
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  diamondbrack o g llc:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 32024
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  diamondrepublic oilgas:
+    alias: diamondback
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32027
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discover oil gas inc:
+    alias: discovery
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32077
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery:
+    alias: discovery
+    confidence: .nan
+    created_at: '2018-12-20 00:00:00+00:00'
+    id: 32078
+    methodology: null
+    source: Collector.Frac_Exchange
+    updated_at: '2019-01-15 00:00:00+00:00'
+  discovery expl:
+    alias: discovery
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32079
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery geoservices:
+    alias: discovery
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32080
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery geoservices corp:
+    alias: discovery
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32081
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery nat rs llc:
+    alias: discovery
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32082
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery natural resources:
+    alias: discovery
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32083
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery natural resources et al:
+    alias: discovery
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32084
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery natural resources lc:
+    alias: discovery
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32085
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery natural resources llc:
+    alias: discovery
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32086
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery natural resources usa inc:
+    alias: discovery
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32087
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery nautral resources llc:
+    alias: discovery
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32088
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery o g:
+    alias: discovery
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32089
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery og:
+    alias: discovery
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32090
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery oil corp:
+    alias: discovery
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32092
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery oil corp dellwood oil co:
+    alias: discovery
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32093
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery oil corporation:
+    alias: discovery
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32094
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery oil gas co:
+    alias: discovery
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32091
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery oper inc:
+    alias: discovery
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32095
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery operating:
+    alias: discovery
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32096
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery operating co:
+    alias: discovery
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32097
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery operating company:
+    alias: discovery
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32098
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery operating inc:
+    alias: discovery
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32099
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery operating inc 80:
+    alias: discovery
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32100
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  discovery operating incorporated:
+    alias: discovery
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32101
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  driftwood:
+    alias: driftwood
+    confidence: .nan
+    created_at: '2018-12-20 00:00:00+00:00'
+    id: 32619
+    methodology: null
+    source: Collector.Frac_Exchange
+    updated_at: '2019-01-15 00:00:00+00:00'
+  driftwood energy:
+    alias: driftwood
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32620
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  driftwood energy operating ll:
+    alias: driftwood
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32622
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  driftwood energy operating llc:
+    alias: driftwood
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32621
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  driftwood energy operator llc:
+    alias: driftwood
+    confidence: 80.0
+    created_at: '2019-02-17 21:33:39.563000+00:00'
+    id: 66200
+    methodology: operator classifier cnn
+    source: null
+    updated_at: '2019-02-17 21:33:39.563000+00:00'
+  driftwood energy partners llc:
+    alias: driftwood
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32623
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  driftwood oil limited liability corp:
+    alias: driftwood
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 32624
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  earthstone:
+    alias: earthstone
+    confidence: 80.0
+    created_at: '2019-02-15 13:51:49.473000+00:00'
+    id: 66177
+    methodology: operator classifier cnn
+    source: null
+    updated_at: '2019-02-15 13:51:49.473000+00:00'
+  earthstone energy:
+    alias: earthstone
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33049
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  earthstone energy inc:
+    alias: earthstone
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33050
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  edneavor energy resources lp:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33203
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana:
+    alias: encana
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33642
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana gathering services usa inc:
+    alias: encana
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33643
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana o g:
+    alias: encana
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33644
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana o g usa inc:
+    alias: encana
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33645
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana og:
+    alias: encana
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33646
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana oil and gas et al:
+    alias: encana
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33648
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana oil and gas usa inc:
+    alias: encana
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33654
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana oil and gas usa inc et al:
+    alias: encana
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33647
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana oil gas inc:
+    alias: encana
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33651
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana oil gas usa inc:
+    alias: encana
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33649
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana oil gas usa inc inc:
+    alias: encana
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33652
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana oil gas usa incorporated:
+    alias: encana
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33650
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana oil gasusa inc:
+    alias: encana
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 33655
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  encana oil usa inc:
+    alias: encana
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33653
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana services company llc:
+    alias: encana
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33656
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana services company ltd:
+    alias: encana
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33657
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  encana services company ltd operating llc:
+    alias: encana
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33658
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endavor energy resources lp:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33685
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeaver energy resources lp:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33686
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavon energy resources lp:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33687
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor:
+    alias: endeavor
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 33688
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  endeavor eenrgy resources lp:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33689
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor enegy resources lp:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33690
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33691
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy et al:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33692
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy inc:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33693
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy limited liability corp:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33694
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy lp:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33695
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy reources l p:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33696
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy res:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33697
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resource l p:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33698
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33699
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources l p:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33700
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources l p castello enterprises inc:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33701
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources limited prts:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33702
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources llp:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33703
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources lp:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33704
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources lp and castello enterprises inc:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33705
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources lp castello enterprises inc d cb llc:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33714
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources lp castelo enterprises inc and d cb llc:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33715
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources lp clear fork inc:
+    alias: endeavor
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 33706
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  endeavor energy resources lp et al:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33707
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources lp et al et al:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33708
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources lp finley resources inc:
+    alias: endeavor
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33709
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources lp guidon energy:
+    alias: endeavor
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33710
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources lp individual seller:
+    alias: endeavor
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33711
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources lp petras energy lp wls oil gas llc koda energy llc:
+    alias: endeavor
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33712
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resources lp pioneer 822 energy lp bns properties llc hc sullivan llc ke lawrence llc koda energy llc:
+    alias: endeavor
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33713
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor energy resourceslp:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33716
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor natural gas llc:
+    alias: endeavor
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33717
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor petr:
+    alias: endeavor
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33718
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor resources:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33719
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavor resources limited partnership:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33720
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavour energy:
+    alias: endeavor
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33721
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavour energy resources lp:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33722
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endeavur energy resources:
+    alias: endeavor
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 33723
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  endeayor energy resources l p:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33724
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endevco pipeline company:
+    alias: endeavor
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33726
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  endevor energy resources l p:
+    alias: endeavor
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33727
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energan resources corporation:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33762
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energas:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33763
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energas inc:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33766
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energeen resources corporation:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33767
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energem resources corporation:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 33768
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  energen:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33769
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energen corporation:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33770
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energen res corp:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33771
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energen resource corporation:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33772
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energen resources:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33773
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energen resources co:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33774
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energen resources company:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33775
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energen resources corp:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33776
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energen resources corporation:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33777
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energen resources corporatiopn:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33778
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energen resources corporatoin:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33779
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energen resources et al:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33780
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energer:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33781
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energer resources corporation:
+    alias: energen
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33782
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energex:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33784
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energie resources:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33798
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energrowth:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33799
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33800
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy administrative serv:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33804
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy administrative serv inc:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33805
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy administrative servinc:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33806
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy corporation of america:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33807
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy expl partners:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33801
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy expl prtnrs oper:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33888
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy expl prtnrs oper lp:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33802
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy finders:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33818
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy group:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33827
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy horizons:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33828
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy hunter resources inc:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33829
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy investments of ok:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33830
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy investments of okla inc:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33831
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy methods:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33834
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy methods corp:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33835
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy mgmt:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33836
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy operating:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33838
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy operating corp:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33839
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy operators:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33840
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy operators llc:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33841
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy partners:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33842
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy search development:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33871
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy search development inc:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33870
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy searchdevelopment:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33872
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy systems:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33879
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy technologies:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33880
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy title:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33881
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy tower iv 11750 katy frwy ste 830:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 33882
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  energy transfer company:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33883
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energy unlimited:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33884
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  energyexpl prtnrs oper:
+    alias: energen
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 33889
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  farsley energy:
+    alias: parsley
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 34628
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  farsley energy lp:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 34629
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  filename:
+    alias: ./config/operators.yaml
+    confidence: ./config/operators.yaml
+    created_at: '2019-08-30 17:48:20.781705'
+    id: ./config/operators.yaml
+    methodology: ./config/operators.yaml
+    source: ./config/operators.yaml
+    updated_at: '2019-08-30 17:48:21.153868'
+  guidon:
+    alias: guidon
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 37515
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  guidon energy:
+    alias: guidon
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 37516
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  guidon energy mgmt services:
+    alias: guidon
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 37517
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  guidon energy mgmt services llc:
+    alias: guidon
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 37518
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  guidon operating:
+    alias: guidon
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 37519
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  guidon operating llc:
+    alias: guidon
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 37520
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  headington company:
+    alias: headington
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 38631
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  headington energy:
+    alias: headington
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 38632
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  headington energy llc:
+    alias: headington
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 38633
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  headington energy partners:
+    alias: headington
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 38634
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  headington energy partners ll:
+    alias: headington
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 38635
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  headington energy partners llc:
+    alias: headington
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 38636
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  headington enrgy prt:
+    alias: headington
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 38637
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  headington oil:
+    alias: headington
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 38638
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  headington oil company:
+    alias: headington
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 38639
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  headington oil company l p:
+    alias: headington
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 38640
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  headington oil company lp:
+    alias: headington
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 38641
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  headington royalty:
+    alias: headington
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 38642
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  headingtonenergy:
+    alias: headington
+    confidence: 80.0
+    created_at: '2018-10-17 00:00:00+00:00'
+    id: 38643
+    methodology: string match
+    source: null
+    updated_at: '2018-10-17 00:00:00+00:00'
+  hiberna energy llc:
+    alias: hibernia
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 39014
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  hibernia:
+    alias: hibernia
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 39015
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  hibernia energy:
+    alias: hibernia
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 39016
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hibernia energy iii llc:
+    alias: hibernia
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 39017
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hibernia holding:
+    alias: hibernia
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 39018
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hibernia resources:
+    alias: hibernia
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 39019
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hibernia resources iii llc:
+    alias: hibernia
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 39020
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hibernia resources llc:
+    alias: hibernia
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 39021
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hibernia resources llc piedra energy ii llc jm cox resources lp veritas energy partners undisclosed seller:
+    alias: hibernia
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 39022
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2018-10-17 00:00:00+00:00'
+    id: 40023
+    methodology: string match
+    source: null
+    updated_at: '2018-10-17 00:00:00+00:00'
+  hunt auld dan etal:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40072
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt c trst royal drlg:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40024
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt c trstroyal drlg:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 40025
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  hunt caroline trust est:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40026
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt caroline trust estate:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40027
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt cimarron lp:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40028
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt clay m:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40030
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt clay todd m:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40029
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt d h:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40031
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt e h:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40032
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt energy corp:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40033
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt energy corporation:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40034
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt h l:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40035
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt h l est of:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40036
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt h l estate of:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40037
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt h l jr trust estate:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40038
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt h l oil company:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40039
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt haroldson l jr trust:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40040
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt hassie exploration company:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40041
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt hassie incorporated:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40042
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt hassie trust:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40043
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt industries:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40044
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt industries limited:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40045
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt industries ltd:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40046
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt j l:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40047
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt jw:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40048
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt lamar:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40049
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt lamar trust estate:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40050
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt lamar trust estate et al:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40051
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt lyda bunker est:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40052
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt lyda herbert trusts:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40053
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt lydaherbert trusts:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 40054
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  hunt margaret trust estate:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40055
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt moore exploration:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40073
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt n b:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40056
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt partnership:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40064
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt resources:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40067
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt sherman stuart:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40068
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt todd m:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40069
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt w h:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40070
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt w h trust estate:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40071
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  hunt zinke herd marsh:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40074
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  huntauld dan etal:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 40075
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  huntmoore exploration:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 40096
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  hunton wilcox:
+    alias: hunt
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40098
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  independant energy marketing trading:
+    alias: independence
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40304
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  independence res mgm:
+    alias: independence
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40305
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  independence resources management llc:
+    alias: independence
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40306
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  independence resources mgmt:
+    alias: independence
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 40307
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  independence resources mgmt llc:
+    alias: independence
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 40308
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  laedo petr:
+    alias: laredo
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43039
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laedo petroleum inc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43040
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo:
+    alias: laredo
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 43265
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  laredo dallas inc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43282
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo land petroleum:
+    alias: laredo
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43266
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo midstream services:
+    alias: laredo
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43267
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo midstream services llc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43268
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo pertoleum inc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43269
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo petr:
+    alias: laredo
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43270
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo petreoleum inc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43271
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo petroelum inc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43272
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo petroleum:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43273
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo petroleum dalla inc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43274
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo petroleum dallas inc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43275
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo petroleum dallas inc f k a broad oak energy inc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43280
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo petroleum dallas inc formerly known as broad oak energy inc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43276
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo petroleum dallas incorporated:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43277
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo petroleum dallasinc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43281
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo petroleum inc:
+    alias: laredo
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43278
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredo petroleum incorporated:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43279
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  laredoo petroleum inc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43283
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  lareedo petroleum inc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43284
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  lario:
+    alias: lario
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 43302
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  lario o g:
+    alias: lario
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43303
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  lario o g westates:
+    alias: lario
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43304
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  lario og:
+    alias: lario
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43305
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  lario ogwestates:
+    alias: lario
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 43306
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  lario oil and gas company:
+    alias: lario
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43309
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  lario oil gas:
+    alias: lario
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43310
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  lario oil gas co:
+    alias: lario
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43307
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  lario oil gas company:
+    alias: lario
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43308
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  lario oilgas:
+    alias: lario
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43311
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  lario permian llc:
+    alias: lario
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43312
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  lario premian llc:
+    alias: lario
+    confidence: 80.0
+    created_at: '2018-10-17 00:00:00+00:00'
+    id: 43313
+    methodology: string match
+    source: null
+    updated_at: '2018-10-17 00:00:00+00:00'
+  lario us smelting rfg:
+    alias: lario
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43314
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  larious smeltingrfg:
+    alias: lario
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 43315
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  legacy:
+    alias: legacy
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 43635
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  legacy energy:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43636
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy exploration llc:
+    alias: legacy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43637
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy operators:
+    alias: legacy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43638
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy petroleum:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43639
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy petroleum paragon:
+    alias: legacy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43640
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reservces operating lp:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43641
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reserver operating lp:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43642
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reserves:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43643
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reserves et al:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43644
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reserves et al encore operating et al:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43645
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reserves lp:
+    alias: legacy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43646
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reserves oper:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43647
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reserves operaring lp:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43648
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reserves operatin lp:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43649
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reserves operating:
+    alias: legacy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43650
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reserves operating l p:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43651
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reserves operating lp:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43652
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reserves operating lp et al:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43653
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy reservs operating lp:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43654
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy resources co l p:
+    alias: legacy
+    confidence: 40.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43655
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy resserves operating lp:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43656
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legacy rrserves operating gp llc ptnr:
+    alias: legacy
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 43657
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  legacy tower one 7250 dallas parkway ste 1400:
+    alias: legacy
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 43658
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  legacyy reserves operating lp:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43659
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  legary reserves operating lp:
+    alias: legacy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43664
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  leredo petroleum inc:
+    alias: laredo
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 43748
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison:
+    alias: murchison
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 47989
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison bro brown bro:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 47993
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison brobrown bro:
+    alias: murchison
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 47994
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  murchison brothers:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 47995
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison closuit:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 47990
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison cw:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 47996
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison exploration:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 47997
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison exploration company:
+    alias: murchison
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 47998
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison fain:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 47991
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison j w:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 47999
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison kenneth:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48000
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison mallory:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 47992
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison o g:
+    alias: murchison
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48001
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison o g inc:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48002
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison og:
+    alias: murchison
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48003
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison oil:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48004
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison oil and gas:
+    alias: murchison
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48008
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison oil gas:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48005
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison oil gas inc:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48006
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murchison oil gas incorporated:
+    alias: murchison
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48007
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy associates:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48073
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy bill w:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48035
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy bill w operating co:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48036
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy bill w operating co inc:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48074
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy bill w operating coinc:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48037
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy bill w operating company inc:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48038
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy c h:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48039
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy corp ashland:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48040
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy corp stanolind:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48041
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy corpashland:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 48042
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  murphy corporation:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48043
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy corpstanolind:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 48044
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  murphy della ray:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48045
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy expl prod co usa:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48049
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy exploration and productio:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48050
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy exploration and production company usa:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48055
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy exploration prod co:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48051
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy exploration production co usa:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48052
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy exploration production company:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48053
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy exploration production company usa:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48054
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy exploration production cousa:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 48056
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  murphy f h:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48057
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy h baxter:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48058
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy james co:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48063
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy james co inc:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48060
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy james company incorporated:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48059
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy james jr:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48061
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy jamesco:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48064
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy minerals corporation:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48065
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy oil:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48066
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy oil corporation:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48067
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy oil usa inc:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48068
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy oil usa incorporated:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48069
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy operating company:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48070
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy operating corporation:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48071
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphy w c drilling company:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48072
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murphyassociates:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48075
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murray texas hanover co:
+    alias: murphy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48104
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  murraytexas hanover co:
+    alias: murphy
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 48110
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  north concho reclamation plant:
+    alias: concho
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 48870
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy inc:
+    alias: oxy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49882
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy permian:
+    alias: oxy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49883
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy permian et al:
+    alias: oxy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49884
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy petr inc:
+    alias: oxy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49885
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy petroleum incorporated:
+    alias: oxy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49886
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy u s a inc:
+    alias: oxy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49887
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy us wtp lp:
+    alias: oxy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49888
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy usa:
+    alias: oxy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49889
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy usa inc:
+    alias: oxy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49890
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy usa incorporated:
+    alias: oxy
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49891
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy usa lp:
+    alias: oxy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49892
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy usa wtp:
+    alias: oxy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49893
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy usa wtp lp:
+    alias: oxy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49894
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  oxy usaa wtp lp:
+    alias: oxy
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 49895
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  oxy ysa wtp lp:
+    alias: oxy
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 49897
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parkley energy:
+    alias: parsley
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50403
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parkley energy lp:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50404
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parley energy l p:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50423
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parley energy lp:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50424
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parskey energy lp:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50438
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parslay energy lp:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50439
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley:
+    alias: parsley
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 50440
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  parsley 1031 holdings llc:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50441
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley de lone star llc:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50442
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley energy:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50443
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley energy inc:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50444
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley energy l p:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50445
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley energy llc:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50446
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley energy lp:
+    alias: parsley
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50447
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley energy lp et al:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50448
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley energy operating llc:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50449
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley energy operations:
+    alias: parsley
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50450
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley energy operations llc:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50451
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley energy opert:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50452
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley energylp:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50453
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley energym lp:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50454
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley gp llc:
+    alias: parsley
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 50455
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  parsley management llc:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50456
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley novus land services l l c:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50457
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  parsley novus land services llc:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50458
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pasley energy operations llc:
+    alias: parsley
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 50488
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pb_chevron:
+    alias: chevron
+    confidence: .nan
+    created_at: '2019-01-15 00:00:00+00:00'
+    id: 50647
+    methodology: null
+    source: Collector-Frac_Exchange_v2018.12.21
+    updated_at: '2019-01-15 00:00:00+00:00'
+  pioneer:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51931
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer energy corporation:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51933
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer family trust:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51943
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer gas pipeline incorporated:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51944
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer nat res usa:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51945
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer national resources:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51946
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natual resources usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51947
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural gas:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51948
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural gas company:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51949
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural gas resources inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51951
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural gas resources usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51950
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural rasources usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51952
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural reosurce usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51953
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural reosurces usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51954
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural res gpc inc:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51955
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural res usa inc:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51956
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resoruces:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51957
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resoruces box3178:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51958
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resoruces usa:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51959
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resoruces usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51960
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resource usa:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51961
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51962
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources et al:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51963
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51964
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources pioneer natural resources pioneer natural resources:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51965
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources u s a inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51966
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources uisa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51967
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources us:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51968
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources us ainc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51969
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources us inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51970
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources usa:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51971
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51972
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources usa inc and sinochem petroleum usa lp:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51973
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources usa inc et al:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51975
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources usa inc sinochem petroleum usa lp:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51974
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resources usa inx:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51976
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resoures:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51977
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resoures usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51978
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural resurces usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51979
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural rresources usa:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51980
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural rsources usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51981
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer natural usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51982
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer oil and gas:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51984
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer oil gas company:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51983
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer petroleum of ky:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51985
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer prod company:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51986
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer production corp:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51987
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer production corporation:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51988
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer resources:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51989
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer resources usa:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51990
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer resources usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51991
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer sinochem:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51992
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer transmission:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51993
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer transmission corp:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51994
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioneer transmission corporation:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51995
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pioner natural resources usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51996
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pionneer natural resources usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51997
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pionner mineral resources usa inc:
+    alias: pioneer
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 51998
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  pionner natural resources inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 51999
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pionner natural resources usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 52000
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  ploncer natural resources usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 52144
+    methodology: manual
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  ploneer natural resources usa inc:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 52145
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  pxd pioneer natural:
+    alias: pioneer
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 52907
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  qep 1031 holdings llc:
+    alias: qep
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 52953
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  qep 1031 holdings llc et al:
+    alias: qep
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 52954
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  qep energy:
+    alias: qep
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 52955
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  qep energy company:
+    alias: qep
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 52956
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  qep energy company tierra oil co llc roy g barton jr:
+    alias: qep
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 52957
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rains energy:
+    alias: energen
+    confidence: 80.0
+    created_at: '2019-02-15 13:50:45.547000+00:00'
+    id: 66164
+    methodology: operator classifier cnn
+    source: null
+    updated_at: '2019-02-15 13:50:45.547000+00:00'
+  rsp ermian l l c:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55364
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp operating:
+    alias: rsp
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55365
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp operating inc:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55366
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permain l l c:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55367
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp perman l l c:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55368
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp perman llc:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55369
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permial l l c:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55370
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permian:
+    alias: rsp
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55371
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permian inc:
+    alias: rsp
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55372
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permian l c c:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55373
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permian l l c:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55374
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permian l l c ted collins jr wallace family partnership lp and solis energy llc:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55375
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permian l l c ted collins jrwallace family partnership lpsolis energy llc:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55376
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permian lcc:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55377
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permian llc:
+    alias: rsp
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55378
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permian llc and compass oil gas lp:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55379
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permian llc stronghold energy partners lp:
+    alias: rsp
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55380
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permian llc ted collins jr wallace family partnership lp and solis energy llc:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55381
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permian llc ted collins jr wallace family partnership lp wolfdom energy partners i lp and solis energy llc:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55382
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permian llc wallace family partnership lp ted collins jr undisclosed seller:
+    alias: rsp
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55383
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  rsp permiean llc:
+    alias: rsp
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55384
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  s m oil company:
+    alias: sm
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55623
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  s m oil company inc:
+    alias: sm
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55651
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  s m operating incvrk inv:
+    alias: sm
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55652
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  s m royalty:
+    alias: sm
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55609
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  s m s oil co:
+    alias: sm
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55655
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  sable:
+    alias: sable
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 55738
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  sable energy incorporated:
+    alias: sable
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55739
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  sable exploration:
+    alias: sable
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55740
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  sable permian resources:
+    alias: sable
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55741
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  sable permian resources land:
+    alias: sable
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55742
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  sable permian resources land llc:
+    alias: sable
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55743
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  sable permian resources landllc:
+    alias: sable
+    confidence: 80.0
+    created_at: '2018-04-03 00:00:00+00:00'
+    id: 55744
+    methodology: string match
+    source: null
+    updated_at: '2018-04-03 00:00:00+00:00'
+  sable permian resources llc:
+    alias: sable
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55745
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  sable petroleum:
+    alias: sable
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55746
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  sable petroleum inc:
+    alias: sable
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55747
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  sable production company inc:
+    alias: sable
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 55748
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  scout:
+    alias: scout
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 56501
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  scout energy management:
+    alias: scout
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 56502
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  scout energy management llc:
+    alias: scout
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 56503
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  scout energy mgmtllc:
+    alias: scout
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 56504
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  scout energy partners:
+    alias: scout
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 56505
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  scout holdings:
+    alias: scout
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 56506
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  scout oil company:
+    alias: scout
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 56507
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  sm energy:
+    alias: sm
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 57726
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  sm energy co et al:
+    alias: sm
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 57727
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  sm energy company:
+    alias: sm
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 57728
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  sm energy company midland:
+    alias: sm
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 57729
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  stable resources:
+    alias: sable
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 58485
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  stable resources llc:
+    alias: sable
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 58486
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  tracker:
+    alias: tracker
+    confidence: 80.0
+    created_at: '2018-04-11 00:00:00+00:00'
+    id: 61693
+    methodology: string match
+    source: null
+    updated_at: '2018-04-11 00:00:00+00:00'
+  tracker mineral:
+    alias: tracker
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 61694
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  tracker res devl iii:
+    alias: tracker
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 61695
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  tracker resource dev iii:
+    alias: tracker
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 61696
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  tracker resource dev iii llc:
+    alias: tracker
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 61697
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  tracker resource development:
+    alias: tracker
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 61698
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  tracker resource development iii llc:
+    alias: tracker
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 61699
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  tracker resource development iii llc undisclosed buyer:
+    alias: tracker
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 61700
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  tracker resources development:
+    alias: tracker
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 61701
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  tracker resources development iii llc:
+    alias: tracker
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 61702
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  unapache oil company:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 62653
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  william herbert hunt:
+    alias: hunt
+    confidence: 80.0
+    created_at: '2019-02-15 16:40:41.220000+00:00'
+    id: 66193
+    methodology: operator classifier cnn
+    source: null
+    updated_at: '2019-02-15 16:40:41.220000+00:00'
+  xto energy:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65768
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy et al:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65769
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy inc:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65770
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy inc and exxonmobil oil corporation and mobil e p u s development corporation and exxon mobin corporation:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65771
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy inc et al:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65772
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy inc exxon mobil corporation mobil e p us development corporation and exxon mobil corporation:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65776
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy inc exxon mobil oil corporation mobil e p u s development corporation mobil producing texas new mexico inc cro:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65777
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy inc exxon mobil oil corporation mobil e p us development corporation and exxon mobil corporation:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65778
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy inc exxonmobil oil corporation mobil e p u s development corporation:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65775
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy inc exxonmobil oil corporation mobil e p u s development corporation and exxon mobil corporation:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65773
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy inc exxonmobil oil corporation mobil e p u s development corporation exxon mobil corporation:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65774
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy inc exxonmobil oil corporation mobil e p us development corporatio and exxon mobil corporation:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65779
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy inc exxonmobil oil corporation mobil e p us development corporation and exxon mobil corporation:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65780
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy inc exxonmobil oil corporation mobil e p us development corporation exxon mobil corporation:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65781
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xto energy incorporated:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65782
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xtx operating:
+    alias: xto
+    confidence: 80.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65786
+    methodology: string match
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  xtx operating llc:
+    alias: xto
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 65787
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  zpz delaware i llc:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 66133
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+  zpz delaware i llc et al:
+    alias: apache
+    confidence: 100.0
+    created_at: '2018-03-28 00:00:00+00:00'
+    id: 66134
+    methodology: manual
+    source: null
+    updated_at: '2018-03-28 00:00:00+00:00'
+meta:
+  fspath: ./config/operators.yaml
+  updated_at: 2019-08-30 19:54:55.617705

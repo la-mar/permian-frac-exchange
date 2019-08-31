@@ -19,6 +19,7 @@ log/
 .idea/
 
 .env
+.env*
 
 
 .coverage
