@@ -20,7 +20,7 @@ from shapely.ops import transform
 
 import util
 from collections import Counter
-from operator_index import Operator
+from op import OperatorAlias
 from settings import *
 
 logger = logging.getLogger(__name__)
@@ -67,9 +67,7 @@ class MessageCollection(dict):
             c = self
         else:
             c = self[category]
-        return {
-            k: dict(v) for k, v in c.items()
-        }
+        return {k: dict(v) for k, v in c.items()}
 
     def add_message(self, category: str, msg: str):
         with self.category(category) as c:
@@ -138,20 +136,20 @@ class Parser(object):
 
     @property
     def has_warnings(self):
-        return self._status_messages['warning'] > 0
+        return self._status_messages["warning"] > 0
 
     @property
     def has_errors(self):
-        return self._status_messages['error'] > 0
+        return self._status_messages["error"] > 0
 
     @property
     def status(self):
         if self.has_errors:
-            return 'error'
+            return "error"
         elif self.has_warnings:
-            return 'warning'
+            return "warning"
         else:
-            return 'ok'
+            return "ok"
 
     @property
     def status_messages(self):
@@ -187,7 +185,7 @@ class Parser(object):
             opname = util.tokenize(
                 self.filename, exclude=self.exclude, take_basename=True
             )[0]
-        self.operator = Operator(opname)
+        self.operator = OperatorAlias(opname)
         return self
 
     def summarize(self) -> pd.DataFrame:
@@ -352,7 +350,7 @@ class Parser(object):
                 ]
 
                 df["operator"] = self.operator.name
-                df["operator_alias"] = str(self.operator.alias).upper()
+                df["operator_alias"] = self.operator.alias
 
                 if with_geom:
                     df["geometry"] = df.apply(
@@ -430,7 +428,7 @@ class Parser(object):
         except:
             msg = f"Unable to convert value to datetime: {value}"
             logger.debug(msg)
-            self.add_status_message('warning',msg)
+            self.add_status_message("warning", msg)
             return pd.NaT
 
     def identify_crs(self, colnames: list = None) -> str:
