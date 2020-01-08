@@ -1,0 +1,27 @@
+parsers:
+  default:
+    rules:
+      - name: match_int_float_isodate
+        allow_partial: true
+        criteria:
+          - name: match_float
+            type: RegexCriterion
+            value: ^[-+]?\d*\.\d+|\d+$
+          - name: match_int
+            type: RegexCriterion
+            value: ^[-+]?[0-9]+$
+          - name: match_isodate
+            type: RegexCriterion
+            value: ^\d\d\d\d-\d\d-\d\d$
+          - name: match_any_date
+            type: RegexCriterion
+            value: \d{0,4}[\/-]\d{0,4}[\/-]\d{0,4}\s?\d{0,2}:?\d{0,2}:?\d{0,2}\s?[AMPM]{0,2}
+          - name: match_bool
+            type: RegexCriterion
+            value: true|false|True|False
+          - name: match_empty_string
+            type: RegexCriterion
+            value: ^$
+          - name: match_api_number
+            type: RegexCriterion
+            value: \d{14}

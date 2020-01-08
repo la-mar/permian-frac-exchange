@@ -1,0 +1,24 @@
+endpoints:
+  frac_schedules:
+    enabled: true
+    model: api.models.FracSchedule
+    exclude:
+      - start_in
+      - duration_in_days
+      - reviewed_by
+      - risk_assessments
+      - comments
+      - last_upload_date
+    mappings:
+      aliases:
+        region: region
+        company: company
+        well_name: wellname
+        frac_start_date: frac_start_date
+        frac_end_date: frac_end_date
+        surface_lat: shllat
+        surface_lon: shllon
+        bottomhole_lat: bhllat
+        bottomhole_lon: bhllon
+        tvd: tvd
+        target_formation: target_formation
