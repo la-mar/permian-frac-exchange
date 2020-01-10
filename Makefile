@@ -23,6 +23,9 @@ run-tests:
 smoke-test:
 	docker run --entrypoint fracx driftwood/fracx:${COMMIT_HASH} test smoke-test
 
+lint:
+	flake8 ./src --max-line-length=88 --extend-ignore=E203
+
 cov:
 	pytest --cov fracx --cov-report html:./coverage/coverage.html --log-level info --log-cli-level debug
 
