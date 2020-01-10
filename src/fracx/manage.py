@@ -2,14 +2,15 @@ import logging
 import os
 import shutil
 import sys
-from collections import defaultdict
-import subprocess
 
 import click
 from flask.cli import FlaskGroup, AppGroup
 
-from fracx import create_app, db
+from fracx import create_app
 from config import get_active_config
+
+from collector import Endpoint, FracScheduleCollector, Ftp, BytesFileHandler
+
 
 logger = logging.getLogger()
 
@@ -93,7 +94,6 @@ def ipython_embed():
 )
 def collector(update_on_conflict, ignore_on_conflict, use_existing):
     "Run a one-off task to synchronize from the fracx data source"
-    from collector import Endpoint, FracScheduleCollector, Ftp, BytesFileHandler
 
     logger.info(conf)
 

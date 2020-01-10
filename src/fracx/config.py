@@ -1,4 +1,5 @@
 from __future__ import annotations
+import sys
 from typing import List
 import logging
 import os
@@ -13,8 +14,16 @@ from sqlalchemy.engine.url import URL
 _pg_aliases = ["postgres", "postgresql", "psycopg2", "psycopg2-binary"]
 _mssql_aliases = ["mssql", "sql server"]
 
-APP_SETTINGS = os.getenv("APP_SETTINGS", "fracx.config.DevelopmentConfig")
+APP_SETTINGS = os.getenv("APP_SETTINGS", "fracx.config.ProductionConfig")
 FLASK_APP = os.getenv("FLASK_APP", "fracx.manage.py")
+
+sys.path.append(os.path.abspath(os.path.join("..", "config")))
+
+
+try:
+    __file__
+except:  # noqa
+    __file__ = "./src/fracx/config.py"
 
 
 def abs_path(path: str, filename: str) -> str:
@@ -22,7 +31,8 @@ def abs_path(path: str, filename: str) -> str:
 
 
 def make_config_path(path: str, filename: str) -> str:
-    return os.path.abspath(os.path.join(path, filename))
+    # return os.path.abspath(os.path.join(path, filename))
+    return os.path.join(path, filename)
 
 
 def load_config(path: str) -> AttrDict:
@@ -102,7 +112,9 @@ class BaseConfig:
     DATADOG_APP_KEY = os.getenv("DATADOG_APP_KEY", None)
 
     """ General """
-    CONFIG_BASEPATH = "./config"
+    CONFIG_BASEPATH = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "data_files"
+    )
 
     """ Collector """
     COLLECTOR_CONFIG_PATH = make_config_path(CONFIG_BASEPATH, "collector.yaml")
@@ -122,7 +134,7 @@ class BaseConfig:
 
     """ Logging """
     LOG_LEVEL = os.getenv("LOG_LEVEL", logging.INFO)
-    LOG_FORMAT = os.getenv("LOG_FORMAT", "json")
+    LOG_FORMAT = os.getenv("LOG_FORMAT", "layman")
 
     """ --------------- Sqlalchemy --------------- """
     DATABASE_DIALECT = os.getenv("DATABASE_DIALECT", "postgres")
@@ -143,12 +155,6 @@ class BaseConfig:
     }
     SQLALCHEMY_DATABASE_URI = str(make_url(DATABASE_URL_PARAMS))
     FRAC_SCHEDULE_TABLE_NAME = os.getenv("FRAC_SCHEDULE_TABLE_NAME", "frac_schedules")
-    # FRAC_SCHEDULE_INCLUDE_PROPERTIES = split_args(
-    #     os.getenv("FRAC_SCHEDULE_INCLUDE_PROPERTIES", "").split(",")
-    # )
-    # FRAC_SCHEDULE_EXCLUDE_PROPERTIES = split_args(
-    #     os.getenv("FRAC_SCHEDULE_EXCLUDE_PROPERTIES", "").split(",")
-    # )
 
     @property
     def show(self):
