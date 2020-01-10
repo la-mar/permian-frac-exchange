@@ -47,7 +47,7 @@ ENV = os.getenv("ENV", "prod")
 AWS_ACCOUNT_ID = os.getenv(
     "AWS_ACCOUNT_ID", boto3.client("sts").get_caller_identity().get("Account")
 )
-SERVICE_NAME: str = os.getenv("SERVICE_NAME")  # type: ignore
+
 IMAGE_TAG: str = os.getenv("IMAGE_TAG")  # type: ignore
 IMAGE_NAME: str = f"{os.getenv('IMAGE_NAME')}{':' if IMAGE_TAG else ''}{IMAGE_TAG or ''}"
 
@@ -55,14 +55,14 @@ CLUSTER_NAME = os.getenv("CLUSTER_NAME")  # type: ignore
 CLUSTER_ARN = f"arn:aws:ecs:us-east-1:{AWS_ACCOUNT_ID}:cluster/{CLUSTER_NAME}"
 TASK_IAM_ROLE = f"arn:aws:iam::{AWS_ACCOUNT_ID}:role/{project}-task-role"
 
-if not any([ENV, AWS_ACCOUNT_ID, SERVICE_NAME, IMAGE_NAME, CLUSTER_NAME]):
+if not all([ENV, AWS_ACCOUNT_ID, IMAGE_NAME, CLUSTER_NAME]):
     raise ValueError("One or more environment variables are missing")
 
 
 TASKS: List[dict] = [
     {
         "service": "frac-schedule-sync",
-        "command": "fsec run collector",
+        "command": "fracx run collector",
         "rule": "schedule-10pm",
     }
 ]
