@@ -83,6 +83,5 @@ secret-key:
 docker-run-collector:
 	aws-vault exec prod -- docker run -e AWS_REGION -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN -e AWS_SECURITY_TOKEN -e LOG_FORMAT driftwood/fracx fracx run collector
 
-
-# docker-run-collector:
-# 	aws-vault exec prod -- docker run -it -e AWS_REGION -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN -e AWS_SECURITY_TOKEN -e LOG_FORMAT driftwood/fracx bash
+put-rule-10pm:
+	aws events put-rule --schedule-expression "cron(0 22 * * ? *)" --name schedule-10pm
