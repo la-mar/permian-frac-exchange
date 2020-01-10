@@ -1,3 +1,7 @@
+
+
+FROM segment/chamber:2.7.5 as build
+
 FROM python:3.8 as base
 
 LABEL "com.datadoghq.ad.logs"='[{"source": "python", "service": "fracx"}]'
@@ -34,5 +38,9 @@ COPY ./config /app/config
 
 # run again to install app from source
 RUN poetry install --no-dev --no-interaction
+
+COPY --from=build /chamber /chamber
+
+ENTRYPOINT ["/chamber", "exec", "fracx", "datadog", "--"]
 
 CMD [ "fracx", "run", "collector" ]

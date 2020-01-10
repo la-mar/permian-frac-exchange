@@ -5,6 +5,7 @@ AWS_ACCOUNT_ID:=$$(aws-vault exec ${ENV} -- aws sts get-caller-identity | jq .Ac
 IMAGE_NAME:=driftwood/fracx
 DOCKERFILE:=Dockerfile
 ENV:=prod
+APP_VERSION ?= $$(grep -o '\([0-9]\+.[0-9]\+.[0-9]\+\)' pyproject.toml | head -n1)
 
 cc-expand:
 	# show expanded configuration
@@ -43,11 +44,28 @@ login:
 
 build:
 	@echo "Building docker image: ${IMAGE_NAME}"
-	docker build  -f ${DOCKERFILE} ${CTX} -t ${IMAGE_NAME}
+	docker build  -f Dockerfile . -t ${IMAGE_NAME}
 	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${COMMIT_HASH}
+	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${APP_VERSION}
+	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:latest
+
+
+build-with-chamber:
+	@echo "Building docker image: ${IMAGE_NAME} (with chamber)"
+	docker build  -f Dockerfile.chamber . -t ${IMAGE_NAME}
+	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${COMMIT_HASH}-chamber
+	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${APP_VERSION}-chamber
+	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:latest-chamber
+
+build-all: build-with-chamber build
 
 push: login
-	docker push ${IMAGE_NAME}
+	docker push ${IMAGE_NAME}:latest
+
+push-version: build build-with-chamber
+	@echo "Pushing images to DockerHub for app version ${APP_VERSION}"
+	docker push ${IMAGE_NAME}:${APP_VERSION}
+	docker push ${IMAGE_NAME}:${APP_VERSION}-chamber
 
 all:
 	make build login push
@@ -83,8 +101,15 @@ view-credentials:
 secret-key:
 	python3 -c 'import secrets; print(secrets.token_urlsafe(256));'
 
+
 docker-run-collector:
-	aws-vault exec prod -- docker run -e AWS_REGION -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN -e AWS_SECURITY_TOKEN -e LOG_FORMAT driftwood/fracx fracx run collector
+	docker run --env-file .env.production driftwood/fracx:latest fracx run collector
+
+
+docker-run-collector-with-chamber:
+	aws-vault exec prod -- docker run -e AWS_REGION -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN -e AWS_SECURITY_TOKEN -e LOG_FORMAT driftwood/fracx:latest-chamber fracx run collector
+
+
 
 put-rule-10pm:
 	aws events put-rule --schedule-expression "cron(0 22 * * ? *)" --name schedule-10pm

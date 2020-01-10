@@ -3,13 +3,6 @@ endpoints:
     enabled: true
     model: api.models.FracSchedule
     ignore_unkown: true
-    # exclude:
-    #   - start_in
-    #   - duration_in_days
-    #   - reviewed_by
-    #   - risk_assessments
-    #   - comments
-    #   - last_upload_date
     mappings:
       aliases:
         company: operator

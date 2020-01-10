@@ -1,12 +1,3 @@
-create user fracx;
-grant all privileges on schema fracx to fracx;
-    grant usage on schema fracx to fracx;
-    grant all privileges on all tables in schema fracx to fracx;
-    grant all privileges on all sequences in schema fracx to fracx;
-    alter default privileges in schema fracx grant all on tables to fracx;
-    alter default privileges in schema fracx grant all on sequences to fracx;
-alter user fracx with password 'YOUR_PASSWORD_HERE';
-
 create table if not exists frac_schedules
 (
 	id serial not null,
