@@ -109,15 +109,15 @@ class Ftp(FTP):
     @staticmethod
     def from_config() -> Ftp:
         """Create an Ftp object from environment variables. Looks for environment
-           variables prefixed with "FSEC_" that correspond to the required parameter
+           variables prefixed with "FRACX_" that correspond to the required parameter
            name.
 
-           FSEC_FTP_URL = Url to ftp site (e.g. provier.domain.com)
-           FSEC_FTP_USERNAME = Username credential
-           FSEC_FTP_PASSWORD = Password credential
-           FSEC_FTP_PATH = Path to the ftp directory containing the frac schedules
+           FRACX_FTP_URL = Url to ftp site (e.g. provier.domain.com)
+           FRACX_FTP_USERNAME = Username credential
+           FRACX_FTP_PASSWORD = Password credential
+           FRACX_FTP_PATH = Path to the ftp directory containing the frac schedules
                            (e.g. /example/path/to/FracSchedules/)
-           FSEC_DOWNLOAD_DIR = Path to location to save downloaded files
+           FRACX_DOWNLOAD_DIR = Path to location to save downloaded files
 
 
         Returns:

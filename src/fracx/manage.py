@@ -8,7 +8,7 @@ import subprocess
 import click
 from flask.cli import FlaskGroup, AppGroup
 
-from fsec import create_app, db
+from fracx import create_app, db
 from config import get_active_config
 import util
 
@@ -106,7 +106,7 @@ def ipython_embed():
     is_flag=True,
 )
 def collector(update_on_conflict, ignore_on_conflict, use_existing):
-    "Run a one-off task to synchronize from the fsec data source"
+    "Run a one-off task to synchronize from the fracx data source"
     from collector import Endpoint, FracScheduleCollector, Ftp, BytesFileHandler
 
     logger.info(conf)

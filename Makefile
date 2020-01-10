@@ -2,7 +2,7 @@ COMMIT_HASH    := $$(git log -1 --pretty=%h)
 DATE := $$(date +"%Y-%m-%d")
 CTX:=.
 AWS_ACCOUNT_ID:=$$(aws-vault exec ${ENV} -- aws sts get-caller-identity | jq .Account -r)
-IMAGE_NAME:=driftwood/fsec
+IMAGE_NAME:=driftwood/fracx
 DOCKERFILE:=Dockerfile
 ENV:=prod
 
@@ -18,13 +18,13 @@ cc-run-local:
 	circleci local execute -c process.yml --job build-image -e DOCKER_LOGIN=${DOCKER_LOGIN} -e DOCKER_PASSWORD=${DOCKER_PASSWORD}
 
 run-tests:
-	pytest --cov=fsec tests/ --cov-report xml:./coverage/python/coverage.xml --log-cli-level debug
+	pytest --cov=fracx tests/ --cov-report xml:./coverage/python/coverage.xml --log-cli-level debug
 
 smoke-test:
-	docker run --entrypoint fsec driftwood/fsec:${COMMIT_HASH} test smoke-test
+	docker run --entrypoint fracx driftwood/fracx:${COMMIT_HASH} test smoke-test
 
 cov:
-	pytest --cov fsec --cov-report html:./coverage/coverage.html --log-level info --log-cli-level debug
+	pytest --cov fracx --cov-report html:./coverage/coverage.html --log-level info --log-cli-level debug
 
 view-cov:
 	open -a "Google Chrome" ./coverage/coverage.html/index.html
@@ -81,4 +81,8 @@ secret-key:
 	python3 -c 'import secrets; print(secrets.token_urlsafe(256));'
 
 docker-run-collector:
-	aws-vault exec prod -- docker run -e AWS_REGION -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN -e AWS_SECURITY_TOKEN -e LOG_FORMAT driftwood/fsec fsec run collector
+	aws-vault exec prod -- docker run -e AWS_REGION -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN -e AWS_SECURITY_TOKEN -e LOG_FORMAT driftwood/fracx fracx run collector
+
+
+# docker-run-collector:
+# 	aws-vault exec prod -- docker run -it -e AWS_REGION -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN -e AWS_SECURITY_TOKEN -e LOG_FORMAT driftwood/fracx bash

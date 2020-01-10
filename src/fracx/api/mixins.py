@@ -14,7 +14,7 @@ from sqlalchemy.sql import func
 import metrics
 import util
 from util.deco import classproperty
-from fsec import db
+from fracx import db
 
 
 class Operation(Enum):

@@ -13,8 +13,8 @@ from sqlalchemy.engine.url import URL
 _pg_aliases = ["postgres", "postgresql", "psycopg2", "psycopg2-binary"]
 _mssql_aliases = ["mssql", "sql server"]
 
-APP_SETTINGS = os.getenv("APP_SETTINGS", "fsec.config.DevelopmentConfig")
-FLASK_APP = os.getenv("FLASK_APP", "fsec.manage.py")
+APP_SETTINGS = os.getenv("APP_SETTINGS", "fracx.config.DevelopmentConfig")
+FLASK_APP = os.getenv("FLASK_APP", "fracx.manage.py")
 
 
 def abs_path(path: str, filename: str) -> str:
@@ -34,7 +34,7 @@ def load_config(path: str) -> AttrDict:
 
 
 def get_active_config() -> AttrDict:
-    return globals()[APP_SETTINGS.replace("fsec.config.", "")]()
+    return globals()[APP_SETTINGS.replace("fracx.config.", "")]()
 
 
 def get_default_port(driver: str):

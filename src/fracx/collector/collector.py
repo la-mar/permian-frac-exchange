@@ -91,7 +91,7 @@ class FracScheduleCollector(Collector):
 
 
 if __name__ == "__main__":
-    from fsec import create_app, db
+    from fracx import create_app, db
     from collector import Endpoint
     from collector.filehandler import BytesFileHandler
 

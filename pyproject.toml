@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "fsec"
+name = "fracx"
 version = "0.1.0"
 description = ""
 authors = ["Brock Friedrich <brocklfriedrich@gmail.com>"]
@@ -24,6 +24,7 @@ flask-sqlalchemy = "^2.4.1"
 attr = "^0.3.1"
 attrs = "^19.3.0"
 pyparsing = "^2.4.6"
+python-dateutil = "^2.8.1"
 
 
 [tool.poetry.dev-dependencies]
@@ -41,7 +42,7 @@ coverage = {version = "^5.0", extras = ["toml"]}
 flake8 = "^3.7.9"
 
 [tool.poetry.scripts]
-fsec = "fsec.manage:main"
+fracx = "fracx.manage:main"
 
 [tool.coverage.report]
 # Regexes for lines to exclude from consideration

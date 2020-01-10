@@ -4,7 +4,7 @@ FROM segment/chamber:2.7.5 as build
 
 FROM python:3.8 as base
 
-LABEL "com.datadoghq.ad.logs"='[{"source": "python", "service": "fsec"}]'
+LABEL "com.datadoghq.ad.logs"='[{"source": "python", "service": "fracx"}]'
 
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \
@@ -15,7 +15,7 @@ ENV PYTHONFAULTHANDLER=1 \
     POETRY_VIRTUALENVS_CREATE=false \
     POETRY_VERSION=1.0
 
-ENV PYTHONPATH=/app/fsec
+ENV PYTHONPATH=/app/fracx
 
 RUN pip install "poetry==$POETRY_VERSION"
 ENV PATH "/root/.poetry/bin:/opt/venv/bin:${PATH}"
@@ -27,18 +27,19 @@ WORKDIR /app
 COPY poetry.lock pyproject.toml /app/
 
 # create placeholder source file
-RUN mkdir /app/fsec && touch /app/fsec/__init__.py
+RUN mkdir /app/fracx && touch /app/fracx/__init__.py
 
 # force symlinks
 RUN poetry install --no-dev --no-interaction
 
 # copy project files
 COPY ./src /app
+COPY ./config /app/config
 
 # run again to install app from source
 RUN poetry install --no-dev --no-interaction
 
 COPY --from=build /chamber /chamber
 
-ENTRYPOINT ["/chamber", "exec", "fsec", "datadog", "--"]
+ENTRYPOINT ["/chamber", "exec", "fracx", "datadog", "--"]
 

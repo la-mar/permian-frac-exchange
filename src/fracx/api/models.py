@@ -4,7 +4,7 @@ from sqlalchemy.sql import func
 
 from api.mixins import CoreMixin
 from config import get_active_config
-from fsec import db
+from fracx import db
 
 conf = get_active_config()
 
@@ -34,16 +34,3 @@ class FracSchedule(CoreMixin, db.Model):
     updated_at = db.Column(
         db.DateTime(timezone=True), default=func.now(), nullable=False
     )
-
-
-if __name__ == "__main__":
-    from fsec import create_app, db
-    from collector import Endpoint
-
-    app = create_app()
-    app.app_context().push()
-
-    from api.models import FracSchedule
-
-    qry = FracSchedule.query.filter_by(api14="42227398060000")
-    well = qry.all()[0]

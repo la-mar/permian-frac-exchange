@@ -1,5 +1,5 @@
 import pytest  # noqa
 
 
-def test_fsec():
+def test_fracx():
     assert True

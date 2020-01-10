@@ -1,10 +1,11 @@
-create user fsec;
-grant usage on schema fsec to fsec;
-grant all privileges on all tables in schema fsec to fsec;
-grant all privileges on all sequences in schema fsec to fsec;
-alter default privileges in schema fsec grant all on tables to fsec;
-alter default privileges in schema fsec grant all on sequences to fsec;
-alter user fsec with password 'YOUR_PASSWORD_HERE';
+create user fracx;
+grant all privileges on schema fracx to fracx;
+    grant usage on schema fracx to fracx;
+    grant all privileges on all tables in schema fracx to fracx;
+    grant all privileges on all sequences in schema fracx to fracx;
+    alter default privileges in schema fracx grant all on tables to fracx;
+    alter default privileges in schema fracx grant all on sequences to fracx;
+alter user fracx with password 'YOUR_PASSWORD_HERE';
 
 create table if not exists frac_schedules
 (
@@ -38,11 +39,11 @@ create table if not exists frac_schedules
 create index if not exists frac_schedules_api10_index
 	on frac_schedules (api10);
 
-create view fsec.frac_schedules_most_recent_by_api14 as
+create view fracx.frac_schedules_most_recent_by_api14 as
 with most_recent as (
     select
         max(frac_schedules_1.id) as id
-    from fsec.frac_schedules frac_schedules_1
+    from fracx.frac_schedules frac_schedules_1
     group by frac_schedules_1.api14
 )
 select
@@ -67,7 +68,7 @@ select
     frac_schedules.shl_webmercator,
     frac_schedules.bhl_webmercator,
     frac_schedules.stick_webmercator
-from fsec.frac_schedules
+from fracx.frac_schedules
          join most_recent on frac_schedules.id = most_recent.id;
 
 
