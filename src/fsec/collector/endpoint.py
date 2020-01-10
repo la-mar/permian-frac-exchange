@@ -18,7 +18,7 @@ class Endpoint(object):
         name: str,
         model: str,
         version: str = None,
-        path: str = None,
+        path: str = "/",
         mappings: Dict[str, str] = None,
         url_params: List[str] = None,
         exclude: List[str] = None,
@@ -27,6 +27,7 @@ class Endpoint(object):
         normalize: bool = False,
         updated_column: str = "updated_at",
         enabled: bool = True,
+        ignore_unknown: bool = True,
         **kwargs,
     ):
 
@@ -38,15 +39,16 @@ class Endpoint(object):
         self._model = None
         self.updated_column = updated_column
         self.url_params = url_params
-        self.exclude = exclude or []
+        self._exclude = exclude or []
         self._dependency_map = depends_on or {}
         self._depends_on: Union[Dict[str, Model], None] = None
         self.normalize = normalize
         self.options = options or []
         self.enabled = enabled
+        self.ignore_unknown = ignore_unknown
 
     def __repr__(self):
-        return f"{self.version}{self.path}"
+        return self.path
 
     def __iter__(self):
         attrs = [x for x in dir(self) if not x.startswith("_")]
@@ -64,6 +66,26 @@ class Endpoint(object):
         if self._depends_on is None:
             self._depends_on = self.link_upstream_columns()
         return self._depends_on
+
+    @property
+    def exclude(self):
+        return self._exclude
+
+    @property
+    def known_columns(self):
+        return self._exclude + self.mapped_names
+
+    @property
+    def alias_map(self) -> Dict[str, str]:
+        return self.mappings.get("aliases", {})
+
+    @property
+    def mapped_names(self) -> List[str]:
+        return list(self.alias_map.keys())
+
+    @property
+    def mapped_aliases(self) -> List[str]:
+        return list(self.alias_map.values())
 
     def link_upstream_columns(self) -> Dict[str, Column]:
         linked_columns: Dict[Any, Any] = {}
@@ -139,5 +161,5 @@ if __name__ == "__main__":
     Endpoint.load_from_config(conf)
 
     # e = Endpoint("test", **{"model": "test"})
-    e = Endpoint(name="test", **endpoints["registry"])
-    e
+    e = Endpoint(name="test", **endpoints["frac_schedules"])
+    e.exclude

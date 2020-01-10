@@ -1,11 +1,15 @@
 # pylint: disable=unused-argument
 
 
+import warnings
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import exc as sa_exc
 
-from config import APP_SETTINGS, get_active_config
 import loggers
+from config import APP_SETTINGS, get_active_config
+
 
 loggers.config()
 
@@ -15,21 +19,20 @@ conf = get_active_config()
 db = SQLAlchemy()
 
 
+# warnings.simplefilter("ignore", category=sa_exc.SAWarning)
+
+
 def create_app(script_info=None):
     app = Flask(__name__)
     app.config.from_object(APP_SETTINGS)
 
     # set up extensions
     db.init_app(app)
-    db.reflect(app=app)
-
-    # with app.app_context():
-    # db.Model.metadata.reflect(bind=db.engine, schema=conf.DATABASE_SCHEMA)
+    # db.reflect(app=app)
 
     # shell context for flask cli
     @app.shell_context_processor
-    def ctx():  # pylint: disable=unused-variable
+    def ctx():
         return {"app": app, "db": db}
 
     return app
-

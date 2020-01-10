@@ -8,16 +8,11 @@ import subprocess
 import click
 from flask.cli import FlaskGroup, AppGroup
 
-from api.models import *
 from fsec import create_app, db
-import loggers
 from config import get_active_config
-from collector import Endpoint, fsecCollector, ZipDownloader
 import util
 
 logger = logging.getLogger()
-
-import metrics
 
 
 CONTEXT_SETTINGS = dict(
@@ -107,39 +102,42 @@ def ipython_embed():
     "use_existing",
     "--use-existing",
     "-e",
-    help=f"Use previously downloaded files (must be located at {conf.COLLECTOR_DOWNLOAD_PATH})",
+    help=f"Use a previously downloaded file",
     is_flag=True,
 )
 def collector(update_on_conflict, ignore_on_conflict, use_existing):
     "Run a one-off task to synchronize from the fsec data source"
+    from collector import Endpoint, FracScheduleCollector, Ftp, BytesFileHandler
+
     logger.info(conf)
 
-    endpoints = Endpoint.load_from_config(conf)
-    coll = fsecCollector(endpoints["registry"])
-    url = util.urljoin(conf.COLLECTOR_BASE_URL, conf.COLLECTOR_URL_PATH)
-    if not use_existing:
-        downloader = ZipDownloader(url)
-        req = downloader.get()
-        filelist = downloader.unpack(req).paths
-    else:
-        downloader = ZipDownloader.from_existing()
-        filelist = downloader.paths
+    endpoint = Endpoint.load_from_config(conf)["frac_schedules"]
+    collector = FracScheduleCollector(endpoint)
 
-    coll.collect(filelist, update_on_conflict, ignore_on_conflict)
+    ftp = Ftp.from_config()
+    latest = ftp.get_latest()
+
+    rows = BytesFileHandler.xlsx(
+        latest.get("content"), date_columns=endpoint.mappings.get("dates")
+    )
+    collector.collect(rows, update_on_conflict, ignore_on_conflict)
+
+    ftp.cleanup()
 
 
 @run_cli.command(context_settings=dict(ignore_unknown_options=True))
 @click.argument("args", nargs=-1, type=click.UNPROCESSED)
 def web(args):
-    cmd = ["gunicorn", "wsgi",] + list(args)
+    cmd = ["gunicorn", "wsgi"] + list(args)
     subprocess.call(cmd)
 
 
 @cli.command()
 def endpoints():
-    tpl = "{name:>25} {value:<50}\n"
-    for name, ep in load_from_config(conf).items():
-        click.secho(tpl.format(name=f"{name}:", value=str(ep)))
+    from collector import Endpoint
+
+    for name, ep in Endpoint.load_from_config(conf).items():
+        click.secho(name)
 
 
 @cli.command()

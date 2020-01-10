@@ -21,6 +21,9 @@ datadog = "^0.33.0"
 json_log_formatter = "^0.2.0"
 logutils = "^0.3.5"
 flask-sqlalchemy = "^2.4.1"
+attr = "^0.3.1"
+attrs = "^19.3.0"
+pyparsing = "^2.4.6"
 
 
 [tool.poetry.dev-dependencies]
@@ -38,7 +41,7 @@ coverage = {version = "^5.0", extras = ["toml"]}
 flake8 = "^3.7.9"
 
 [tool.poetry.scripts]
-fsec = "fsec.cli:main"
+fsec = "fsec.manage:main"
 
 [tool.coverage.report]
 # Regexes for lines to exclude from consideration

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Dict, List, Union
+from typing import Dict, List, Union, Iterable
 import logging
 from pathlib import Path
 
@@ -18,10 +18,9 @@ conf = get_active_config()
 
 
 class Collector(object):
-    """ Acts as the conduit for transferring newly collected data into a backend data model """
+    """ Conduit for transferring newly collected data into a backend data model """
 
     _tf = None
-    _endpoint = None
     _functions = None
     _model = None
 
@@ -51,6 +50,7 @@ class Collector(object):
             self._tf = Transformer(
                 aliases=self.endpoint.mappings.get("aliases", {}),
                 exclude=self.endpoint.exclude,
+                ignore_unknown=self.endpoint.ignore_unknown,
             )
         return self._tf
 
@@ -61,23 +61,60 @@ class Collector(object):
 class FracScheduleCollector(Collector):
     def collect(
         self,
-        filelist: Union[Path, List[Path]],
+        iterable: Iterable,
         update_on_conflict: bool = True,
         ignore_on_conflict: bool = False,
     ):
 
-        # do stuff here
-        pass
-        # self.model.core_insert(rows)
+        rows = []
+        for row in iterable:
+            transformed = self.filter(self.transform(row))
+            if transformed:
+                rows.append(transformed)
+
+            if len(rows) > 0 and len(rows) % conf.COLLECTOR_WRITE_SIZE == 0:
+                self.model.core_insert(
+                    rows,
+                    update_on_conflict=update_on_conflict,
+                    ignore_on_conflict=ignore_on_conflict,
+                )
+                rows = []
+
+        # persist leftovers
+        self.model.core_insert(rows)
+
+    def filter(self, row: Dict) -> Union[Dict, None]:
+        if row.get("shllat") and row.get("shllon"):
+            return row
+        else:
+            return None
 
 
 if __name__ == "__main__":
     from fsec import create_app, db
+    from collector import Endpoint
+    from collector.filehandler import BytesFileHandler
+
+    logging.basicConfig(level=10)
+    logger.setLevel(10)
 
     app = create_app()
     app.app_context().push()
 
-    # endpoints = Endpoint.load_from_config(conf)
+    endpoints = Endpoint.load_from_config(conf)
 
-    # endpoint = endpoints["frac_schedules"]
-    # c = FracScheduleCollector(endpoint)
+    endpoint = endpoints["frac_schedules"]
+    c = FracScheduleCollector(endpoint)
+
+    content = b""
+    with open("data/bytes.txt", "rb") as f:
+        content = f.read()
+
+    iterable = BytesFileHandler.xlsx(
+        content, date_columns=endpoint.mappings.get("dates")
+    )
+
+    iterable = list(iterable)
+
+    c.collect(iterable)
+

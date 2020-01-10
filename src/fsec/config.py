@@ -14,7 +14,7 @@ _pg_aliases = ["postgres", "postgresql", "psycopg2", "psycopg2-binary"]
 _mssql_aliases = ["mssql", "sql server"]
 
 APP_SETTINGS = os.getenv("APP_SETTINGS", "fsec.config.DevelopmentConfig")
-FLASK_APP = os.getenv("FLASK_APP", "FSEC.manage.py")
+FLASK_APP = os.getenv("FLASK_APP", "fsec.manage.py")
 
 
 def abs_path(path: str, filename: str) -> str:
@@ -114,6 +114,7 @@ class BaseConfig:
     COLLECTOR_FTP_USERNAME = os.getenv("FRACX_FTP_USERNAME")
     COLLECTOR_FTP_PASSWORD = os.getenv("FRACX_FTP_PASSWORD")
     COLLECTOR_FILE_PREFIX = os.getenv("FRACX_FILE_PREFIX")
+    COLLECTOR_WRITE_SIZE = int(os.getenv("COLLECTOR_WRITE_SIZE", "1000"))
 
     """ Parser """
     PARSER_CONFIG_PATH = abs_path(CONFIG_BASEPATH, "parsers.yaml")
@@ -142,12 +143,12 @@ class BaseConfig:
     }
     SQLALCHEMY_DATABASE_URI = str(make_url(DATABASE_URL_PARAMS))
     FRAC_SCHEDULE_TABLE_NAME = os.getenv("FRAC_SCHEDULE_TABLE_NAME", "frac_schedules")
-    FRAC_SCHEDULE_INCLUDE_PROPERTIES = split_args(
-        os.getenv("FRAC_SCHEDULE_INCLUDE_PROPERTIES", "").split(",")
-    )
-    FRAC_SCHEDULE_EXCLUDE_PROPERTIES = split_args(
-        os.getenv("FRAC_SCHEDULE_EXCLUDE_PROPERTIES", "").split(",")
-    )
+    # FRAC_SCHEDULE_INCLUDE_PROPERTIES = split_args(
+    #     os.getenv("FRAC_SCHEDULE_INCLUDE_PROPERTIES", "").split(",")
+    # )
+    # FRAC_SCHEDULE_EXCLUDE_PROPERTIES = split_args(
+    #     os.getenv("FRAC_SCHEDULE_EXCLUDE_PROPERTIES", "").split(",")
+    # )
 
     @property
     def show(self):
@@ -212,8 +213,8 @@ class TestingConfig(BaseConfig):
     """Testing configuration"""
 
     CONFIG_BASEPATH = "./tests/data"
-    COLLECTOR_CONFIG_PATH = make_config_path(CONFIG_BASEPATH, "collector.yaml")
-    COLLECTOR_CONFIG = load_config(COLLECTOR_CONFIG_PATH)
+    # COLLECTOR_CONFIG_PATH = make_config_path(CONFIG_BASEPATH, "collector.yaml")
+    # COLLECTOR_CONFIG = load_config(COLLECTOR_CONFIG_PATH)
     TESTING = True
     TOKEN_EXPIRATION_DAYS = 0
     TOKEN_EXPIRATION_SECONDS = 3

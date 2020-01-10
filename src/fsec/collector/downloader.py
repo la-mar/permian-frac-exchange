@@ -239,7 +239,7 @@ class Ftp(FTP):
         latest_name = None
 
         for name in names:
-            time = f.voidcmd("MDTM " + name)
+            time = self.voidcmd("MDTM " + name)
             if (latest_time is None) or (time > latest_time):
                 latest_name = name
                 latest_time = time
@@ -248,6 +248,15 @@ class Ftp(FTP):
 
     def get_latest(self) -> Dict:
         return self.get(self.latest_filename)
+
+    def cleanup(self):
+        """ Delete all files in the current directory except for the most recent export """
+        files = self.nlst()
+        latest = self.latest_filename
+        for filename in files:
+            if filename != latest:
+                result = self.delete(filename)
+                logger.info(f"Deleted old export from FTP: {result}")
 
 
 class Sftp(ImplicitFTP_TLS, Ftp):
@@ -277,3 +286,8 @@ if __name__ == "__main__":
     logging.basicConfig(level=10)
     f = Ftp.from_config()
     result = f.get_latest()
+
+    f.cleanup()
+
+    # fname = result.get("filename")
+    # f.delete(fname)

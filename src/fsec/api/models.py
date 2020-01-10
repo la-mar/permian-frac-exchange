@@ -3,9 +3,8 @@ import logging
 from sqlalchemy.sql import func
 
 from api.mixins import CoreMixin
-from fsec import db
-
 from config import get_active_config
+from fsec import db
 
 conf = get_active_config()
 
@@ -13,10 +12,38 @@ logger = logging.getLogger(__name__)
 
 
 class FracSchedule(CoreMixin, db.Model):
-    # qualified_table_name = f"{conf.DATABASE_SCHEMA}.{conf.FRAC_SCHEDULE_TABLE_NAME}"
-    __table__ = db.Model.metadata.tables[conf.FRAC_SCHEDULE_TABLE_NAME]
-    __mapper_args__ = {
-        "exclude_properties": conf.FRAC_SCHEDULE_EXCLUDE_PROPERTIES,
-        "include_properties": conf.FRAC_SCHEDULE_INCLUDE_PROPERTIES,
-    }
 
+    __tablename__ = conf.FRAC_SCHEDULE_TABLE_NAME
+
+    api14 = db.Column(db.String(14), nullable=False, primary_key=True)
+    api10 = db.Column(db.String(10), nullable=False)
+    wellname = db.Column(db.String(), nullable=True)
+    operator = db.Column(db.String())
+    frac_start_date = db.Column(db.Date(), primary_key=True)
+    frac_end_date = db.Column(db.Date(), primary_key=True)
+    status = db.Column(db.String())
+    tvd = db.Column(db.Integer())
+    target_formation = db.Column(db.String())
+    shllat = db.Column(db.Float())
+    shllon = db.Column(db.Float())
+    bhllat = db.Column(db.Float())
+    bhllon = db.Column(db.Float())
+    created_at = db.Column(
+        db.DateTime(timezone=True), default=func.now(), nullable=False
+    )
+    updated_at = db.Column(
+        db.DateTime(timezone=True), default=func.now(), nullable=False
+    )
+
+
+if __name__ == "__main__":
+    from fsec import create_app, db
+    from collector import Endpoint
+
+    app = create_app()
+    app.app_context().push()
+
+    from api.models import FracSchedule
+
+    qry = FracSchedule.query.filter_by(api14="42227398060000")
+    well = qry.all()[0]
