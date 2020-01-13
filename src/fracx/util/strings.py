@@ -18,13 +18,17 @@ class StringProcessor:
         self.toupper = toupper
 
     def alphanum_only(self, s: str) -> str:
-        """ Replace all non-alphanumeric characters with whitespace. Whitespace is forced as a replacement so separators can optionally be inserted later.
+        """ Replace all non-alphanumeric characters with whitespace.
+            Whitespace is forced as a replacement so separators can
+            optionally be inserted later.
         """
 
         return self.re_non_alphanum.sub(" ", s)
 
     def numeric_only(self, s: str) -> str:
-        """ Replace all non-numeric characters with whitespace. Whitespace is forced as a replacement so separators can optionally be inserted later.
+        """ Replace all non-numeric characters with whitespace.
+        Whitespace is forced as a replacement so separators can
+        optionally be inserted later.
         """
 
         return self.re_non_num.sub(" ", s)
@@ -54,7 +58,8 @@ class StringProcessor:
             s {str} -- a string to process
 
         Keyword Arguments:
-            int_compatable {bool} -- return an int parsable string. The string is NOT converted to an integer type.
+            int_compatable {bool} -- return an int parsable string. The string is
+            NOT converted to an integer type.
 
         Returns:
             str -- the normalized string
@@ -68,7 +73,6 @@ class StringProcessor:
 
             if int_compatable:
                 s = self.remove_whitespace(s)
-                # dont actually convert to int to avoid the potential failure point during ingestion
             else:
                 s = self.fill_whitespace(s)
 

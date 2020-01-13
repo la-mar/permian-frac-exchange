@@ -10,10 +10,11 @@ conf = get_active_config()
 datadog = None
 
 
-def load():
+def load(c=None):
     """ Load and initialize the Datadog library """
     try:
-        parms = conf.datadog_params
+        c = c or conf
+        parms = c.datadog_params
         if parms.get("enabled"):
             logger.debug("Datadog Enabled")
             if parms.get("api_key") and parms.get("app_key"):
@@ -107,7 +108,7 @@ def to_tags(values: Union[Dict, List, str], sep: str = ",") -> List[str]:
     """ Coerce the passed values into a list of colon separated key-value pairs.
 
         dict example:
-            {"tag1": "value1", "tag2": "value2", ...} -> ["tag1:value1", "tag2:value2", ...]
+            {"tag1": "value1", "tag2": "value2", ...} -> ["tag1:value1", "tag2:value2"]
 
         list example:
             ["tag1", "tag2", ...] -> ["tag1", "tag2", ...]

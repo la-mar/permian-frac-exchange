@@ -1,8 +1,9 @@
 import io
 import logging
 import os
-import ssl
-from ftplib import FTP, FTP_TLS, error_perm
+
+# import ssl
+from ftplib import FTP, error_perm  # FTP_TLS
 from timeit import default_timer as timer
 from typing import Dict, Generator, List, Union
 from pathlib import Path
@@ -21,7 +22,8 @@ class InvalidCredentialsError(RootException):
 
 
 # class ImplicitFTP_TLS(FTP_TLS):
-#     """FTP_TLS subclass that automatically wraps sockets in SSL to support implicit FTPS.
+#     """FTP_TLS subclass that automatically wraps sockets in SSL to support implicit
+# FTPS.
 #     Source: https://stackoverflow.com/questions/12164470/python-ftp-implicit-tls-connection-issue"""  # noqa
 
 #     def __init__(self, *args, **kwargs):
@@ -296,7 +298,8 @@ class Ftp(FTP):
         return self.get(self.latest_filename)
 
     def cleanup(self):
-        """ Delete all files in the current directory except for the most recent export """
+        """ Delete all files in the current directory except for
+            the most recent export """
         files = self.nlst()
         latest = self.latest_filename
         for filename in files:

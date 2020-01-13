@@ -4,12 +4,12 @@ import os
 sys.path.append(os.path.dirname(__file__))
 
 
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask  # noqa
+from flask_sqlalchemy import SQLAlchemy  # noqa
 
 
-import loggers
-from config import APP_SETTINGS, get_active_config
+import loggers  # noqa
+from config import APP_SETTINGS, get_active_config  # noqa
 
 
 loggers.config()

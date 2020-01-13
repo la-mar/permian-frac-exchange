@@ -1,0 +1,109 @@
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@1.0.2
+  docker: circleci/docker@0.5.19
+  github: haskell-works/github-release@1.0.0
+
+jobs:
+  run-tests:
+    docker:
+      - image: circleci/python:3.7
+        environment:
+          DATABASE_USERNAME: root
+          DATABASE_NAME: circlecitest
+      - image: circleci/postgres:11.4-postgis-ram
+        # environment:
+        #   POSTGRES_USER: postgres
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "poetry.lock" }}
+
+      - run:
+          name: Install Dependencies
+          command: poetry install
+
+      - save_cache:
+          key: deps-{{ checksum "poetry.lock" }}
+          paths:
+            - /home/circleci/.cache/pypoetry/virtualenvs
+
+      - run:
+          name: lint
+          command: flake8 ./src --max-line-length=88 --extend-ignore=E203
+
+      - run:
+          name: Run python tests
+          command: poetry run pytest --cov=ihs tests/ --cov-report xml:./coverage/python/coverage.xml
+
+      - codecov/upload:
+          file: ./coverage/python/coverage.xml
+
+      - store_test_results:
+          path: coverage
+
+  build-image:
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - checkout
+      - docker/check
+      - docker/build:
+          image: driftwood/ihs
+          tag: $(echo ${CIRCLE_SHA1} | cut -c -7),dev,latest
+      - docker/push:
+          image: driftwood/ihs
+          tag: $(echo ${CIRCLE_SHA1} | cut -c -7),dev,latest
+
+  deployment:
+    # Same environment
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      # Gets the code
+      - checkout
+        # Use `poetry publish` to Publish the package using username and password from CircleCI environment variables
+        # Which can be configured inside CircleCI's interface
+        # - run:
+        #     name: Push to PyPI
+        #     command: |
+        #       poetry publish --build --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
+
+workflows:
+  version: 2.1
+
+  deployment:
+    jobs:
+      - run-tests:
+          context: global
+      - build-image:
+          context: global
+          requires:
+            - run-tests
+      - docker/publish:
+          context: global
+          image: driftwood/ihs
+          tag: ${CIRCLE_TAG}
+          requires:
+            - run-tests
+            - build-image
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+            branches:
+              only: master
+      # - github/release:
+      #     context: global
+      #     requires:
+      #       - run-tests
+      #       - build-image
+      #     tag: ${CIRCLE_TAG}
+      #     title: Release ${CIRCLE_TAG}
+      #     filters:
+      #       tags:
+      #         only: /^\d+\.\d+\.\d+$/
+      #       branches:
+      #         only: master

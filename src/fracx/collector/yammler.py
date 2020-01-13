@@ -58,4 +58,3 @@ class Yammler(dict):
         else:
             _file.close()
             os.rename(_file.name, _fspath)
-

@@ -34,25 +34,3 @@ class BytesFileHandler:
             return datetime(*xlrd.xldate_as_tuple(value, date_mode))
         else:
             return value
-
-
-if __name__ == "__main__":
-    content = b""
-    with open("data/bytes.txt", "rb") as f:
-        content = f.read()
-
-    rows = BytesFileHandler.xlsx(
-        content, date_columns=["frac_start_date", "frac_end_date"]
-    )
-
-    # rows = BytesFileHandler.xlsx(content)
-
-    for row in rows:
-        print(row)
-        break
-
-        cls = BytesFileHandler
-        sheet_no = 0
-        BytesFileHandler._parse_excel_date(value, date_mode)
-
-    datetime(*xlrd.xldate_as_tuple(43798.74804875, 0))

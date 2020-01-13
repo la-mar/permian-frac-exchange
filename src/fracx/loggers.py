@@ -7,7 +7,6 @@ from typing import Any, Mapping, Union
 import logging
 import logging.config
 import os
-import sys
 from logging import LogRecord
 
 import json_log_formatter
@@ -84,12 +83,10 @@ class ColorizingStreamHandler(logutils.colorize.ColorizingStreamHandler):
 
 
 class DatadogJSONFormatter(json_log_formatter.JSONFormatter):
-    """JSON log formatter that includes Datadog standard attributes."""
-
-    trace_enabled = False
+    """JSON log formatter for logs sent to Datadog"""
 
     def format(self, record: LogRecord):
-        """Return the record in the format usable by Datadog."""
+        """Return the record in a format usable by Datadog."""
         json_record = self.json_record(record.getMessage(), record)
         mutated_record = self.mutate_json_record(json_record)
 
@@ -116,7 +113,6 @@ class DatadogJSONFormatter(json_log_formatter.JSONFormatter):
         if "severity" not in record_dict:
             record_dict["severity"] = record.levelname
 
-        # Source Code
         if "logger.name" not in record_dict:
             record_dict["logger.name"] = record.name
         if "logger.method_name" not in record_dict:
@@ -124,37 +120,7 @@ class DatadogJSONFormatter(json_log_formatter.JSONFormatter):
         if "logger.thread_name" not in record_dict:
             record_dict["logger.thread_name"] = record.threadName
 
-        # NOTE: We do not inject 'host', 'source', or 'service', as we want
-        # Datadog agent and docker labels to handle that for the time being.
-        # This may change.
-
         exc_info = record.exc_info
-        try:
-            if self.trace_enabled:
-                # get correlation ids from current tracer context
-                trace_id, span_id = [1, 2]  # helpers.get_correlation_ids()
-                record_dict["dd.trace_id"] = trace_id or 0
-                record_dict["dd.span_id"] = span_id or 0
-
-            if "context" in record_dict:
-                context_obj = dict()
-                context_value = record_dict.get("context")
-                if context_value:
-                    array = context_value.replace(" ", "").split(",")
-                else:
-                    array = []
-                for item in array:
-                    key, val = item.split("=")
-                    if key in record_dict:
-                        del record_dict[key]
-
-                    key = f"ctx.{key}"
-                    context_obj[key] = int(val) if val.isdigit() else val
-                    record_dict.update(context_obj)
-
-                del record_dict["context"]
-        except Exception:
-            exc_info = sys.exc_info()
 
         if exc_info:
             if "error.kind" not in record_dict:
@@ -196,12 +162,10 @@ def config(level: int = None, formatter: str = None, logger: logging.Logger = No
         root_logger.removeHandler(root_logger.handlers[0])
     root_logger.addHandler(console_handler)
 
-    root_logger.addHandler(console_handler)
-
 
 if __name__ == "__main__":
 
-    config()
+    config(formatter="json")
     logger = logging.getLogger()
     logger.debug("test-debug")
     logger.info("test-info")

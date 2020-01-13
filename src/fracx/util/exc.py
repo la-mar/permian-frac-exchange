@@ -1,3 +1,2 @@
 class RootException(Exception):
     pass
-

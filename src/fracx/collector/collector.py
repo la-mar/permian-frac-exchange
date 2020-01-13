@@ -1,6 +1,5 @@
 from typing import Dict, List, Union, Iterable
 import logging
-from pathlib import Path
 
 from flask_sqlalchemy import Model
 
@@ -98,33 +97,3 @@ class FracScheduleCollector(Collector):
             return row
         else:
             return None
-
-
-if __name__ == "__main__":
-    from fracx import create_app, db
-    from collector import Endpoint
-    from collector.filehandler import BytesFileHandler
-
-    logging.basicConfig(level=10)
-    logger.setLevel(10)
-
-    app = create_app()
-    app.app_context().push()
-
-    endpoints = Endpoint.load_from_config(conf)
-
-    endpoint = endpoints["frac_schedules"]
-    c = FracScheduleCollector(endpoint)
-
-    content = b""
-    with open("data/bytes.txt", "rb") as f:
-        content = f.read()
-
-    iterable = BytesFileHandler.xlsx(
-        content, date_columns=endpoint.mappings.get("dates")
-    )
-
-    iterable = list(iterable)
-
-    c.collect(iterable)
-

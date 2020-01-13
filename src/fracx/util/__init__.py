@@ -16,7 +16,7 @@ def hf_size(size_bytes: Union[str, int]) -> str:
 
     Returns:
         str -- string representation of object size. Ex: 299553704 -> "285.68 MB"
-    """
+    """  # noqa
     if size_bytes == 0:
         return "0B"
 

@@ -1,10 +1,10 @@
-from typing import Dict, List, Union, Any
+from typing import Dict, List
 import logging
 from pydoc import locate
 
 from attrdict import AttrDict
 from flask_sqlalchemy import Model
-from sqlalchemy import Column
+
 
 from api.models import *  # noqa
 

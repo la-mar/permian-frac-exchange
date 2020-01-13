@@ -1,5 +1,4 @@
 import sys
-from typing import List
 import logging
 import os
 import socket
@@ -34,7 +33,7 @@ def make_config_path(path: str, filename: str) -> str:
     return os.path.join(path, filename)
 
 
-def load_config(path: str) -> AttrDict:
+def safe_load_yaml(path: str) -> AttrDict:
     try:
         with open(path) as f:
             return AttrDict(yaml.safe_load(f))
@@ -80,12 +79,7 @@ def make_url(url_params: dict) -> URL:
     return URL(**url_params)
 
 
-def split_args(args: List[str]) -> List:
-    return [x for x in args]
-
-
-def _get_project_meta() -> dict:
-    pyproj_path = "./pyproject.toml"
+def _get_project_meta(pyproj_path: str = "./pyproject.toml") -> dict:
     if os.path.exists(pyproj_path):
         with open(pyproj_path, "r") as pyproject:
             file_contents = pyproject.read()
@@ -117,7 +111,7 @@ class BaseConfig:
 
     """ Collector """
     COLLECTOR_CONFIG_PATH = make_config_path(CONFIG_BASEPATH, "collector.yaml")
-    COLLECTOR_CONFIG = load_config(COLLECTOR_CONFIG_PATH)
+    COLLECTOR_CONFIG = safe_load_yaml(COLLECTOR_CONFIG_PATH)
     COLLECTOR_FTP_URL = os.getenv("FRACX_FTP_URL", "sftp.pdswdx.com")
     COLLECTOR_FTP_PORT = os.getenv("FRACX_FTP_URL", "21")
     COLLECTOR_FTP_OUTPATH = os.getenv("FRACX_FTP_OUTPATH", "/Outbound")
@@ -129,7 +123,7 @@ class BaseConfig:
 
     """ Parser """
     PARSER_CONFIG_PATH = abs_path(CONFIG_BASEPATH, "parsers.yaml")
-    PARSER_CONFIG = load_config(PARSER_CONFIG_PATH)
+    PARSER_CONFIG = safe_load_yaml(PARSER_CONFIG_PATH)
 
     """ Logging """
     LOG_LEVEL = os.getenv("LOG_LEVEL", logging.INFO)
