@@ -40,8 +40,8 @@ jobs:
       #     command: flake8 ./src --max-line-length=88 --extend-ignore=E203
 
       - run:
-        name: show conf
-        command: fracx show
+          name: show conf
+          command: fracx show
 
       - run:
           name: Run python tests
