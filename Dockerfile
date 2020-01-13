@@ -20,7 +20,7 @@ ENV PATH "/root/.poetry/bin:/opt/venv/bin:${PATH}"
 WORKDIR /app
 
 # copy deps to cache in separate layer
-COPY poetry.lock pyproject.toml /app/
+COPY poetry.lock pyproject.toml README.md /app/
 
 # create placeholder source file
 RUN mkdir /app/fracx && touch /app/fracx/__init__.py
@@ -30,8 +30,6 @@ RUN poetry install --no-dev --no-interaction
 
 # copy project files
 COPY ./src /app
-COPY ./config /app/config
-
 # run again to install app from source
 RUN poetry install --no-dev --no-interaction
 
