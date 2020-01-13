@@ -1,4 +1,3 @@
-
 from typing import Dict, List, Union
 import logging
 from datetime import date, datetime
@@ -90,44 +89,3 @@ class Transformer(object):
                 self.errors.append(msg)
                 logger.debug(msg)
         return row
-
-
-if __name__ == "__main__":
-
-    from collector import Endpoint
-
-    logging.basicConfig(level=10)
-    logger.setLevel(10)
-
-    ep = Endpoint.load_from_config(conf)["frac_schedules"]
-    t = Transformer(ep.mappings.aliases, ep.exclude)
-
-    row = {
-        "region": "PMI",
-        "company": "Example",
-        "well_name": "Example 1-30H",
-        "well_api": "4246140555",
-        "frac_start_date": 43798.74804875,
-        "frac_end_date": 43838.74804875,
-        "surface_lat": "32.4150535",
-        "surface_long": "-101.6295689",
-        "bottomhole_lat": "32.4150535",
-        "bottomhole_long": "-101.6295689",
-        "tvd": "8323",
-        "target_formation": "Wolfcamp B",
-        "start_in": "STARTED",
-        "duration_in_days": "40",
-        "reviewed_by": "",
-        "risk_assessments": "",
-        "comments": "",
-        "last_upload_date": "2020-01-03 17:57:12.505",
-    }
-
-    parsed = t.transform(row)
-
-    parsed
-    from datetime import datetime
-
-    # datetime.fromordinal(parsed["frac_start_date"])
-
-    t.errors
