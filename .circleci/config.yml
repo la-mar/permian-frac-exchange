@@ -35,7 +35,7 @@ jobs:
 
       - run:
           name: Run python tests
-          command: poetry run pytest --cov=ihs tests/ --cov-report xml:./coverage/python/coverage.xml
+          command: poetry run pytest --cov=fracx tests/ --cov-report xml:./coverage/python/coverage.xml
 
       - codecov/upload:
           file: ./coverage/python/coverage.xml
@@ -50,10 +50,10 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
-          image: driftwood/ihs
+          image: driftwood/fracx
           tag: $(echo ${CIRCLE_SHA1} | cut -c -7),dev,latest
       - docker/push:
-          image: driftwood/ihs
+          image: driftwood/fracx
           tag: $(echo ${CIRCLE_SHA1} | cut -c -7),dev,latest
 
   deployment:
@@ -83,7 +83,7 @@ workflows:
             - run-tests
       - docker/publish:
           context: global
-          image: driftwood/ihs
+          image: driftwood/fracx
           tag: ${CIRCLE_TAG}
           requires:
             - run-tests
