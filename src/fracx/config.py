@@ -248,6 +248,7 @@ class CIConfig(BaseConfig):
         "port": DATABASE_PORT,
         "database": DATABASE_NAME,
     }
+    SQLALCHEMY_DATABASE_URI = str(make_url(DATABASE_URL_PARAMS))
 
 
 class ProductionConfig(BaseConfig):
