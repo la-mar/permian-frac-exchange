@@ -3,32 +3,55 @@
 <div style="text-align:center;">
   <table >
     <tr>
+      <a href="https://pypi.python.org/pypi/fracx/">
+        <img src="https://img.shields.io/pypi/pyversions/fracx.svg" />
+      </a>
       <a href="https://codecov.io/gh/la-mar/permian-frac-exchange">
         <img src="https://codecov.io/gh/la-mar/permian-frac-exchange/branch/master/graph/badge.svg" />
       </a>
-      <a href="(https://circleci.com/gh/la-mar/permian-frac-exchange">
+      <a href="https://circleci.com/gh/la-mar/permian-frac-exchange">
         <img src="https://circleci.com/gh/la-mar/permian-frac-exchange.svg?style=svg" />
       </a>
     </tr>
+
   </table>
 </div>
 
-This project is used to interface with [PDSEnergy's](https://pdsenergy.com/frac-interference-exchange/) FracX platform to programmatically submit and download frac schedules.
+<p>The FracX Python library is a tool to interface with [PDSEnergy's](https://pdsenergy.com/frac-interference-exchange/) FracX platform, used to submit and download frac schedules. Currently, the project interfaces with the FTP import/export service provided by PDS. As other means of integration become available from PDS, those means will be incorporated into this project as additional ways to import and export data from FracX.</p>
 
-Currently, the project interfaces with the FTP import/export service provided by PDS. As other means of integration become available from PDS, those means will be incorporated into this project as additional ways to import and export data from FracX.
+Available on PyPI and Docker
 
 <br/>
 
-## Getting Started
+## Installation
 
-1. Initialize the destination table in the database. Example table definitions can be found in [scripts](scripts/)
+```bash
+pipx install fracx
+```
+
+<!-- 1. Initialize the destination table in the database. Example table definitions can be found in [scripts](scripts/)
 2. Define the necessary environment variables in the docker-compose.yml file or in a .env file in the project root directory (examples below).
-3. Run the container with docker-compose: `docker-compose up`
+3. Run the container with docker-compose: `docker-compose up` -->
    <br/>
 
 ## Usage
 
-- Run the container using docker-compose: `docker-compose up`
+Set environment variables:
+
+```bash
+
+FRACX_FTP_USERNAME=my_fracx_username
+FRACX_FTP_PASSWORD=my_fracx_password
+DATABASE_USERNAME=my_database_username
+DATABASE_PASSWORD=my_database_passowrd
+DATABASE_HOST=my.host.db
+DATABASE_NAME=my_database
+DATABASE_SCHEMA=my_schema
+FRAC_SCHEDULE_TABLE_NAME=frac_schedules
+
+```
+
+Initialize the database: `fracx db init`
 
 Example output:
 
@@ -61,19 +84,6 @@ The application can be configured with environment variables that are passed int
 Example configuration with .env file:
 
 .env
-
-```python
-
-FRACX_FTP_USERNAME=my_fracx_username
-FRACX_FTP_PASSWORD=my_fracx_password
-DATABASE_USERNAME=my_database_username
-DATABASE_PASSWORD=my_database_passowrd
-DATABASE_HOST=my.host.db
-DATABASE_NAME=my_database
-DATABASE_SCHEMA=my_schema
-FRAC_SCHEDULE_TABLE_NAME=frac_schedules
-
-```
 
 When specifying configuration in a .env file, include it in docker-compose so the configuration is passed into the container at runtime.
 

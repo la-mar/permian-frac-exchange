@@ -1,4 +1,4 @@
-create table {TABLE_NAME}
+create table {DATABASE_SCHEMA}.{TABLE_NAME}
 (
 	id int identity,
 	api14 varchar(14) not null,
@@ -19,18 +19,18 @@ create table {TABLE_NAME}
 	updated_by varchar(100) default CURRENT_USER not null,
 );
 
-alter table {TABLE_NAME}
+alter table {DATABASE_SCHEMA}.{TABLE_NAME}
 	add constraint pk_{TABLE_NAME}_api
 		primary key (api14, frac_start_date, frac_end_date);
 
 
 --
 
-create view {TABLE_NAME}_most_recent_by_api10 as
+create view {DATABASE_SCHEMA}.{TABLE_NAME}_most_recent_by_api10 as
     with most_recent as (
         select
             max({TABLE_NAME}_1.id) as id
-        from {TABLE_NAME} {TABLE_NAME}_1
+        from {DATABASE_SCHEMA}.{TABLE_NAME} {TABLE_NAME}_1
         group by {TABLE_NAME}_1.api10
     )
     select
@@ -55,7 +55,7 @@ create view {TABLE_NAME}_most_recent_by_api10 as
         case when [shllon] IS NOT NULL AND [shllat] IS NOT NULL then [GEOMETRY]::Point([shllon],[shllat],4326)  end as shl,
         case when [bhllon] IS NOT NULL AND [bhllat] IS NOT NULL then [GEOMETRY]::Point([bhllon],[bhllat],4326)  end as bhl,
         case when [shllon] IS NOT NULL AND [shllat] IS NOT NULL AND [bhllon] IS NOT NULL AND [bhllat] IS NOT NULL then [Geometry]::STGeomFromText(((((((('LINESTRING ('+CONVERT([varchar],[shllon]))+' ')+CONVERT([varchar],[shllat]))+', ')+CONVERT([varchar],[bhllon]))+' ')+CONVERT([varchar],[bhllat]))+')',4326)  end as stick
-    from {TABLE_NAME} fs
+    from {DATABASE_SCHEMA}.{TABLE_NAME} fs
              join most_recent on fs.id = most_recent.id;
 
 

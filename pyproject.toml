@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "fracx"
 version = "0.1.11"
-description = "This project is used to interface with [PDSEnergy's](https://pdsenergy.com/frac-interference-exchange/) FracX platform to programmatically submit and download frac schedules."
+description = "FracX is a library that can be used to interface with PDS Energy's FracX platform for exchanging frac schedules."
 authors = ["Brock Friedrich <brocklfriedrich@gmail.com>"]
 license = "MIT"
 readme = "README.md"

@@ -1,5 +1,5 @@
 create extension if not exists postgis;
-create table if not exists {TABLE_NAME}
+create table if not exists {DATABASE_SCHEMA}.{TABLE_NAME}
 (
 	id serial not null,
 	api14 varchar(14) not null,
@@ -29,9 +29,9 @@ create table if not exists {TABLE_NAME}
 );
 
 create index if not exists {TABLE_NAME}_api10_index
-	on {TABLE_NAME} (api10);
+	on {DATABASE_SCHEMA}.{TABLE_NAME} (api10);
 
-create or replace view {TABLE_NAME}_most_recent_by_api10 as
+create or replace view {DATABASE_SCHEMA}.{TABLE_NAME}_most_recent_by_api10 as
 with most_recent as (
     select
         max(fs.id) as id
@@ -60,6 +60,6 @@ select
     fcs.shl_webmercator,
     fcs.bhl_webmercator,
     fcs.stick_webmercator
-from {TABLE_NAME} fcs
+from {DATABASE_SCHEMA}.{TABLE_NAME} fcs
          join most_recent on fcs.id = most_recent.id;
 

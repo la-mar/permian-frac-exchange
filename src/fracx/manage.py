@@ -87,6 +87,14 @@ def endpoints():
         click.secho(name)
 
 
+@cli.command()
+def show():
+    from pprint import pprint
+    import yaml
+
+    yaml.safe_dump(conf.show, sys.stdout)
+
+
 @db_cli.command()
 def init(c=None):
     c = c or conf
@@ -104,7 +112,9 @@ def init(c=None):
 
     engine = sqlalchemy.create_engine(db_url)
 
-    contents = contents.format(TABLE_NAME=c.FRAC_SCHEDULE_TABLE_NAME)
+    contents = contents.format(
+        TABLE_NAME=c.FRAC_SCHEDULE_TABLE_NAME, DATABASE_SCHEMA=c.DATABASE_SCHEMA
+    )
     stmts = [sqlalchemy.text(x) for x in contents.split("--")]  # escaped text
 
     try:

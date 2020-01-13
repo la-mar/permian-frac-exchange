@@ -36,7 +36,7 @@ def make_config_path(path: str, filename: str) -> str:
 def safe_load_yaml(path: str) -> AttrDict:
     try:
         with open(path) as f:
-            return AttrDict(yaml.safe_load(f))
+            return yaml.safe_load(f)
     except FileNotFoundError as fe:
         print(f"Failed to load configuration: {fe}")
 
@@ -119,25 +119,29 @@ class BaseConfig:
     COLLECTOR_FTP_USERNAME = os.getenv("FRACX_FTP_USERNAME")
     COLLECTOR_FTP_PASSWORD = os.getenv("FRACX_FTP_PASSWORD")
     COLLECTOR_FILE_PREFIX = os.getenv("FRACX_FILE_PREFIX")
-    COLLECTOR_WRITE_SIZE = int(os.getenv("COLLECTOR_WRITE_SIZE", "1000"))
+    COLLECTOR_WRITE_SIZE = int(os.getenv("FRACX_WRITE_SIZE", "1000"))
 
     """ Parser """
     PARSER_CONFIG_PATH = abs_path(CONFIG_BASEPATH, "parsers.yaml")
     PARSER_CONFIG = safe_load_yaml(PARSER_CONFIG_PATH)
 
     """ Logging """
-    LOG_LEVEL = os.getenv("LOG_LEVEL", logging.INFO)
-    LOG_FORMAT = os.getenv("LOG_FORMAT", "layman")
+    LOG_LEVEL = os.getenv("FRACX_LOG_LEVEL", logging.INFO)
+    LOG_FORMAT = os.getenv("FRACX_LOG_FORMAT", "layman")
 
     """ --------------- Sqlalchemy --------------- """
-    DATABASE_DIALECT = os.getenv("DATABASE_DIALECT", "postgres")
-    DATABASE_DRIVER = os.getenv("DATABASE_DRIVER", get_default_driver(DATABASE_DIALECT))
-    DATABASE_USERNAME = os.getenv("DATABASE_USERNAME", "")
-    DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD", "")
-    DATABASE_HOST = os.getenv("DATABASE_HOST", "localhost")
-    DATABASE_PORT = os.getenv("DATABASE_PORT", get_default_port(DATABASE_DRIVER))
-    DATABASE_SCHEMA = os.getenv("DATABASE_SCHEMA", get_default_schema(DATABASE_DRIVER))
-    DATABASE_NAME = os.getenv("DATABASE_NAME", "postgres")
+    DATABASE_DIALECT = os.getenv("FRACX_DATABASE_DIALECT", "postgres")
+    DATABASE_DRIVER = os.getenv(
+        "FRACX_DATABASE_DRIVER", get_default_driver(DATABASE_DIALECT)
+    )
+    DATABASE_USERNAME = os.getenv("FRACX_DATABASE_USERNAME", "")
+    DATABASE_PASSWORD = os.getenv("FRACX_DATABASE_PASSWORD", "")
+    DATABASE_HOST = os.getenv("FRACX_DATABASE_HOST", "localhost")
+    DATABASE_PORT = os.getenv("FRACX_DATABASE_PORT", get_default_port(DATABASE_DRIVER))
+    DATABASE_SCHEMA = os.getenv(
+        "FRACX_DATABASE_SCHEMA", get_default_schema(DATABASE_DRIVER)
+    )
+    DATABASE_NAME = os.getenv("FRACX_DATABASE_NAME", "postgres")
     DATABASE_URL_PARAMS = {
         "drivername": DATABASE_DRIVER,
         "username": DATABASE_USERNAME,
@@ -147,11 +151,16 @@ class BaseConfig:
         "database": DATABASE_NAME,
     }
     SQLALCHEMY_DATABASE_URI = str(make_url(DATABASE_URL_PARAMS))
-    FRAC_SCHEDULE_TABLE_NAME = os.getenv("FRAC_SCHEDULE_TABLE_NAME", "frac_schedules")
+    FRAC_SCHEDULE_TABLE_NAME = os.getenv("FRACX_TABLE_NAME", "frac_schedules")
 
     @property
     def show(self):
-        return [x for x in dir(self) if not x.startswith("_")]
+        return {
+            x: getattr(self, x)
+            for x in dir(self)
+            if not x.startswith("_") and x.isupper()
+            #  and not x.endswith("_CONFIG")
+        }
 
     @property
     def collector_params(self):
@@ -163,7 +172,7 @@ class BaseConfig:
 
     @property
     def endpoints(self):
-        return self.COLLECTOR_CONFIG.endpoints
+        return self.COLLECTOR_CONFIG.get("endpoints")
 
     def __repr__(self):
         """ Print noteworthy configuration items """
