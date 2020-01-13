@@ -41,7 +41,7 @@ jobs:
 
       - run:
           name: show conf
-          command: fracx show
+          command: poetry run fracx show
 
       - run:
           name: Run python tests
