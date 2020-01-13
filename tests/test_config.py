@@ -32,7 +32,7 @@ class TestConfig:
 
     def test_show_config_attrs(self):
         c = config.BaseConfig()
-        assert isinstance(c.show, list)
+        assert isinstance(c.show, dict)
         assert len(c.show) > 10  # arbitrary
 
     def test_get_collector_params(self):

@@ -14,8 +14,6 @@ class TestsFTP:
         logger.warning("LOGIN")
         logger.warning(ftpserver.get_login_data())
 
-        {"host": "localhost", "port": 49476, "user": "fakeusername", "passwd": "qweqwe"}
-
         login = ftpserver.get_login_data()
         url = login["host"]
         username = login["user"]
@@ -25,11 +23,20 @@ class TestsFTP:
         ftp = Ftp(url, username, password, port=port)
         ftp.list_files()
 
-    def test_load_ftp_from_config(self, ftpserver):
-        Ftp.from_config()
+    def test_load_ftp_from_config(self, ftpserver, conf):
+        login = ftpserver.get_login_data()
+        conf.COLLECTOR_FTP_URL = login["host"]
+        conf.COLLECTOR_FTP_USERNAME = login["user"]
+        conf.COLLECTOR_FTP_PASSWORD = login["passwd"]
+        conf.COLLECTOR_FTP_PORT = login["port"]
+        Ftp.from_config(conf)
 
     def test_load_ftp_from_config_bad_password(self, ftpserver, conf):
+        login = ftpserver.get_login_data()
         conf.COLLECTOR_FTP_PASSWORD = "badpassword"
+        conf.COLLECTOR_FTP_URL = login["host"]
+        conf.COLLECTOR_FTP_PORT = login["port"]
+
         with pytest.raises(InvalidCredentialsError):
             Ftp.from_config(conf)
 
