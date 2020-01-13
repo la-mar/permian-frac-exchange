@@ -14,6 +14,10 @@ jobs:
           FTP_PASS: supercomplexpassword
           FTP_PORT: 57957
       - image: circleci/postgres:11.4-postgis-ram
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: circle_test
+          POSTGRES_PASSWORD: ""
 
     steps:
       - checkout
