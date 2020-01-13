@@ -32,7 +32,18 @@ class TestManage:
         output = output.replace("\n", "")
         assert output == "frac_schedules"
 
-    def test_run_collector_command(self, ftpserver):
+    def test_run_collector_command(self, ftpserver, monkeypatch):
+        login = ftpserver.get_login_data()
+        url = login["host"]
+        username = login["user"]
+        password = login["passwd"]
+        port = login["port"]
+        monkeypatch.setenv("FRACX_FTP_URL", url)
+        monkeypatch.setenv("FRACX_FTP_PORT", port)
+        monkeypatch.setenv("FRACX_FTP_USERNAME", username)
+        monkeypatch.setenv("FRACX_FTP_PASSWORD", password)
+        monkeypatch.setenv("FRACX_FTP_INPATH", "/")
+        monkeypatch.setenv("FRACX_FTP_OUTPATH", "/")
         subprocess.check_output(["fracx", "run", "collector"], universal_newlines=True)
 
     def test_db_init(self, conf):

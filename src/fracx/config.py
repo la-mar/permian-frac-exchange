@@ -113,7 +113,7 @@ class BaseConfig:
     COLLECTOR_CONFIG_PATH = make_config_path(CONFIG_BASEPATH, "collector.yaml")
     COLLECTOR_CONFIG = safe_load_yaml(COLLECTOR_CONFIG_PATH)
     COLLECTOR_FTP_URL = os.getenv("FRACX_FTP_URL", "sftp.pdswdx.com")
-    COLLECTOR_FTP_PORT = os.getenv("FRACX_FTP_URL", "21")
+    COLLECTOR_FTP_PORT = os.getenv("FRACX_FTP_PORT", "21")
     COLLECTOR_FTP_OUTPATH = os.getenv("FRACX_FTP_OUTPATH", "/Outbound")
     COLLECTOR_FTP_INPATH = os.getenv("FRACX_FTP_INPATH", "/Inbound")
     COLLECTOR_FTP_USERNAME = os.getenv("FRACX_FTP_USERNAME")

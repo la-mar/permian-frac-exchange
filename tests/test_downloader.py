@@ -40,13 +40,13 @@ class TestsFTP:
         with pytest.raises(InvalidCredentialsError):
             Ftp.from_config(conf)
 
-    def test_load_ftp_from_config_bad_url(self, ftpserver, conf):
-        login = ftpserver.get_login_data()
-        username = login["user"]
-        password = login["passwd"]
+    # def test_load_ftp_from_config_bad_url(self, ftpserver, conf):
+    #     login = ftpserver.get_login_data()
+    #     username = login["user"]
+    #     password = login["passwd"]
 
-        with pytest.raises(ConnectionRefusedError):
-            Ftp("localhost", username, password, port=21)
+    #     with pytest.raises(ConnectionRefusedError):
+    #         Ftp("localhost", username, password, port=21)
 
     def test_ftp_access_basepath(self, ftp):
         assert ftp.basepath == "."

@@ -276,6 +276,9 @@ class Ftp(FTP):
         except error_perm as e:
             logger.warning(f"{e} -- {filename}")
 
+        except TypeError as te:
+            logger.error(f"Failed downloading file -- {te}")
+
         return result
 
     @property
