@@ -13,8 +13,6 @@ jobs:
           DATABASE_USERNAME: root
           DATABASE_NAME: circlecitest
       - image: circleci/postgres:11.4-postgis-ram
-        # environment:
-        #   POSTGRES_USER: postgres
 
     steps:
       - checkout
