@@ -36,7 +36,7 @@ Example output:
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 app config: fracx.config.ProductionConfig
                 flask app: fracx.manage.py
-                flask env: development
+                flask env: production
                 backend: postgres://fracx:***@db:5432/driftwood
                 collector: sftp.pdswdx.com
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -64,13 +64,13 @@ Example configuration with .env file:
 
 ```python
 
-FRACX_FTP_USERNAME=YOUR_FRACX_FTP_UERNAME
-FRACX_FTP_PASSWORD=YOUR_FRACX_FTP_PASSWORD
-DATABASE_USERNAME=YOUR_DATABASE_USERNAME
-DATABASE_PASSWORD=YOUR_DATABASE_PASSWORD
-DATABASE_HOST=YOUR_DATABASE_HOST
-DATABASE_NAME=YOUR_DATABASE_NAME
-DATABASE_SCHEMA=fracx
+FRACX_FTP_USERNAME=my_fracx_username
+FRACX_FTP_PASSWORD=my_fracx_password
+DATABASE_USERNAME=my_database_username
+DATABASE_PASSWORD=my_database_passowrd
+DATABASE_HOST=my.host.db
+DATABASE_NAME=my_database
+DATABASE_SCHEMA=my_schema
 FRAC_SCHEDULE_TABLE_NAME=frac_schedules
 
 ```

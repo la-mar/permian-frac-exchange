@@ -1,4 +1,3 @@
-from __future__ import annotations
 import sys
 from typing import List
 import logging
@@ -62,7 +61,7 @@ def get_default_driver(dialect: str):
     if dialect in _pg_aliases:
         driver = "postgres"  # "psycopg2"
     elif dialect in _mssql_aliases:
-        driver = "pymssql"
+        driver = "mssql+pymssql"
 
     return driver
 
@@ -218,21 +217,17 @@ class DevelopmentConfig(BaseConfig):
 class TestingConfig(BaseConfig):
     """Testing configuration"""
 
-    CONFIG_BASEPATH = "./tests/data"
-    # COLLECTOR_CONFIG_PATH = make_config_path(CONFIG_BASEPATH, "collector.yaml")
-    # COLLECTOR_CONFIG = load_config(COLLECTOR_CONFIG_PATH)
     TESTING = True
-    TOKEN_EXPIRATION_DAYS = 0
-    TOKEN_EXPIRATION_SECONDS = 3
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    API_BASE_URL = "https://api.example.com/v3"
-    API_CLIENT_ID = "test_client_id"
-    API_CLIENT_SECRET = "test_client_secret"
-    API_USERNAME = "username"
-    API_PASSWORD = "password"
-    API_TOKEN_PATH = "/auth"
-    API_DEFAULT_PAGESIZE = 100
+    API_BASE_URL = "https://api.example.com"
+
+    COLLECTOR_FTP_URL = "localhost"
+    COLLECTOR_FTP_PORT = "49476"
+    COLLECTOR_FTP_OUTPATH = "/"
+    COLLECTOR_FTP_INPATH = "/"
+    COLLECTOR_FTP_USERNAME = "testuser"
+    COLLECTOR_FTP_PASSWORD = "supercomplexpassword"
 
 
 class CIConfig(BaseConfig):

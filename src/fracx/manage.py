@@ -4,12 +4,12 @@ import shutil
 import sys
 
 import click
-from flask.cli import FlaskGroup, AppGroup
+from flask.cli import AppGroup, FlaskGroup
+import sqlalchemy
 
-from fracx import create_app
+from collector import BytesFileHandler, Endpoint, FracScheduleCollector, Ftp
 from config import get_active_config
-
-from collector import Endpoint, FracScheduleCollector, Ftp, BytesFileHandler
+from fracx import create_app
 
 
 logger = logging.getLogger()
@@ -20,9 +20,11 @@ CONTEXT_SETTINGS = dict(
 )
 
 conf = get_active_config()
+
 app = create_app()
 cli = FlaskGroup(create_app=create_app, context_settings=CONTEXT_SETTINGS)
 run_cli = AppGroup("run")
+db_cli = AppGroup("db")
 test_cli = AppGroup("test")
 
 
@@ -32,40 +34,6 @@ def get_terminal_columns():
 
 def hr():
     return "-" * get_terminal_columns()
-
-
-@cli.command()
-def ipython_embed():
-    """Runs a ipython shell in the app context."""
-    try:
-        import IPython
-    except ImportError:
-        click.echo("IPython not found. Install with: 'pip install ipython'")
-        return
-    from flask.globals import _app_ctx_stack
-
-    app = _app_ctx_stack.top.app
-    banner = "Python %s on %s\nIPython: %s\nApp: %s%s\nInstance: %s\n" % (
-        sys.version,
-        sys.platform,
-        IPython.__version__,
-        app.import_name,
-        app.debug and " [debug]" or "",
-        app.instance_path,
-    )
-
-    ctx = {}
-
-    # Support the regular Python interpreter startup script if someone
-    # is using it.
-    startup = os.environ.get("PYTHONSTARTUP")
-    if startup and os.path.isfile(startup):
-        with open(startup, "r") as f:
-            eval(compile(f.read(), startup, "exec"), ctx)
-
-    ctx.update(app.make_shell_context())
-
-    IPython.embed(banner1=banner, user_ns=ctx)
 
 
 @run_cli.command()
@@ -119,6 +87,47 @@ def endpoints():
         click.secho(name)
 
 
+@db_cli.command()
+def init(c=None):
+    c = c or conf
+    db_url = c.SQLALCHEMY_DATABASE_URI
+    basepath = os.path.dirname(__file__)
+    if c.DATABASE_DRIVER == "postgres":
+        filename = f"{c.CONFIG_BASEPATH}/init.pgsql"
+    elif "pymssql" in c.DATABASE_DRIVER:
+        filename = f"{c.CONFIG_BASEPATH}/init.sql"
+    else:
+        raise Exception("Could not determine database provider")
+
+    with open(os.path.join(basepath, filename)) as f:
+        contents = f.read()
+
+    engine = sqlalchemy.create_engine(db_url)
+
+    contents = contents.format(TABLE_NAME=c.FRAC_SCHEDULE_TABLE_NAME)
+    stmts = [sqlalchemy.text(x) for x in contents.split("--")]  # escaped text
+
+    try:
+        for s in stmts:
+            engine.execute(s)
+        logger.info("db init succeeded")
+    except Exception as e:
+        logger.error(f"db init failed -- {e}")
+
+
+@db_cli.command()
+@click.pass_context
+def recreate(ctx):
+
+    db_url = conf.SQLALCHEMY_DATABASE_URI
+    engine = sqlalchemy.create_engine(db_url)
+    engine.execute(
+        f"drop view if exists {conf.FRAC_SCHEDULE_TABLE_NAME}_most_recent_by_api10;"
+    )
+    engine.execute(f"drop table if exists {conf.FRAC_SCHEDULE_TABLE_NAME};")
+    ctx.invoke(init)
+
+
 def main(argv=sys.argv):
     """
     Args:
@@ -133,6 +142,7 @@ def main(argv=sys.argv):
 
 
 cli.add_command(run_cli)
+cli.add_command(db_cli)
 
 if __name__ == "__main__":
     cli()

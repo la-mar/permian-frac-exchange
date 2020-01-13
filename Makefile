@@ -19,7 +19,7 @@ cc-run-local:
 	circleci local execute -c process.yml --job build-image -e DOCKER_LOGIN=${DOCKER_LOGIN} -e DOCKER_PASSWORD=${DOCKER_PASSWORD}
 
 run-tests:
-	pytest --cov=fracx tests/ --cov-report xml:./coverage/python/coverage.xml --log-cli-level debug
+	pytest --cov src/fracx tests/ --cov-report xml:./coverage/python/coverage.xml --log-cli-level debug
 
 smoke-test:
 	docker run --entrypoint fracx driftwood/fracx:${COMMIT_HASH} test smoke-test
@@ -28,7 +28,11 @@ lint:
 	flake8 ./src --max-line-length=88 --extend-ignore=E203
 
 cov:
-	pytest --cov fracx --cov-report html:./coverage/coverage.html --log-level info --log-cli-level debug
+	pytest --cov src/fracx tests/ --cov-report html:./coverage/coverage.html --log-level info --log-cli-level info
+
+pcov:
+	pytest --cov src/fracx tests/
+
 
 view-cov:
 	open -a "Google Chrome" ./coverage/coverage.html/index.html

@@ -6,7 +6,7 @@ parsers:
         criteria:
           - name: match_float
             type: RegexCriterion
-            value: ^[-+]?\d*\.\d+|\d+$
+            value: ^[-+]?\d*\.\d+$
           - name: match_int
             type: RegexCriterion
             value: ^[-+]?[0-9]+$

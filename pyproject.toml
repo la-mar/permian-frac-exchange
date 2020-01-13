@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fracx"
-version = "0.1.6"
+version = "0.1.11"
 description = "This project is used to interface with [PDSEnergy's](https://pdsenergy.com/frac-interference-exchange/) FracX platform to programmatically submit and download frac schedules."
 authors = ["Brock Friedrich <brocklfriedrich@gmail.com>"]
 license = "MIT"
@@ -10,14 +10,13 @@ repository = "https://github.com/la-mar/permian-frac-exchange"
 keywords = ["fracx", "frac", "oil", "gas"]
 
 [tool.poetry.dependencies]
-python = "~3.6"
+python = "^3.6.5"
 pyyaml = "^5.2"
 xlrd = "^1.2.0"
 python-dotenv = "^0.10.3"
 click = "^7.0"
 colorama = "^0.4.3"
 sqlalchemy = "^1.3.12"
-psycopg2-binary = "^2.8.4"
 tomlkit = "^0.5.8"
 attrdict = "^2.0.1"
 datadog = "^0.33.0"
@@ -28,12 +27,16 @@ attr = "^0.3.1"
 attrs = "^19.3.0"
 pyparsing = "^2.4.6"
 python-dateutil = "^2.8.1"
+psycopg2-binary = "^2.8.4"
+pymssql = {version = "^2.1.4", optional = true}
+aiocontextvars = "^0.2.2"
+cython = {version = "^0.29.14", optional = true}
+coverage = {version = "^5.0.2", extras = ["toml"]}
 
 
 [tool.poetry.dev-dependencies]
 black = { version = "*", allow-prereleases = true }
 mypy = "*"
-ipython = "*"
 pytest = "*"
 pytest-cov = "*"
 docker = "*"
@@ -41,8 +44,14 @@ boto3 = "*"
 hypothesis = "*"
 requests-mock = "*"
 codecov = "^2.0.15"
-coverage = {version = "^5.0", extras = ["toml"]}
 flake8 = "^3.7.9"
+ipython = "^7.11.1"
+pytest-flask = "^0.15.0"
+pytest-mock = "^2.0.0"
+pytest_localftpserver = "^1.0.1"
+
+[tool.poetry.extras]
+mssql = ["cython", "pymssql"]
 
 [tool.poetry.scripts]
 fracx = "fracx.manage:main"
@@ -56,7 +65,7 @@ exclude_lines = [
     "raise NotImplementedError",
     "logger.debug",
     "if 0:",
-    "if __name__ == .__main__.:"
+    "if __name__ == .__main__.:",
 ]
 
 [tool.isort]

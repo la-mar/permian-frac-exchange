@@ -1,4 +1,3 @@
-from __future__ import annotations
 from typing import Dict, List, Union, Iterable
 import logging
 from pathlib import Path
@@ -73,15 +72,26 @@ class FracScheduleCollector(Collector):
                 rows.append(transformed)
 
             if len(rows) > 0 and len(rows) % conf.COLLECTOR_WRITE_SIZE == 0:
-                self.model.core_insert(
-                    rows,
-                    update_on_conflict=update_on_conflict,
-                    ignore_on_conflict=ignore_on_conflict,
-                )
-                rows = []
+                self.persist(rows)
 
         # persist leftovers
-        self.model.core_insert(rows)
+        self.persist(rows)
+
+    def persist(
+        self,
+        rows: List[Dict],
+        update_on_conflict: bool = True,
+        ignore_on_conflict: bool = False,
+    ):
+        if "pymssql" in conf.DATABASE_DRIVER:
+            self.model.bulk_merge(rows)
+        else:
+            self.model.core_insert(
+                rows,
+                update_on_conflict=update_on_conflict,
+                ignore_on_conflict=ignore_on_conflict,
+            )
+        rows = []
 
     def filter(self, row: Dict) -> Union[Dict, None]:
         if row.get("shllat") and row.get("shllon"):

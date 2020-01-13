@@ -1,4 +1,3 @@
-from __future__ import annotations
 from typing import Dict, List, Union, Any
 import logging
 from pydoc import locate
@@ -22,7 +21,6 @@ class Endpoint(object):
         mappings: Dict[str, str] = None,
         url_params: List[str] = None,
         exclude: List[str] = None,
-        depends_on: Dict[str, str] = None,
         options: List[str] = None,
         normalize: bool = False,
         updated_column: str = "updated_at",
@@ -40,8 +38,6 @@ class Endpoint(object):
         self.updated_column = updated_column
         self.url_params = url_params
         self._exclude = exclude or []
-        self._dependency_map = depends_on or {}
-        self._depends_on: Union[Dict[str, Model], None] = None
         self.normalize = normalize
         self.options = options or []
         self.enabled = enabled
@@ -62,12 +58,6 @@ class Endpoint(object):
         return self._model
 
     @property
-    def depends_on(self) -> Dict[str, Column]:
-        if self._depends_on is None:
-            self._depends_on = self.link_upstream_columns()
-        return self._depends_on
-
-    @property
     def exclude(self):
         return self._exclude
 
@@ -86,18 +76,6 @@ class Endpoint(object):
     @property
     def mapped_aliases(self) -> List[str]:
         return list(self.alias_map.values())
-
-    def link_upstream_columns(self) -> Dict[str, Column]:
-        linked_columns: Dict[Any, Any] = {}
-        for key_field, model_name in self._dependency_map.items():
-            model_name, column_name = model_name.rsplit(".", maxsplit=1)
-            columns = list(self.locate_model(model_name).__table__.columns)
-            column_map = {c.name: c for c in columns}
-            if linked_columns.get(key_field) is None:
-                linked_columns[key_field] = column_map[column_name]
-            else:
-                linked_columns[key_field] += column_map[column_name]
-        return linked_columns
 
     def locate_model(self, model_name: str) -> Model:
         model: Model = None
@@ -125,7 +103,7 @@ class Endpoint(object):
     @staticmethod
     def load_from_config(
         app_config: object, load_disabled: bool = False
-    ) -> Dict[str, Endpoint]:
+    ) -> Dict[str, "Endpoint"]:
         endpoints: dict = {}
         try:
             endpoints = app_config.endpoints  # type: ignore

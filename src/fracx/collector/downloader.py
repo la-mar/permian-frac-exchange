@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import io
 import logging
 import os
@@ -7,35 +5,40 @@ import ssl
 from ftplib import FTP, FTP_TLS, error_perm
 from timeit import default_timer as timer
 from typing import Dict, Generator, List, Union
+from pathlib import Path
 
 from config import get_active_config
 from util import hf_size
-
+from util import RootException
 
 logger = logging.getLogger(__name__)
 
 conf = get_active_config()
 
 
-class ImplicitFTP_TLS(FTP_TLS):
-    """FTP_TLS subclass that automatically wraps sockets in SSL to support implicit FTPS.
-    Source: https://stackoverflow.com/questions/12164470/python-ftp-implicit-tls-connection-issue"""
+class InvalidCredentialsError(RootException):
+    pass
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._sock = None
 
-    @property
-    def sock(self):
-        """Return the socket."""
-        return self._sock
+# class ImplicitFTP_TLS(FTP_TLS):
+#     """FTP_TLS subclass that automatically wraps sockets in SSL to support implicit FTPS.
+#     Source: https://stackoverflow.com/questions/12164470/python-ftp-implicit-tls-connection-issue"""  # noqa
 
-    @sock.setter
-    def sock(self, value):
-        """When modifying the socket, ensure that it is ssl wrapped."""
-        if value is not None and not isinstance(value, ssl.SSLSocket):
-            value = self.context.wrap_socket(value)
-        self._sock = value
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self._sock = None
+
+#     @property  # type: ignore
+#     def sock(self):
+#         """Return the socket."""
+#         return self._sock
+
+#     @sock.setter
+#     def sock(self, value):
+#         """When modifying the socket, ensure that it is ssl wrapped."""
+#         if value is not None and not isinstance(value, ssl.SSLSocket):
+#             value = self.context.wrap_socket(value)
+#         self._sock = value
 
 
 class Ftp(FTP):
@@ -55,16 +58,35 @@ class Ftp(FTP):
         port: Union[int, str] = 21,
         **kwargs,
     ):
-        super().__init__()
-        self.url = url
-        self.username = username
-        self.password = password
-        self.destination = destination
-        self.connect(host=url, port=int(port))
-        self.login(username, password)
-        self.m = None  # model hook
-        self.basepath = basepath or "."
-        self.cwd(self.basepath)
+
+        try:
+            super().__init__()
+            self.url = url
+            self.username = username
+            self.password = password
+            self.destination = destination
+            self.connect(host=url, port=int(port))
+            self.login(username, password)
+            self.m = None  # model hook
+            self.basepath = basepath or "."
+            self.cwd(self.basepath)
+
+        except error_perm as e:
+            logger.error(e)
+            raise InvalidCredentialsError("FTP credentials are invalid")
+
+        except ConnectionRefusedError as e:
+            msg = "Cant connect to FTP. Are these connection details correct? "
+            msg += self.stringify(
+                {
+                    "url": url,
+                    "port": str(port),
+                    "username": username,
+                    "password": password,
+                }
+            )
+            logger.error(msg)
+            raise e
 
     @property
     def basepath(self):
@@ -87,6 +109,7 @@ class Ftp(FTP):
                 logger.debug(f"Basepath changed to {self._basepath}")
             except Exception as e:
                 logger.warning(f"{e} -- Could not change basepath to {self._basepath}")
+                raise e
 
     def list_files(self, path: str = None, contains: str = ".") -> List:
         """Return a listing of the contents in the ftp directory specified by the
@@ -106,8 +129,8 @@ class Ftp(FTP):
 
         return [file for file in self.nlst(path or self.basepath) if contains in file]
 
-    @staticmethod
-    def from_config() -> Ftp:
+    @classmethod
+    def from_config(cls, c=None) -> "Ftp":
         """Create an Ftp object from environment variables. Looks for environment
            variables prefixed with "FRACX_" that correspond to the required parameter
            name.
@@ -123,7 +146,12 @@ class Ftp(FTP):
         Returns:
             Ftp
         """
-        c = conf.with_prefix("collector_ftp")
+        if not c:
+            c = conf
+
+        c = c.with_prefix("collector_ftp")
+
+        cls.check_connection_details(c)
         return Ftp(
             url=c.get("url"),
             username=c.get("username"),
@@ -132,23 +160,41 @@ class Ftp(FTP):
             port=c.get("port"),
         )
 
-    def upload(self, filename: str):
-        """Downloads all files located in the ftp directory located at the basepaths.
+    @staticmethod
+    def stringify(data: Dict[str, str]) -> str:
+        return "\n".join(
+            [
+                f"{k:>20} = {'**hidden**' if k == 'password' and v is not None  else v}"
+                for k, v in data.items()
+            ]
+        )
+
+    @classmethod
+    def check_connection_details(cls, details: Dict[str, str]):
+        missing = {k: v for k, v in details.items() if v is None}
+        if len(missing.keys()) > 0:
+            s = cls.stringify(missing)
+            msg = (
+                "Some connection details are missing. "
+                + "Add these to your configuration and try again. \n"
+            )
+            raise InvalidCredentialsError(msg + s)
+
+    def upload(self, filename: Union[str, Path], to: str = None):
+        """Upload a file to the ftp.
 
         Arguments:
             filename {str} -- path to local file to upload
 
-        Keyword Arguments:
-            to {str} -- repository path to which the file should be uploaded. If not
-            specified, the current directory of the ftp instance will be used.
-            (default: {None})
-
         """
 
-        to = os.path.join(conf.COLLECTOR_FTP_INPATH, os.path.basename(filename))
+        to = str(
+            to or os.path.join(conf.COLLECTOR_FTP_INPATH, os.path.basename(filename))
+        )
+        filename = str(filename)
         status = "error"
         try:
-            with open(os.path.join(filename), "rb") as f:
+            with open(filename, "rb") as f:
                 print(self.storbinary("STOR " + to, f))
                 logger.info("Uploaded: " + filename)
 
@@ -200,7 +246,7 @@ class Ftp(FTP):
             tuple -- (filepath, filename, download_status)
         """
 
-        status = "ERROR"
+        status = "error"
 
         try:
             result = {"status": status, "filename": filename, "content": b""}
@@ -222,7 +268,7 @@ class Ftp(FTP):
                 extra={"download_bytes": size, "download_seconds": exc_time},
             )
 
-            status = "success"
+            result["status"] = "success"
             result["content"] = content
 
         except error_perm as e:
@@ -259,33 +305,35 @@ class Ftp(FTP):
                 logger.info(f"Deleted old export from FTP: {result}")
 
 
-class Sftp(ImplicitFTP_TLS, Ftp):
-    def __init__(
-        self,
-        url: str,
-        username: str,
-        password: str,
-        destination: str = None,
-        basepath: str = None,
-        **kwargs,
-    ):
-        super().__init__()
-        self.url = url
-        self.username = username
-        self.password = password
-        self.destination = destination
-        self.ssl_version = ssl.PROTOCOL_SSLv23
-        self.connect(host=url, port=990)
-        self.login(username, password)
-        self.m = None  # model hook
-        self.basepath = basepath or "."
-        self.cwd(self.basepath)
+# class Sftp(ImplicitFTP_TLS, Ftp):
+#     def __init__(
+#         self,
+#         url: str,
+#         username: str,
+#         password: str,
+#         destination: str = None,
+#         basepath: str = None,
+#         **kwargs,
+#     ):
+#         super().__init__()
+#         self.url = url
+#         self.username = username
+#         self.password = password
+#         self.destination = destination
+#         self.ssl_version = ssl.PROTOCOL_SSLv23
+#         self.connect(host=url, port=990)
+#         self.login(username, password)
+#         self.m = None  # model hook
+#         self.basepath = basepath or "."
+#         self.cwd(self.basepath)
 
 
 if __name__ == "__main__":
     logging.basicConfig(level=10)
     f = Ftp.from_config()
     result = f.get_latest()
+
+    f.upload("data/bytes.txt")
 
     f.cleanup()
 

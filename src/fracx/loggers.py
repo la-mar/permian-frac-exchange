@@ -32,6 +32,7 @@ logging.getLogger("boto3").setLevel(logging.WARNING)
 logging.getLogger("botocore").setLevel(logging.CRITICAL)
 logging.getLogger("zeep").setLevel(logging.CRITICAL)
 logging.getLogger("requests_oauthlib").setLevel(logging.CRITICAL)
+logging.getLogger("sqlalchemy").setLevel(logging.CRITICAL)
 
 
 def mlevel(level):
@@ -91,9 +92,7 @@ class DatadogJSONFormatter(json_log_formatter.JSONFormatter):
         """Return the record in the format usable by Datadog."""
         json_record = self.json_record(record.getMessage(), record)
         mutated_record = self.mutate_json_record(json_record)
-        # Backwards compatibility: Functions that overwrite this but don't
-        # return a new value will return None because they modified the
-        # argument passed in.
+
         if mutated_record is None:
             mutated_record = json_record
         return self.to_json(mutated_record)
@@ -146,10 +145,6 @@ class DatadogJSONFormatter(json_log_formatter.JSONFormatter):
                     array = []
                 for item in array:
                     key, val = item.split("=")
-
-                    # del key from record before replacing with modified version
-                    # NOTE: This is hacky. Need to provide a general purpose
-                    # context-aware logger.
                     if key in record_dict:
                         del record_dict[key]
 
@@ -161,15 +156,7 @@ class DatadogJSONFormatter(json_log_formatter.JSONFormatter):
         except Exception:
             exc_info = sys.exc_info()
 
-        # Handle exceptions, including those in our formatter
         if exc_info:
-            # QUESTION: If exc_info was set by us, do we alter the log level?
-            # Probably not, as a formatter should never be altering the record
-            # directly.
-            # I think that instead we should avoid code that can conveivably
-            # raise exceptions in our formatter. That is not possible until we update
-            # the context handling code and we can ensure helpers.get_correlation_ids()
-            # will not raise any exceptions.
             if "error.kind" not in record_dict:
                 record_dict["error.kind"] = exc_info[0].__name__  # type: ignore
             if "error.message" not in record_dict:
@@ -183,7 +170,7 @@ class DatadogJSONFormatter(json_log_formatter.JSONFormatter):
 def get_formatter(name: Union[str, None]) -> logging.Formatter:
     formatters = {
         "verbose": logging.Formatter(
-            fmt="[%(asctime)s - %(filename)s:%(lineno)s - %(funcName)s()] %(levelname)s - %(message)s",
+            fmt="[%(asctime)s - %(filename)s:%(lineno)s - %(funcName)s()] %(levelname)s - %(message)s",  # noqa
             datefmt="%Y-%m-%d %H:%M:%S",
         ),
         "funcname": logging.Formatter(
@@ -209,8 +196,6 @@ def config(level: int = None, formatter: str = None, logger: logging.Logger = No
         root_logger.removeHandler(root_logger.handlers[0])
     root_logger.addHandler(console_handler)
 
-    # file_handler = logging.FileHandler("log/log.log")
-    # root_logger.addHandler(file_handler)
     root_logger.addHandler(console_handler)
 
 

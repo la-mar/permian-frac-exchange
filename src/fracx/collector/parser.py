@@ -1,4 +1,3 @@
-from __future__ import annotations
 from typing import Any, Callable, List, Union, Dict
 import functools
 import logging
@@ -44,7 +43,7 @@ class Criterion:
         return bool(self.func(value))
 
     def __repr__(self):
-        return f"Criterion: {self.name} - {self.func}"
+        return f"Criterion: name={self.name}, validator={self.func.__name__}"
 
 
 class RegexCriterion(Criterion):
@@ -137,7 +136,7 @@ class ParserRule:
         return "PARTIAL" if self.allow_partial else "FULL"
 
     @classmethod
-    def from_list(cls, criteria: List[Dict], **kwargs) -> ParserRule:
+    def from_list(cls, criteria: List[Dict], **kwargs) -> "ParserRule":
         """ Initialize a rule from a list of criteria specifications.
                 Example criteria spec:
                     criteria = \
@@ -170,7 +169,7 @@ class Parser:
         return f"Parser - {self.name}: {len(self.rules)} rules"
 
     @classmethod
-    def init(cls, ruleset: Dict[str, List], name: str = None) -> Parser:
+    def init(cls, ruleset: Dict[str, List], name: str = None) -> "Parser":
         """ Initialize from a configuration dict """
         rules: List[ParserRule] = []
         for ruledef in ruleset:
@@ -191,7 +190,7 @@ class Parser:
 
     @staticmethod
     @safe_convert
-    def try_date(s: str) -> datetime:
+    def try_date(s: str) -> Union[datetime, None]:
         if s is not None:
             return dateutil.parser.parse(s)
         else:
@@ -262,6 +261,9 @@ class Parser:
         else:
             return self.parse_dtype(value) if self.parse_dtypes else value
 
+    def parse_many(self, values: List[Any]) -> List[Any]:
+        return [self.parse(v) for v in values]
+
 
 if __name__ == "__main__":
 
@@ -270,64 +272,14 @@ if __name__ == "__main__":
     )
 
     test_values = [
-        None,
-        "2019-01-01",
-        "1",
-        "+1",
-        "-1",
-        "2018",
-        "",
-        "0",
-        "+0",
-        "-0",
-        "11",
-        "00",
-        "01",
-        "+11",
-        "+00",
-        "+01",
-        "-11",
-        "-00",
-        "-01",
-        "1234567890",
-        "+1234567890",
-        "-1234567890",
         "1.1034",
-        "+1.1034",
-        "-1.1034",
         "0.1034",
-        "+0.1034",
-        "-0.1034",
         "11.1034",
         "00.1034",
         "01.1034",
-        "+11.1034",
-        "+00.1034",
-        "+01.1034",
-        "-11.1034",
-        "-00.1034",
-        "-01.1034",
         "1234567890.1034",
-        "+1234567890.1034",
-        "-1234567890.1034",
-        "2019-01-01",
-        "2020-06-06",
-        "19-01-01",
-        "2019-01",
-        "qwe2019-01-01",
-        "2019-01-01rte",
-        "3242019-01-01",
         "31.24141",
         "101.98853",
-        "+31.24141",
-        "-101.98853",
-        "9/11/2014 12:00:00 AM",
-        "9/25/2014 5:00:00 AM",
-        "true",
-        "false",
-        "True",
-        "False",
-        "42461405550000",
     ]
 
     logger.setLevel(20)

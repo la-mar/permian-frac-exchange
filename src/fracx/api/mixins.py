@@ -1,6 +1,5 @@
 # type: ignore
 
-from __future__ import annotations
 
 import logging
 from enum import Enum
@@ -144,7 +143,7 @@ class CoreMixin(object):
                 affected += len(records)
 
             except IntegrityError as ie:
-                logger.debug(ie.args[0])
+                logger.warning(ie)
 
                 # fragment and reprocess
                 if len(records) > 1:
@@ -214,11 +213,6 @@ class CoreMixin(object):
             affected += len(records)
 
         return affected
-
-    @classmethod
-    def primary_key_values(cls, as_list: bool = False) -> List[tuple]:
-        query = cls.s.query().with_entities(*cls.primary_key_columns())
-        return query.all()
 
     @classmethod
     def post_op_metrics(

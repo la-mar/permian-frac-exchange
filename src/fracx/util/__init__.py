@@ -1,11 +1,9 @@
 from typing import Callable, Union, Iterable, Generator, Dict
 import math
-import json
-import urllib.parse
 import itertools
 
 from util.strings import StringProcessor  # noqa
-from util.jsontools import DateTimeEncoder
+from util.exc import RootException  # noqa
 
 
 def hf_size(size_bytes: Union[str, int]) -> str:
@@ -68,32 +66,3 @@ def apply_transformation(
     else:
         return data
     return new
-
-
-def urljoin(base: str = "", path: str = "") -> str:
-    base = base or ""
-    path = path or ""
-    if not base.endswith("/"):
-        base = base + "/"
-    if path.startswith("/"):
-        path = path[1:]
-    return urllib.parse.urljoin(base, path)
-
-
-def to_json(d: dict, path: str, cls=DateTimeEncoder):
-    with open(path, "w") as f:
-        json.dump(d, f, cls=cls, indent=4)
-
-
-def load_json(path: str) -> Dict:
-    with open(path, "r") as f:
-        return json.load(f)
-
-
-def query_dict(path: str, data: dict, sep: str = ".") -> Union[Dict, None]:
-    elements = path.split(sep)
-    for e in elements:
-        if not issubclass(type(data), dict):
-            raise ValueError(f"{data} ({type(data)}) is not a subclass of dict")
-        data = data.get(e, {})
-    return data if data != {} else None
