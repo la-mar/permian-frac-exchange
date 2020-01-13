@@ -12,6 +12,9 @@ jobs:
         environment:
           DATABASE_USERNAME: root
           DATABASE_NAME: circlecitest
+          FTP_USER: testuser
+          FTP_PASS: supercomplexpassword
+          FTP_PORT: 49476
       - image: circleci/postgres:11.4-postgis-ram
 
     steps:
