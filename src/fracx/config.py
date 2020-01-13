@@ -234,7 +234,20 @@ class TestingConfig(BaseConfig):
 
 
 class CIConfig(BaseConfig):
-    pass
+    DATABASE_NAME = "circle_test"
+    DATABASE_DRIVER = "postgres"
+    DATABASE_HOST = "localhost"
+    DATABASE_USERNAME = "root"
+    DATABASE_PORT = 5432
+    DATABASE_PASSWORD = ""
+    DATABASE_URL_PARAMS = {
+        "drivername": DATABASE_DRIVER,
+        "username": DATABASE_USERNAME,
+        "password": DATABASE_PASSWORD,
+        "host": DATABASE_HOST,
+        "port": DATABASE_PORT,
+        "database": DATABASE_NAME,
+    }
 
 
 class ProductionConfig(BaseConfig):
@@ -246,4 +259,4 @@ class ProductionConfig(BaseConfig):
 
 
 if __name__ == "__main__":
-    c = BaseConfig()
+    c = CIConfig()

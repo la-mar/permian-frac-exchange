@@ -10,8 +10,6 @@ jobs:
     docker:
       - image: circleci/python:3.7
         environment:
-          DATABASE_USERNAME: root
-          DATABASE_NAME: circlecitest
           FTP_USER: testuser
           FTP_PASS: supercomplexpassword
           FTP_PORT: 57957
