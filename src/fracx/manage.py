@@ -89,7 +89,6 @@ def endpoints():
 
 @cli.command()
 def show():
-    from pprint import pprint
     import yaml
 
     yaml.safe_dump(conf.show, sys.stdout)
