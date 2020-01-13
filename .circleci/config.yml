@@ -35,9 +35,9 @@ jobs:
           paths:
             - /home/circleci/.cache/pypoetry/virtualenvs
 
-      # - run:
-      #     name: lint
-      #     command: flake8 ./src --max-line-length=88 --extend-ignore=E203
+      - run:
+          name: lint
+          command: poetry run flake8 ./src --max-line-length=88 --extend-ignore=E203
 
       - run:
           name: show conf
