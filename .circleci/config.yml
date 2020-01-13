@@ -13,6 +13,7 @@ jobs:
           FTP_USER: testuser
           FTP_PASS: supercomplexpassword
           FTP_PORT: 57957
+          APP_SETTINGS: fracx.config.CIConfig
       - image: circleci/postgres:11.4-postgis-ram
         environment:
           POSTGRES_USER: root
