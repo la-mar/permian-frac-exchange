@@ -134,7 +134,7 @@ class BaseConfig:
     DATABASE_DRIVER = os.getenv(
         "FRACX_DATABASE_DRIVER", get_default_driver(DATABASE_DIALECT)
     )
-    DATABASE_USERNAME = os.getenv("FRACX_DATABASE_USERNAME", "")
+    DATABASE_USERNAME = os.getenv("FRACX_DATABASE_USERNAME", "postgres")
     DATABASE_PASSWORD = os.getenv("FRACX_DATABASE_PASSWORD", "")
     DATABASE_HOST = os.getenv("FRACX_DATABASE_HOST", "localhost")
     DATABASE_PORT = os.getenv("FRACX_DATABASE_PORT", get_default_port(DATABASE_DRIVER))
@@ -237,7 +237,7 @@ class CIConfig(BaseConfig):
     DATABASE_NAME = "circle_test"
     DATABASE_DRIVER = "postgres"
     DATABASE_HOST = "localhost"
-    DATABASE_USERNAME = "postgres"
+    DATABASE_USERNAME = "circleci"
     DATABASE_PORT = 5432
     DATABASE_PASSWORD = ""
     DATABASE_URL_PARAMS = {
