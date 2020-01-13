@@ -16,7 +16,7 @@ jobs:
           APP_SETTINGS: fracx.config.CIConfig
       - image: circleci/postgres:11.4-postgis-ram
         environment:
-          POSTGRES_USER: root
+          POSTGRES_USER: postgres
           POSTGRES_DB: circle_test
           POSTGRES_PASSWORD: ""
 

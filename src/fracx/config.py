@@ -237,7 +237,7 @@ class CIConfig(BaseConfig):
     DATABASE_NAME = "circle_test"
     DATABASE_DRIVER = "postgres"
     DATABASE_HOST = "localhost"
-    DATABASE_USERNAME = "root"
+    DATABASE_USERNAME = "postgres"
     DATABASE_PORT = 5432
     DATABASE_PASSWORD = ""
     DATABASE_URL_PARAMS = {
