@@ -134,7 +134,7 @@ class BaseConfig:
     DATABASE_DRIVER = os.getenv(
         "FRACX_DATABASE_DRIVER", get_default_driver(DATABASE_DIALECT)
     )
-    DATABASE_USERNAME = os.getenv("FRACX_DATABASE_USERNAME", "postgres")
+    DATABASE_USERNAME = os.getenv("FRACX_DATABASE_USERNAME", "")
     DATABASE_PASSWORD = os.getenv("FRACX_DATABASE_PASSWORD", "")
     DATABASE_HOST = os.getenv("FRACX_DATABASE_HOST", "localhost")
     DATABASE_PORT = os.getenv("FRACX_DATABASE_PORT", get_default_port(DATABASE_DRIVER))

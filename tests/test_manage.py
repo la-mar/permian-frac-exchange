@@ -46,10 +46,10 @@ class TestManage:
         monkeypatch.setenv("FRACX_FTP_OUTPATH", "/")
         subprocess.check_output(["fracx", "run", "collector"], universal_newlines=True)
 
-    def test_db_init(self, conf):
+    def test_db_init(self):
         subprocess.run(["fracx", "db", "init"])
 
-        db_url = conf.SQLALCHEMY_DATABASE_URI
+        db_url = manage.conf.SQLALCHEMY_DATABASE_URI
         engine = sqlalchemy.create_engine(db_url)
 
         m = MetaData()
@@ -59,13 +59,16 @@ class TestManage:
 
         table_names = [x.name for x in tables]
 
-        assert conf.FRAC_SCHEDULE_TABLE_NAME in table_names
-        assert f"{conf.FRAC_SCHEDULE_TABLE_NAME }_most_recent_by_api10" in table_names
+        assert manage.conf.FRAC_SCHEDULE_TABLE_NAME in table_names
+        assert (
+            f"{manage.conf.FRAC_SCHEDULE_TABLE_NAME }_most_recent_by_api10"
+            in table_names
+        )
 
-    def test_db_recreate(self, conf):
+    def test_db_recreate(self):
         subprocess.run(["fracx", "db", "recreate"])
 
-        db_url = conf.SQLALCHEMY_DATABASE_URI
+        db_url = manage.conf.SQLALCHEMY_DATABASE_URI
         engine = sqlalchemy.create_engine(db_url)
 
         m = MetaData()
@@ -75,8 +78,11 @@ class TestManage:
 
         table_names = [x.name for x in tables]
 
-        assert conf.FRAC_SCHEDULE_TABLE_NAME in table_names
-        assert f"{conf.FRAC_SCHEDULE_TABLE_NAME }_most_recent_by_api10" in table_names
+        assert manage.conf.FRAC_SCHEDULE_TABLE_NAME in table_names
+        assert (
+            f"{manage.conf.FRAC_SCHEDULE_TABLE_NAME }_most_recent_by_api10"
+            in table_names
+        )
 
     def test_run_cli(self):
         subprocess.run(["fracx"])
