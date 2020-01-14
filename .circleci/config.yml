@@ -62,16 +62,16 @@ jobs:
           image: driftwood/fracx
           tag: $(echo ${CIRCLE_SHA1} | cut -c -7),dev,latest
 
-  # deployment:
-  #   docker:
-  #     - image: circleci/python:3.7
-  #   steps:
-  #     # Gets the code
-  #     - checkout
-  #     - run:
-  #         name: Push to PyPI
-  #         command: |
-  #           poetry publish --build --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
+  deployment:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      # Gets the code
+      - checkout
+      - run:
+          name: Push to PyPI
+          command: |
+            poetry publish --build --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
 
 workflows:
   version: 2.1
@@ -88,6 +88,16 @@ workflows:
           context: global
           image: driftwood/fracx
           tag: ${CIRCLE_TAG}
+          requires:
+            - run-tests
+            - build-image
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+            branches:
+              only: master
+      - deployment:
+          context: global
           requires:
             - run-tests
             - build-image
