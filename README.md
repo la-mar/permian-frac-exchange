@@ -17,13 +17,15 @@
   </table>
 </div>
 
-<p>The FracX Python library is a tool to interface with [PDSEnergy's](https://pdsenergy.com/frac-interference-exchange/) FracX platform, used to submit and download frac schedules. Currently, the project interfaces with the FTP import/export service provided by PDS. As other means of integration become available from PDS, those means will be incorporated into this project as additional ways to import and export data from FracX.</p>
+<p>The FracX Python library is a tool to interface with <a href=https://pdsenergy.com/frac-interference-exchange/>PDS Energy's</a> FracX platform, used to submit and download frac schedules. Currently, the project interfaces with the FTP import/export service provided by PDS. As other means of integration become available from PDS, those means will be incorporated into this project as additional ways to import and export data from FracX.</p>
 
 Available on PyPI and Docker
 
 <br/>
 
 ## Installation
+
+Install with pipx:
 
 ```bash
 pipx install fracx
@@ -50,7 +52,11 @@ export FRACX_TABLE_NAME=frac_schedules
 
 ####
 
-Initialize the database: `fracx db init`
+Initialize the database:
+
+```bash
+fracx db init
+```
 
 Initialization creates one table and one view in the target database:
 
@@ -61,7 +67,11 @@ Re-running the db init command will attempt to create the table or view if one d
 
 ####
 
-Run the app: `fracx run collector`
+Run the app:
+
+```bash
+fracx run collector
+```
 
 A successful execution will yield the following output:
 
