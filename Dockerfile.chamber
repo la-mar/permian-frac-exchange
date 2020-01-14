@@ -34,7 +34,6 @@ RUN poetry install --no-dev --no-interaction
 
 # copy project files
 COPY ./src /app
-COPY ./README.md /app/README.md
 
 # run again to install app from source
 RUN poetry install --no-dev --no-interaction

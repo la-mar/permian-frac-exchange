@@ -57,9 +57,9 @@ build:
 build-with-chamber:
 	@echo "Building docker image: ${IMAGE_NAME} (with chamber)"
 	docker build  -f Dockerfile.chamber . -t ${IMAGE_NAME}
-	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${COMMIT_HASH}-chamber
-	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${APP_VERSION}-chamber
-	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:latest-chamber
+	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:chamber-${COMMIT_HASH}
+	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:chamber-${APP_VERSION}
+	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:chamber-latest
 
 build-all: build-with-chamber build
 
@@ -70,7 +70,7 @@ push: login
 push-version: build build-with-chamber
 	@echo "Pushing images to DockerHub for app version ${APP_VERSION}"
 	docker push ${IMAGE_NAME}:${APP_VERSION}
-	docker push ${IMAGE_NAME}:${APP_VERSION}-chamber
+	docker push ${IMAGE_NAME}:chamber-${APP_VERSION}
 
 all:
 	make build login push
