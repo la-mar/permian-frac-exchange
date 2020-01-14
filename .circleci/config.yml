@@ -110,7 +110,7 @@ workflows:
               only: master
       - docker/publish:
           context: global
-          image: driftwood/fracx:chamber-latest
+          image: driftwood/fracx
           tag: chamber-${CIRCLE_TAG}
           requires:
             - run-tests
