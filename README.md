@@ -29,31 +29,41 @@ Available on PyPI and Docker
 pipx install fracx
 ```
 
-<!-- 1. Initialize the destination table in the database. Example table definitions can be found in [scripts](scripts/)
-2. Define the necessary environment variables in the docker-compose.yml file or in a .env file in the project root directory (examples below).
-3. Run the container with docker-compose: `docker-compose up` -->
    <br/>
 
 ## Usage
 
-Set environment variables:
+#### Set environment variables:
 
 ```bash
 
-FRACX_FTP_USERNAME=my_fracx_username
-FRACX_FTP_PASSWORD=my_fracx_password
-DATABASE_USERNAME=my_database_username
-DATABASE_PASSWORD=my_database_passowrd
-DATABASE_HOST=my.host.db
-DATABASE_NAME=my_database
-DATABASE_SCHEMA=my_schema
-FRAC_SCHEDULE_TABLE_NAME=frac_schedules
+export FRACX_FTP_USERNAME=my_fracx_username
+export FRACX_FTP_PASSWORD=my_fracx_password
+export FRACX_DATABASE_USERNAME=my_database_username
+export FRACX_DATABASE_PASSWORD=my_database_passowrd
+export FRACX_DATABASE_HOST=my.host.db
+export FRACX_DATABASE_NAME=my_database
+export FRACX_DATABASE_SCHEMA=my_schema
+export FRACX_TABLE_NAME=frac_schedules
 
 ```
 
+####
+
 Initialize the database: `fracx db init`
 
-Example output:
+Initialization creates one table and one view in the target database:
+
+- frac_schedules (or the value of FRACX_TABLE_NAME)
+- frac_schedules_by_api10 (or the value of FRACX_TABLE_NAME+"\_by_api10")
+
+Re-running the db init command will attempt to create the table or view if one doesn't exist. It will NOT drop an existing table or view. This must be done manually.
+
+####
+
+Run the app: `fracx run collector`
+
+A successful execution will yield the following output:
 
 <pre>
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -70,8 +80,27 @@ frac_schedules.core_insert_update_on_conflict: inserted 625 records (1.28s)
 </pre>
 <br/>
 
-## Configuration
+## Configuration Reference
 
+Environment variables reference:
+
+| name                    | default         | description                               |
+| ----------------------- | --------------- | ----------------------------------------- |
+| FRACX_FTP_URL           | sftp.pdswdx.com | url to the remote ftp server              |
+| FRACX_FTP_PORT          | 21              | port for the ftp server connection        |
+| FRACX_FTP_INPATH        | /Inbound        | ftp directory where uploads will be saved |
+| FRACX_FTP_OUTPATH       | /Outbound       | ftp directory to look for downloads in    |
+| FRACX_FTP_USERNAME      | ""              | username for ftp authentication           |
+| FRACX_FTP_PASSWORD      | ""              | password for ftp authentication           |
+| FRACX_DATABASE_USERNAME | ""              | username for database authentication      |
+| FRACX_DATABASE_PASSWORD | ""              | password for database authentication      |
+| FRACX_DATABASE_DIALECT  | postgres        | database dialect ("postgres" or "mssql")  |
+| FRACX_DATABASE_HOST     | localhost       | database host name                        |
+| FRACX_DATABASE_PORT     | 5432            | database port                             |
+| FRACX_DATABASE_NAME     | postgres        | database name                             |
+| FRACX_TABLE_NAME        | frac_schedules  | database table to store frac schedules    |
+
+<!--
 The application can be configured with environment variables that are passed into the container at runtime. Environment variables can either be defined at the system level or in a file named '.env' in the project's root directory.
 <br/>
 
@@ -111,10 +140,10 @@ services:
     environment:
       FRACX_FTP_USERNAME: YOUR_FRACX_FTP_UERNAME
       FRACX_FTP_PASSWORD: YOUR_FRACX_FTP_PASSWORD
-      DATABASE_USERNAME: YOUR_DATABASE_USERNAME
-      DATABASE_PASSWORD: YOUR_DATABASE_PASSWORD
-      DATABASE_HOST: YOUR_DATABASE_HOST
-      DATABASE_NAME: YOUR_DATABASE_NAME
-      DATABASE_SCHEMA: fracx
-      FRAC_SCHEDULE_TABLE_NAME: frac_schedules
-```
+      FRACX_DATABASE_USERNAME: YOUR_DATABASE_USERNAME
+      FRACX_DATABASE_PASSWORD: YOUR_DATABASE_PASSWORD
+      FRACX_DATABASE_HOST: YOUR_DATABASE_HOST
+      FRACX_DATABASE_NAME: YOUR_DATABASE_NAME
+      FRACX_DATABASE_SCHEMA: fracx
+      FRACX_TABLE_NAME: frac_schedules
+``` -->

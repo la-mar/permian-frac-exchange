@@ -96,15 +96,15 @@ workflows:
               only: /^\d+\.\d+\.\d+$/
             branches:
               only: master
-      - github/release:
-          context: global
-          requires:
-            - run-tests
-            - build-image
-          tag: ${CIRCLE_TAG}
-          title: Release ${CIRCLE_TAG}
-          filters:
-            tags:
-              only: /^\d+\.\d+\.\d+$/
-            branches:
-              only: master
+      # - github/release:
+      #     context: global
+      #     requires:
+      #       - run-tests
+      #       - build-image
+      #     tag: ${CIRCLE_TAG}
+      #     title: Release ${CIRCLE_TAG}
+      #     filters:
+      #       tags:
+      #         only: /^\d+\.\d+\.\d+$/
+      #       branches:
+      #         only: master

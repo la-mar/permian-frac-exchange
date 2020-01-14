@@ -118,7 +118,6 @@ class BaseConfig:
     COLLECTOR_FTP_INPATH = os.getenv("FRACX_FTP_INPATH", "/Inbound")
     COLLECTOR_FTP_USERNAME = os.getenv("FRACX_FTP_USERNAME")
     COLLECTOR_FTP_PASSWORD = os.getenv("FRACX_FTP_PASSWORD")
-    COLLECTOR_FILE_PREFIX = os.getenv("FRACX_FILE_PREFIX")
     COLLECTOR_WRITE_SIZE = int(os.getenv("FRACX_WRITE_SIZE", "1000"))
 
     """ Parser """
