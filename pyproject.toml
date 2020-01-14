@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fracx"
-version = "0.1.15"
+version = "0.1.16"
 description = "FracX is a library that can be used to interface with PDS Energy's FracX platform for exchanging frac schedules."
 authors = ["Brock Friedrich <brocklfriedrich@gmail.com>"]
 license = "MIT"
