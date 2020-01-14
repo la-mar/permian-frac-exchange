@@ -61,17 +61,29 @@ jobs:
       - docker/push:
           image: driftwood/fracx
           tag: $(echo ${CIRCLE_SHA1} | cut -c -7),dev,latest
-
-  deployment:
-    docker:
-      - image: circleci/python:3.7
+  build-image-with-chamber:
+    executor: docker/docker
     steps:
-      # Gets the code
+      - setup_remote_docker
       - checkout
-      - run:
-          name: Push to PyPI
-          command: |
-            poetry publish --build --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
+      - docker/check
+      - docker/build:
+          image: driftwood/fracx
+          tag: chamber-$(echo ${CIRCLE_SHA1} | cut -c -7),chamber-dev,chamber-latest
+      - docker/push:
+          image: driftwood/fracx
+          tag: chamber-$(echo ${CIRCLE_SHA1} | cut -c -7),chamber-dev,chamber-latest
+
+  # deployment:
+  #   docker:
+  #     - image: circleci/python:3.7
+  #   steps:
+  #     # Gets the code
+  #     - checkout
+  #     - run:
+  #         name: Push to PyPI
+  #         command: |
+  #           poetry publish --build --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
 
 workflows:
   version: 2.1
@@ -88,6 +100,18 @@ workflows:
           context: global
           image: driftwood/fracx
           tag: ${CIRCLE_TAG}
+          requires:
+            - run-tests
+            - build-image
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+            branches:
+              only: master
+      - docker/publish:
+          context: global
+          image: driftwood/fracx:chamber-latest
+          tag: chamber-${CIRCLE_TAG}
           requires:
             - run-tests
             - build-image
