@@ -17,9 +17,9 @@
   </table>
 </div>
 
-<p>The FracX Python library is a tool to interface with <a href=https://pdsenergy.com/frac-interference-exchange/>PDS Energy's</a> FracX platform, used to submit and download frac schedules. Currently, the project interfaces with the FTP import/export service provided by PDS. As other means of integration become available from PDS, those means will be incorporated into this project as additional ways to import and export data from FracX.</p>
+<p>The FracX Python library is a tool to interface with <a href="https://pdsenergy.com/frac-interference-exchange"/>PDS Energy's</a> FracX platform, used to submit and download frac schedules. Currently, the project interfaces with the FTP import/export service provided by PDS. As other means of integration become available from PDS, those means will be incorporated into this project as additional ways to import and export data from FracX.</p>
 
-Available on PyPI and Docker
+Available on <a href="https://pypi.python.org/pypi/fracx/">PyPI</a> and <a href="https://hub.docker.com/repository/docker/driftwood/fracx">Docker</a>
 
 <br/>
 
