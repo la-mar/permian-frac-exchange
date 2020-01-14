@@ -63,9 +63,9 @@ Initialization creates one table and one view in the target database:
 - frac_schedules (or the value of FRACX_TABLE_NAME)
 - frac_schedules_by_api10 (or the value of FRACX_TABLE_NAME+"\_by_api10")
 
-Re-running the db init command will attempt to create the table or view if one doesn't exist. It will NOT drop an existing table or view. This must be done manually.
+Re-running the db init command will attempt to create the table or view if they dont already exist. It will NOT drop an existing table or view. This must be done manually.
 
-####
+#### Run the app
 
 Run the app:
 
