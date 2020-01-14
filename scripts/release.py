@@ -7,7 +7,7 @@ from pathlib import Path
 
 import tomlkit
 
-SRC_FOLDER = "ihs"
+SRC_FOLDER = "src/fracx"
 PROJECT_ROOT = Path(".").resolve()
 GITHUB_API_ENDPOINT = (
     subprocess.check_output(["git", "config", "--get", "remote.origin.url"])
