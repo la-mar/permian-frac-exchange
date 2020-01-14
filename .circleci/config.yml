@@ -120,16 +120,16 @@ workflows:
               only: /^\d+\.\d+\.\d+$/
             branches:
               only: master
-      - deployment:
-          context: global
-          requires:
-            - run-tests
-            - build-image
-          filters:
-            tags:
-              only: /^\d+\.\d+\.\d+$/
-            branches:
-              only: master
+      # - deployment:
+      #     context: global
+      #     requires:
+      #       - run-tests
+      #       - build-image
+      #     filters:
+      #       tags:
+      #         only: /^\d+\.\d+\.\d+$/
+      #       branches:
+      #         only: master
       # - github/release:
       #     context: global
       #     requires:
