@@ -65,6 +65,7 @@ build-all: build-with-chamber build
 
 push: login
 	docker push ${IMAGE_NAME}:latest
+	docker push ${IMAGE_NAME}:chamber-latest
 
 push-version: build build-with-chamber
 	@echo "Pushing images to DockerHub for app version ${APP_VERSION}"
