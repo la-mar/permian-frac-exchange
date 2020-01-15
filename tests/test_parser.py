@@ -210,7 +210,7 @@ class TestCriterion:
         vc = ValueCriterion(123)
         assert vc(123) is True
 
-    def test_partial_parse(self, rule):
+    def test_rule_repr(self, rule):
         repr(rule)
 
     def test_rule_return_partials(self, rule):
