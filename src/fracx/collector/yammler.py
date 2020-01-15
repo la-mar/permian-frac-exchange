@@ -40,7 +40,7 @@ class Yammler(dict):
         try:
             yield obj
         finally:
-            obj.dump(force=True)
+            obj.dump()
 
     @classmethod
     @contextmanager

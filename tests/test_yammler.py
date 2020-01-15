@@ -7,28 +7,33 @@ from collector.yammler import Yammler
 logger = logging.getLogger(__name__)
 
 
-class TestYammler:
-    def test_load_yaml(self, tmpdir):
-        path = tmpdir.mkdir("test").join("yaml.yaml")
-        path.write(
-            """endpoints:
-            frac_schedules:
+@pytest.fixture
+def tmpyaml(tmpdir):
+    path = tmpdir.mkdir("test").join("yaml.yaml")
+    path.write(
+        """endpoints:
+            example:
                 enabled: true
-                model: api.models.FracSchedule
+                model: api.models.TestModel
                 ignore_unkown: true
             """
-        )
+    )
+    yield path
+
+
+class TestYammler:
+    def test_load_yaml(self, tmpyaml):
 
         expected = {
-            "frac_schedules": {
+            "example": {
                 "enabled": True,
-                "model": "api.models.FracSchedule",
+                "model": "api.models.TestModel",
                 "ignore_unkown": True,
             }
         }
 
-        yml = Yammler(str(path))
-        assert yml.fspath == str(path)
+        yml = Yammler(str(tmpyaml))
+        assert yml.fspath == str(tmpyaml)
         assert yml["endpoints"] == expected
 
     def test_dump_to_file(self, tmpdir):
@@ -44,3 +49,10 @@ class TestYammler:
         yml = Yammler(str(path), {})
         assert isinstance(yml.stamp(), datetime)
 
+    def test_generic_context_manager(self, tmpyaml):
+        with Yammler.context(tmpyaml) as f:
+            f["tempvar"] = "tempvalue"
+
+        # open another context to check the result was persisted
+        with Yammler.context(tmpyaml) as f:
+            assert f["tempvar"] == "tempvalue"
