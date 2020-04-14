@@ -5,7 +5,7 @@ endpoints:
     ignore_unkown: true
     mappings:
       aliases:
-        company: operator
+        operator: operator
         well_api: api14
         well_name: wellname
         frac_start_date: frac_start_date

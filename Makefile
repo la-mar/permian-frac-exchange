@@ -72,8 +72,7 @@ push-version: build build-with-chamber
 	docker push ${IMAGE_NAME}:${APP_VERSION}
 	docker push ${IMAGE_NAME}:chamber-${APP_VERSION}
 
-all:
-	make build login push
+all: build-all login push
 
 deploy:
 	aws-vault exec ${ENV} -- poetry run python scripts/deploy.py

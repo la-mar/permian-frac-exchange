@@ -49,15 +49,17 @@ class Transformer(object):
         try:
             row = self.drop_exclusions(row)
             row = self.apply_aliases(row)
-            row = self.parser.parse(row)
+            # row = self.parser.parse(row)
 
             if "api14" in row.keys():
                 api14 = str(row["api14"])
                 ndiff = 14 - len(api14)
                 if ndiff > 0:
                     api14 += "0" * ndiff
-                row["api14"] = api14
-                row["api10"] = row["api14"][:10]
+                row["api14"] = api14[:14]
+                row["api10"] = api14[:10]
+
+            row = {k: v if v != "" else None for k, v in row.items()}
 
             numerrs = len(self.errors)
             if len(self.errors) > 0:

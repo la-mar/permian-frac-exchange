@@ -8,6 +8,7 @@ import tomlkit
 import yaml
 from attrdict import AttrDict
 from sqlalchemy.engine.url import URL
+import pandas as pd
 
 _pg_aliases = ["postgres", "postgresql", "psycopg2", "psycopg2-binary"]
 _mssql_aliases = ["mssql", "sql server"]
@@ -17,6 +18,11 @@ FLASK_APP = os.getenv("FLASK_APP", "fracx.manage.py")
 
 sys.path.append(os.path.abspath(os.path.join("..", "config")))
 
+""" Optional Pandas display settings"""
+pd.options.display.max_rows = None
+pd.set_option("display.float_format", lambda x: "%.2f" % x)
+pd.set_option("large_repr", "truncate")
+pd.set_option("precision", 2)
 
 try:
     __file__

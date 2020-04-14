@@ -63,6 +63,13 @@ def hr():
 def collector(update_on_conflict, ignore_on_conflict, use_existing):
     "Run a one-off task to synchronize from the fracx data source"
 
+    # import pandas as pd
+    # import numpy as np
+    # from fracx import create_app
+
+    # app = create_app()
+    # app.app_context().push()
+
     logger.info(conf)
 
     endpoint = Endpoint.load_from_config(conf)["frac_schedules"]
@@ -72,8 +79,15 @@ def collector(update_on_conflict, ignore_on_conflict, use_existing):
     latest = ftp.get_latest()
 
     rows = BytesFileHandler.xlsx(
-        latest.get("content"), date_columns=endpoint.mappings.get("dates")
+        latest.get("content"), date_columns=endpoint.mappings.get("dates"), sheet_no=1
     )
+
+    rows = list(rows)
+
+    rows = [collector.transform(row) for row in rows]
+
+    _ = [collector.persist([row]) for row in rows]
+
     collector.collect(rows, update_on_conflict, ignore_on_conflict)
 
     ftp.cleanup()

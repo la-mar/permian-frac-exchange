@@ -64,17 +64,17 @@ class FracScheduleCollector(Collector):
         ignore_on_conflict: bool = False,
     ):
 
-        rows = []
-        for row in iterable:
-            transformed = self.filter(self.transform(row))
-            if transformed:
-                rows.append(transformed)
+        # rows = []
+        # for row in iterable:
+        #     transformed = self.filter(self.transform(row))
+        #     if transformed:
+        #         rows.append(transformed)
 
-            if len(rows) > 0 and len(rows) % conf.COLLECTOR_WRITE_SIZE == 0:
-                self.persist(rows)
+        #     if len(rows) > 0 and len(rows) % conf.COLLECTOR_WRITE_SIZE == 0:
+        #         self.persist(rows)
 
-        # persist leftovers
-        self.persist(rows)
+        # # persist leftovers
+        self.persist([x for x in iterable])
 
     def persist(
         self,
@@ -97,3 +97,10 @@ class FracScheduleCollector(Collector):
             return row
         else:
             return None
+
+
+if __name__ == "__main__":
+    from fracx import create_app
+
+    app = create_app()
+    app.app_context().push()
